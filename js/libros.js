@@ -8,7 +8,7 @@
   const AMAZON = window.AMAZON || {};   
   const comprar = clave => AMAZON[clave]
     ? `<a class="boton libro-ficha__comprar" href="${AMAZON[clave]}" target="_blank" rel="noopener">Juega conmigo <small>· en Amazon</small></a>`
-    : `<span class="boton libro-ficha__comprar libro-ficha__comprar--sin" aria-disabled="true" title="Falta el enlace de Amazon">Juega conmigo <small>· en Amazon</small></span>`;
+    : `<p class="libro-ficha__pronto">Próximamente en Amazon</p>`;
   const estante = $('estante');
   const fichas = D.libros.map(l => {
     const art = el('article', 'libro-ficha');

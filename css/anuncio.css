@@ -532,5 +532,7 @@ a { color: inherit; }
 .pie-hoja.globo-hoja--debajo span::before { display: none; }
 .final__amazon[hidden] { display: none; }
 .final__amazon small { font-size: .8em; opacity: .75; }
+.final__pronto { display: inline-block; padding: 0 12px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; opacity: .75; }   
+.final__pronto[hidden] { display: none; }
 .final__legal { margin-top: 44px; font-size: 12px; letter-spacing: .1em; opacity: .7; }
 .final__legal a { text-underline-offset: .2em; }

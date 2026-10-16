@@ -403,8 +403,7 @@
     <section class="final" id="fin" aria-label="Selvativo">
       <img loading="lazy" class="final__logo" src="logo/Selvativo_principal_marfil.svg" alt="Selvativo">
       <p class="final__frase">Ocho mundos. Noventa y seis animales.<br>Para colorear y para jugar.</p>
-      <p class="final__botones"><a class="boton final__amazon" id="final-amazon" target="_blank" rel="noopener" hidden>Juega conmigo <small>· en Amazon</small></a> <a class="boton" href="libros.html">Ver los libros</a> <a class="boton boton--claro" href="#como-se-juega">Cómo se juega</a></p>
-      <p class="final__legal"><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad</a></p>
+      <p class="final__botones"><a class="boton final__amazon" id="final-amazon" target="_blank" rel="noopener" hidden>Juega conmigo <small>· en Amazon</small></a><span class="final__pronto" id="final-pronto" hidden>Próximamente en Amazon</span> <a class="boton" href="libros.html">Ver los libros</a> <a class="boton boton--claro" href="#como-se-juega">Cómo se juega</a></p>
     </section>
 
   </main>
@@ -420,7 +419,7 @@
   <script src="js/anuncio.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/amazon.js"></script>
-  <script>    (() => { const a = document.getElementById('final-amazon'), u = (window.AMAZON || {})[window.ELEGIDO]; if (a && u) { a.href = u; a.hidden = false; } })();
+  <script>    (() => { const a = document.getElementById('final-amazon'), u = (window.AMAZON || {})[window.ELEGIDO]; if (a && u) { a.href = u; a.hidden = false; } else { const p = document.getElementById('final-pronto'); if (p) p.hidden = false; } })();
   </script>
 </body>
 </html>
