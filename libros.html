@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selvativo · Los libros</title>
+  <link rel="canonical" href="https://selvativo.com/libros.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Selvativo">
+  <meta property="og:title" content="Selvativo · Los libros">
+  <meta property="og:description" content="Ocho libros, ocho mundos y doce animales en cada uno, para colorear y para jugar.">
+  <meta property="og:url" content="https://selvativo.com/libros.html">
+  <meta property="og:image" content="https://selvativo.com/img/compartir.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="description" content="Los ocho libros de Selvativo, uno por cada rincón del planeta, con sus doce animales; y los ocho que vienen.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="css/fuentes.css">
+  <link rel="stylesheet" href="css/anuncio.css">
+  <link rel="stylesheet" href="css/libros.css">
+</head>
+<body class="pagina-libros">
+  <a class="saltar" href="#estante">Saltar a los libros</a>
+
+  <header class="barra">
+    <a class="barra__marca" href="/" aria-label="Selvativo, volver al principio">
+      <img src="logo/Selvativo_marca_pequena_marfil.svg" alt="" width="30" height="30">
+    </a>
+    <nav class="barra__menu" aria-label="Menú">
+      <a href="/">Inicio</a>
+      <a href="/#e-funciona">Así funciona</a>
+      <a href="/#e-pinta">Píntalo</a>
+      <a href="/#conocelos">Conócelos</a>
+      <a href="/#como-se-juega">Cómo se juega</a>
+      <a href="/#e-granbatalla">La gran batalla</a>
+      <a href="/#ponte-a-prueba">Ponte a prueba</a>
+      <a href="/#juegos">Juegos</a>
+      <a href="/#e-cuidar">Cuidarlos</a>
+      <a href="/#e-mundos">Los ocho mundos</a>
+      <a href="libros.html" aria-current="page">Libros</a>
+    </nav>
+  </header>
+
+  <main class="libros">
+    <div class="libros__cabeza">
+      <p class="antetitulo">La colección</p>
+      <h1 class="titular">Los libros.</h1>
+      <p class="sub">Ocho mundos, doce animales en cada uno. Busca por región o por animal.</p>
+    </div>
+
+    <div class="filtros" id="filtros" hidden>
+      <div class="filtros__regiones" id="regiones" role="group" aria-label="Región"></div>
+      <label class="buscador">
+        <span class="buscador__txt">Busca un animal</span>
+        <input type="search" id="buscar" placeholder="Koala, lobo, pingüino…" autocomplete="off" spellcheck="false">
+      </label>
+      <p class="filtros__cuenta" id="cuenta" aria-live="polite"></p>
+    </div>
+
+    <section class="estante" id="estante" aria-label="Los ocho libros de la colección"></section>
+
+    <section class="vienen" id="vienen" aria-labelledby="t-vienen">
+      <div class="vienen__cabeza">
+        <p class="antetitulo">Próximamente</p>
+        <h2 class="titular titular--medio" id="t-vienen">Ocho mundos más.</h2>
+        <p class="sub">El segundo de cada región: doce animales nuevos en cada uno.</p>
+      </div>
+      <div class="vienen__lista" id="vienen-lista"></div>
+    </section>
+  </main>
+
+  <footer class="libros__pie">
+    <img src="logo/Selvativo_principal_marfil.svg" alt="Selvativo" width="260">
+    <p class="final__botones"><a class="boton" href="/#como-se-juega">Cómo se juega</a> <a class="boton boton--claro" href="/">Volver al principio</a></p>
+      <p class="final__legal"><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad</a></p>
+  </footer>
+
+  <script src="js/datos_libros.js"></script>
+  <script src="js/amazon.js"></script>
+  <script src="js/libros.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>

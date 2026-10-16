@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://selvativo.com/sitemap.xml
