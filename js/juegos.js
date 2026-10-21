@@ -8,7 +8,7 @@
   const sinTildes = s => s.normalize('NFD').replace(/(?!̃)[̀-ͯ]/g, '').normalize('NFC');   
   const libro = l => `<span class="libro-de">${l}</span>`;
   const preguntas = $('preguntas');
-  S.preguntas.forEach((q, i) => {
+  if (preguntas) S.preguntas.forEach((q, i) => {   
     const b = el('button', 'carta');
     b.type = 'button';
     b.setAttribute('aria-pressed', 'false');
@@ -18,7 +18,7 @@
     preguntas.appendChild(b);
   });
   const intruso = $('intruso');
-  S.intruso.forEach(fila => {
+  if (intruso) S.intruso.forEach(fila => {
     const caja = el('div', 'intruso__fila');
     caja.appendChild(el('p', 'intruso__pregunta', `${libro(fila.libro)}${fila.criterio}`));
     const nombres = el('div', 'intruso__nombres');
@@ -44,7 +44,7 @@
     intruso.appendChild(caja);
   });
   const adivinanzas = $('adivinanzas');
-  S.adivinanzas.forEach(a => {
+  if (adivinanzas) S.adivinanzas.forEach(a => {
     const b = el('button', 'carta carta--adivina');
     b.type = 'button';
     b.setAttribute('aria-pressed', 'false');
@@ -55,6 +55,7 @@
     adivinanzas.appendChild(b);
   });
   (() => {
+    if (!$('laberinto')) return;
     const L = S.laberinto, F = L.filas, C = L.cols;
     const abierto = new Set(L.abiertas.map(([a, b]) => [a.join(','), b.join(',')].sort().join('|')));
     const paso = (a, b) => abierto.has([a.join(','), b.join(',')].sort().join('|'));
@@ -118,6 +119,7 @@
     reinicio();
   })();
   (() => {
+    if (!$('sopa')) return;
     const R = S.sopa.rejilla, N = R.length, P = S.sopa.posiciones;
     const caja = $('sopa'), lista = $('sopa-lista'), aviso = $('sopa-aviso');
     const rej = el('div', 'sopa__rejilla');
@@ -165,6 +167,7 @@
     rej.addEventListener('pointerup', e => { if (!ini) return; comprobar(ini, celda(e)); ini = null; sel.classList.remove('sopa__sel--on'); });
   })();
   (() => {
+    if (!$('crucigrama')) return;
     const K = S.crucigrama, letras = K.letras;
     const celdas = Object.keys(letras).map(k => k.split(',').map(Number));
     const filas = Math.max(...celdas.map(c => c[0])) + 1, cols = Math.max(...celdas.map(c => c[1])) + 1;

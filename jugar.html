@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selvativo · Jugar</title>
+  <link rel="canonical" href="https://selvativo.com/jugar.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Selvativo">
+  <meta property="og:title" content="Selvativo · Jugar">
+  <meta property="og:description" content="Ocho libros, ocho mundos y doce animales en cada uno, para colorear y para jugar.">
+  <meta property="og:url" content="https://selvativo.com/jugar.html">
+  <meta property="og:image" content="https://selvativo.com/img/compartir.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="description" content="Juega con los animales de Selvativo: un duelo con las reglas del libro, preguntas, adivinanzas, el laberinto, la sopa de letras y el crucigrama.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="css/fuentes.css">
+  <link rel="stylesheet" href="css/anuncio.css">
+  <link rel="stylesheet" href="css/jugar.css">
+</head>
+<body class="pagina-jugar">
+  <script src="js/elige.js"></script>
+  <a class="saltar" href="#duelo">Saltar al duelo</a>
+
+  <header class="barra">
+    <a class="barra__marca" href="/" aria-label="Selvativo, volver al principio">
+      <img src="logo/Selvativo_marca_pequena_marfil.svg" alt="" width="30" height="30">
+    </a>
+    <nav class="barra__menu" aria-label="Menú">
+      <a href="/">Inicio</a>
+      <a href="libros.html">Libros</a>
+      <a href="jugar.html" aria-current="page">Jugar</a>
+      <a href="/#e-funciona">Así funciona</a>
+      <a href="/#e-pinta">Píntalo</a>
+      <a href="/#conocelos">Conócelos</a>
+      <a href="/#como-se-juega">Cómo se juega</a>
+      <a href="/#e-granbatalla">La gran batalla</a>
+      <a href="/#e-cuidar">Cuidarlos</a>
+      <a href="/#e-mundos">Los ocho mundos</a>
+    </nav>
+  </header>
+
+  <main class="jugar">
+    <div class="jugar__cabeza">
+      <p class="antetitulo">Para jugar</p>
+      <h1 class="titular">Juega.</h1>
+      <p class="sub">Con los animales de <span id="jugar-libro">Guardianes de la Sabana</span>. Elige otro libro cuando quieras.</p>
+      <nav class="jugar__libros" aria-label="Libro">
+        <a href="jugar.html?libro=sabana" data-libro="sabana">Guardianes de la Sabana</a>
+        <a href="jugar.html?libro=amazonas" data-libro="amazonas">Amazonas Salvaje</a>
+        <a href="jugar.html?libro=norte" data-libro="norte">Gigantes del Norte</a>
+        <a href="jugar.html?libro=oriente" data-libro="oriente">Tesoros de Oriente</a>
+        <a href="jugar.html?libro=bosques" data-libro="bosques">Bosques Encantados</a>
+        <a href="jugar.html?libro=australia" data-libro="australia">Bestias de Australia</a>
+        <a href="jugar.html?libro=pinguino" data-libro="pinguino">Reino Pingüino</a>
+        <a href="jugar.html?libro=artico" data-libro="artico">Reyes del Ártico</a>
+      </nav>
+    </div>
+
+    <section class="reglas" id="duelo" aria-labelledby="t-reglas">
+      <div class="reglas__cabeza">
+        <p class="antetitulo">El duelo</p>
+        <h2 class="titular" id="t-reglas">Juega tu primer duelo.</h2>
+        <p class="sub">Tú llevas el león. Las reglas son las del libro, y la hoja de duelo se rellena como en el libro: debajo de las fichas tienes la guía.</p>
+      </div>
+      <div class="tablero">
+        <article class="luchador" id="l-leon">
+          <button type="button" class="cromo cromo--mano" data-girar aria-label="Dar la vuelta: la ficha del león">
+            <img class="cromo__cara" src="img/anuncio/cromo_leon.webp" width="798" height="1135" alt="El león">
+            <span class="cromo__dorso"><img src="img/fichas/sabana.webp" width="798" height="1135" alt=""></span>
+            <i class="cromo__brillo" aria-hidden="true"></i>
+          </button>
+          <h3 class="luchador__nombre">León</h3>
+          <p class="luchador__datos">Ataque 34 · Defensa 10 · Velocidad 7</p>
+          <p class="luchador__vida"><span id="vida-leon">112</span> de vida</p>
+          <div class="barra-vida"><i id="barra-leon"></i></div>
+        </article>
+        <article class="luchador" id="l-tigre">
+          <button type="button" class="cromo cromo--mano" data-girar aria-label="Dar la vuelta: la ficha del tigre de Bengala">
+            <img class="cromo__cara" src="img/anuncio/cromo_tigre.webp" width="798" height="1135" alt="El tigre de Bengala">
+            <span class="cromo__dorso"><img src="img/fichas/oriente.webp" width="798" height="1135" alt=""></span>
+            <i class="cromo__brillo" aria-hidden="true"></i>
+          </button>
+          <h3 class="luchador__nombre">Tigre de Bengala</h3>
+          <p class="luchador__datos">Ataque 37 · Defensa 10 · Velocidad 3</p>
+          <p class="luchador__vida"><span id="vida-tigre">135</span> de vida</p>
+          <div class="barra-vida"><i id="barra-tigre"></i></div>
+        </article>
+      </div>
+      <p class="tablero__ayuda">Toca un animal para ver su ficha.</p>
+      <div class="jugada">
+        <p class="jugada__paso" id="paso-num">Antes de empezar</p>
+        <div class="jugada__texto" id="paso" aria-live="polite">
+          <p>Dos jugadores, un animal cada uno. Tú llevas el león; el tigre lo juega la web.</p>
+        </div>
+        <div class="jugada__botones" id="opciones"></div>
+      </div>
+      <div class="arena-guia">
+        <figure class="arena">
+          <div class="arena__hoja">
+            <img src="img/anuncio/arena_p73.webp" width="1093" height="698" alt="La arena de duelo del libro, donde se apunta cada golpe">
+            <div class="arena__escrito" id="arena-escrito"></div>
+            <span class="marcas" id="arena-marcas" aria-hidden="true"></span>
+          </div>
+          <figcaption>La arena de duelo, en la página 73 del libro: en cada golpe, se resta y se apunta la vida que queda.</figcaption>
+        </figure>
+        <div class="guia">
+          <p class="conoce__como">Así se rellena la hoja</p>
+          <ol class="leyenda" id="guia-hoja"></ol>
+          <p class="guia__pie">A lápiz, como dice el libro: para borrar y volver a jugar.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="ponte-a-prueba" aria-labelledby="t-prueba">
+      <div class="seccion__cabeza">
+        <p class="antetitulo">Preguntas</p>
+        <h2 class="titular" id="t-prueba">Ponte a prueba.</h2>
+        <p class="sub">Ocho preguntas, una de cada libro. Toca cada carta para ver la respuesta.</p>
+      </div>
+      <div class="preguntas" id="preguntas"></div>
+      <h3 class="seccion__sub">¿Quién es el intruso?</h3>
+      <div class="intruso" id="intruso"></div>
+      <h3 class="seccion__sub">Adivinanzas</h3>
+      <div class="adivinanzas" id="adivinanzas"></div>
+    </section>
+
+    <section class="seccion" id="juegos" aria-labelledby="t-juegos">
+      <div class="seccion__cabeza">
+        <p class="antetitulo">Y para jugar</p>
+        <h2 class="titular" id="t-juegos">Los juegos de los libros.</h2>
+        <p class="sub">En el libro se juegan con lápiz. Aquí, con el dedo.</p>
+      </div>
+      <div class="juegos">
+        <article class="juego">
+          <h3 class="juego__titulo"><span>1</span> El laberinto</h3>
+          <p class="juego__txt" id="laberinto-texto"></p>
+          <div class="laberinto" id="laberinto"></div>
+          <p class="juego__aviso" id="laberinto-aviso" aria-live="polite"></p>
+          <button type="button" class="boton boton--tinta" id="laberinto-otra">Empezar otra vez</button>
+        </article>
+        <article class="juego">
+          <h3 class="juego__titulo"><span>2</span> Sopa de letras</h3>
+          <p class="juego__txt">Doce animales de siete libros están escondidos aquí. Rodéalos: arrastra el dedo de la primera letra a la última. En la sopa no hay tildes.</p>
+          <div class="sopa" id="sopa"></div>
+          <ul class="sopa__lista" id="sopa-lista"></ul>
+          <p class="juego__aviso" id="sopa-aviso" aria-live="polite"></p>
+        </article>
+        <article class="juego juego--ancho">
+          <h3 class="juego__titulo"><span>3</span> Crucigrama</h3>
+          <p class="juego__txt">Doce animales de los ocho libros, con la pista que les escribió su libro.</p>
+          <div class="cruci">
+            <div class="cruci__caja" id="crucigrama"></div>
+            <ol class="cruci__pistas" id="crucigrama-pistas"></ol>
+          </div>
+          <p class="juego__aviso" id="crucigrama-aviso" aria-live="polite"></p>
+        </article>
+      </div>
+      <p class="seccion__pie">Y en cada libro, además: sus récords, el cuaderno de exploración e inventa tu animal.</p>
+    </section>
+
+  </main>
+
+  <footer class="jugar__pie">
+    <img src="logo/Selvativo_principal_marfil.svg" alt="Selvativo" width="260">
+    <p class="final__botones"><a class="boton" href="/#como-se-juega">Cómo se juega</a> <a class="boton boton--claro" href="libros.html">Los libros</a></p>
+    <p class="final__redes"><a href="https://www.instagram.com/selvativo/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg>Síguenos en Instagram <b>@selvativo</b></a></p>
+    <p class="final__legal"><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad</a></p>
+  </footer>
+
+  <script src="js/datos_sabana.js"></script>
+  <script src="js/rellena.js"></script>
+  <script src="js/juego.js"></script>
+  <script src="js/arena.js"></script>
+  <script src="js/duelo.js"></script>
+  <script src="js/juegos.js"></script>
+  <script src="js/menu.js"></script>
+  <script>    (() => {   
+      const S = window.SABANA;
+      document.getElementById('jugar-libro').textContent = S.libro;
+      for (const a of document.querySelectorAll('.jugar__libros a')) if (a.dataset.libro === S.clave) a.setAttribute('aria-current', 'true');
+    })();
+  </script>
+</body>
+</html>
