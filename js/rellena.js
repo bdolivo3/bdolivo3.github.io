@@ -17,7 +17,7 @@
   pon(txt.find(p => p.textContent.includes('escondidos')), `Los doce animales de ${S.libro} están escondidos aquí. Rodéalos: arrastra el dedo de la primera letra a la última. En la sopa no hay tildes.`);
   pon(txt.find(p => p.textContent.includes('pista')), `Los doce animales de ${S.libro}. Las pistas son sus récords y, alguna, lo que dice su ficha.`);
   if (S.clave === 'sabana') return;
-  pon(q('#como-se-juega .sub'), `Tú llevas ${S.jugador.el}. Las reglas son las del libro, y la hoja de duelo se rellena como en el libro: debajo de las fichas tienes la guía.`);
+  pon(q('#duelo .sub'), `Tú llevas ${S.jugador.el}. Las reglas son las del libro, y la hoja de duelo se rellena como en el libro: debajo de las fichas tienes la guía.`);
   [['l-leon', S.jugador], ['l-tigre', S.rival]].forEach(([id, a]) => {
     const art = $(id), f = S.fichas.find(x => x.nombre === a.nombre);
     if (!art || !f) return;
@@ -85,6 +85,7 @@
   if (INFO) {
     [['campo', INFO[0]], ['rinos', INFO[1]]].forEach(([id, d]) => {
       const fig = $(id);
+      if (!fig) return;   
       fig.classList.add('info');
       html(fig, `<span class="rinos__titulo">${esc(d.t)}.</span>${dibujo(d)}<figcaption>${esc(pie(d))}</figcaption>`);
     });

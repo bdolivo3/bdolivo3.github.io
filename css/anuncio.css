@@ -101,6 +101,16 @@ a { color: inherit; }
 .cine .escenario { position: sticky; top: 0; display: block; max-width: none; height: 100vh; height: 100svh; overflow: hidden; }
 .cine .rotulo { position: absolute; left: 16px; right: 16px; z-index: 3; will-change: opacity, transform; }
 .cine .rotulo--arriba { top: calc(9vh + 44px); }
+.pista { display: none; }
+.cine .pista {
+  display: block; position: absolute; left: 16px; right: 16px; bottom: calc(6vh + env(safe-area-inset-bottom, 0px)); z-index: 3;
+  margin: 0; text-align: center; font-size: 11px; font-weight: 400; letter-spacing: .28em; text-transform: uppercase; color: var(--marfil);
+}
+.cine .pista::after {
+  content: ''; display: block; width: 10px; height: 10px; margin: 14px auto 0; border-right: 1.5px solid; border-bottom: 1.5px solid;
+  transform: rotate(45deg); animation: pista 1.8s ease-in-out infinite;
+}
+@keyframes pista { 50% { transform: translateY(7px) rotate(45deg); } }
 .cine .grande { display: grid; place-items: center; position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; visibility: hidden; }
 .cine .grande--sobre { text-shadow: 0 4px 60px rgba(0, 0, 0, .5), 0 1px 3px rgba(0, 0, 0, .25); }
 .cine .velo { display: block; position: absolute; inset: 0; z-index: 4; pointer-events: none; opacity: 0; }
@@ -210,6 +220,14 @@ a { color: inherit; }
 }
 .reglas { max-width: 1040px; margin: 0 auto; padding: 130px 16px 110px; }
 .reglas__cabeza { text-align: center; margin-bottom: clamp(36px, 6vh, 64px); }
+.reglas__pasos { display: grid; gap: 14px; max-width: 680px; margin: 0 auto clamp(40px, 7vh, 70px); padding: 0; list-style: none; counter-reset: paso; }
+.reglas__pasos li { position: relative; padding-left: 46px; font-size: 16px; line-height: 1.6; counter-increment: paso; }
+.reglas__pasos li::before {
+  content: counter(paso); position: absolute; left: 0; top: -2px; width: 30px; height: 30px; border: 1px solid rgba(var(--marfil-rgb), .6);
+  border-radius: 50%; display: grid; place-items: center; font-family: var(--serif); font-size: 16px;
+}
+.reglas__pasos b { font-weight: 500; }
+.reglas__jugar { margin: clamp(36px, 6vh, 56px) 0 0; text-align: center; }
 .reglas .titular, .seccion .titular { font-size: clamp(38px, 5.6vw, 84px); }
 .tablero { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 5vw, 64px); max-width: 640px; margin: 0 auto; }
 .luchador { text-align: center; min-width: 0; perspective: 1200px; }

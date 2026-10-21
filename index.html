@@ -30,13 +30,11 @@
     </a>
     <nav class="barra__menu" aria-label="Menú">
       <a href="#">Inicio</a>
-      <a href="libros.html">Libros</a>      <a href="#e-funciona">Así funciona</a>
+      <a href="libros.html">Libros</a>      <a href="jugar.html">Jugar</a>      <a href="#e-funciona">Así funciona</a>
       <a href="#e-pinta">Píntalo</a>
       <a href="#conocelos">Conócelos</a>
       <a href="#como-se-juega">Cómo se juega</a>
       <a href="#e-granbatalla">La gran batalla</a>
-      <a href="#ponte-a-prueba">Ponte a prueba</a>
-      <a href="#juegos">Juegos</a>
       <a href="#e-cuidar">Cuidarlos</a>
       <a href="#e-mundos">Los ocho mundos</a>
     </nav>
@@ -77,6 +75,7 @@
           <p class="antetitulo">Selvativo</p>
           <h1 class="titular" id="t-libro">Un mundo en cada libro.</h1>
         </div>
+        <p class="pista" id="r-pista" aria-hidden="true">Desliza siempre hacia abajo</p>
         <p class="grande grande--sobre" id="r-abre" aria-hidden="true">Ábrelo.</p>
         <p class="grande grande--sobre" id="r-entra" aria-hidden="true">Entra.</p>
         <div class="velo velo--papel" id="velo-papel" aria-hidden="true"></div>
@@ -183,46 +182,20 @@
     <section class="reglas" id="como-se-juega" aria-labelledby="t-reglas">
       <div class="reglas__cabeza">
         <p class="antetitulo">Cómo se juega</p>
-        <h2 class="titular" id="t-reglas">Juega tu primer duelo.</h2>
-        <p class="sub">Tú llevas el león. Las reglas son las del libro, y la hoja de duelo se rellena como en el libro: debajo de las fichas tienes la guía.</p>
+        <h2 class="titular" id="t-reglas">El duelo, en la arena.</h2>
+        <p class="sub">Dos jugadores, un animal cada uno. Las reglas son las del libro, y cada golpe se apunta a lápiz en la arena de duelo.</p>
       </div>
-      <div class="tablero">
-        <article class="luchador" id="l-leon">
-          <button type="button" class="cromo cromo--mano" data-girar aria-label="Dar la vuelta: la ficha del león">
-            <img loading="lazy" class="cromo__cara" src="img/anuncio/cromo_leon.webp" width="798" height="1135" alt="El león">
-            <span class="cromo__dorso"><img loading="lazy" src="img/fichas/sabana.webp" width="798" height="1135" alt=""></span>
-            <i class="cromo__brillo" aria-hidden="true"></i>
-          </button>
-          <h3 class="luchador__nombre">León</h3>
-          <p class="luchador__datos">Ataque 34 · Defensa 10 · Velocidad 7</p>
-          <p class="luchador__vida"><span id="vida-leon">112</span> de vida</p>
-          <div class="barra-vida"><i id="barra-leon"></i></div>
-        </article>
-        <article class="luchador" id="l-tigre">
-          <button type="button" class="cromo cromo--mano" data-girar aria-label="Dar la vuelta: la ficha del tigre de Bengala">
-            <img loading="lazy" class="cromo__cara" src="img/anuncio/cromo_tigre.webp" width="798" height="1135" alt="El tigre de Bengala">
-            <span class="cromo__dorso"><img loading="lazy" src="img/fichas/oriente.webp" width="798" height="1135" alt=""></span>
-            <i class="cromo__brillo" aria-hidden="true"></i>
-          </button>
-          <h3 class="luchador__nombre">Tigre de Bengala</h3>
-          <p class="luchador__datos">Ataque 37 · Defensa 10 · Velocidad 3</p>
-          <p class="luchador__vida"><span id="vida-tigre">135</span> de vida</p>
-          <div class="barra-vida"><i id="barra-tigre"></i></div>
-        </article>
-      </div>
-      <p class="tablero__ayuda">Toca un animal para ver su ficha.</p>
-      <div class="jugada">
-        <p class="jugada__paso" id="paso-num">Antes de empezar</p>
-        <div class="jugada__texto" id="paso" aria-live="polite">
-          <p>Dos jugadores, un animal cada uno. Tú llevas el león; el tigre lo juega la web.</p>
-        </div>
-        <div class="jugada__botones" id="opciones"></div>
-      </div>
+      <ol class="reglas__pasos">
+        <li><b>Empieza el más rápido.</b> El que tenga más velocidad en su ficha. Además, esquiva: el primer golpe que recibe le hace la mitad.</li>
+        <li><b>Cada turno, un golpe.</b> Tu ataque menos la defensa del rival. Antes eliges una habilidad: la de ataque suma a tu golpe; la de defensa le resta al próximo golpe que recibas. La misma, nunca tres turnos seguidos.</li>
+        <li><b>La rueda de los tipos.</b> La primera vez que uno de tus tipos gana a uno de los suyos, +10 al golpe. Y un golpe nunca baja de 10 antes de restarle la defensa.</li>
+        <li><b>Todo se apunta en la arena.</b> Una fila por golpe: lo que te quitan y la vida que te queda.</li>
+        <li><b>Gana quien deje al otro sin vida.</b></li>
+      </ol>
       <div class="arena-guia">
         <figure class="arena">
           <div class="arena__hoja">
             <img loading="lazy" src="img/anuncio/arena_p73.webp" width="1093" height="698" alt="La arena de duelo del libro, donde se apunta cada golpe">
-            <div class="arena__escrito" id="arena-escrito"></div>
             <span class="marcas" id="arena-marcas" aria-hidden="true"></span>
           </div>
           <figcaption>La arena de duelo, en la página 73 del libro: en cada golpe, se resta y se apunta la vida que queda.</figcaption>
@@ -233,6 +206,7 @@
           <p class="guia__pie">A lápiz, como dice el libro: para borrar y volver a jugar.</p>
         </div>
       </div>
+      <p class="reglas__jugar"><a class="boton" href="jugar.html">Juega tu primer duelo</a></p>
     </section>
 
     <section class="escena escena--granbatalla" id="e-granbatalla" aria-labelledby="t-granbatalla">
@@ -250,53 +224,6 @@
         <p class="pie-hoja globo-hoja" id="r-gb-final"><span>Gana quien deje al otro sin animales.</span></p>
         <div class="velo velo--noche" id="velo-gb" aria-hidden="true"></div>
       </div>
-    </section>
-
-    <section class="seccion" id="ponte-a-prueba" aria-labelledby="t-prueba">
-      <div class="seccion__cabeza">
-        <p class="antetitulo">Para jugar aquí</p>
-        <h2 class="titular" id="t-prueba">Ponte a prueba.</h2>
-        <p class="sub">Ocho preguntas, una de cada libro. Toca cada carta para ver la respuesta.</p>
-      </div>
-      <div class="preguntas" id="preguntas"></div>
-      <h3 class="seccion__sub">¿Quién es el intruso?</h3>
-      <div class="intruso" id="intruso"></div>
-      <h3 class="seccion__sub">Adivinanzas</h3>
-      <div class="adivinanzas" id="adivinanzas"></div>
-    </section>
-
-    <section class="seccion" id="juegos" aria-labelledby="t-juegos">
-      <div class="seccion__cabeza">
-        <p class="antetitulo">Y para jugar</p>
-        <h2 class="titular" id="t-juegos">Los juegos de los libros.</h2>
-        <p class="sub">En el libro se juegan con lápiz. Aquí, con el dedo.</p>
-      </div>
-      <div class="juegos">
-        <article class="juego">
-          <h3 class="juego__titulo"><span>1</span> El laberinto</h3>
-          <p class="juego__txt" id="laberinto-texto"></p>
-          <div class="laberinto" id="laberinto"></div>
-          <p class="juego__aviso" id="laberinto-aviso" aria-live="polite"></p>
-          <button type="button" class="boton boton--tinta" id="laberinto-otra">Empezar otra vez</button>
-        </article>
-        <article class="juego">
-          <h3 class="juego__titulo"><span>2</span> Sopa de letras</h3>
-          <p class="juego__txt">Doce animales de siete libros están escondidos aquí. Rodéalos: arrastra el dedo de la primera letra a la última. En la sopa no hay tildes.</p>
-          <div class="sopa" id="sopa"></div>
-          <ul class="sopa__lista" id="sopa-lista"></ul>
-          <p class="juego__aviso" id="sopa-aviso" aria-live="polite"></p>
-        </article>
-        <article class="juego juego--ancho">
-          <h3 class="juego__titulo"><span>3</span> Crucigrama</h3>
-          <p class="juego__txt">Doce animales de los ocho libros, con la pista que les escribió su libro.</p>
-          <div class="cruci">
-            <div class="cruci__caja" id="crucigrama"></div>
-            <ol class="cruci__pistas" id="crucigrama-pistas"></ol>
-          </div>
-          <p class="juego__aviso" id="crucigrama-aviso" aria-live="polite"></p>
-        </article>
-      </div>
-      <p class="seccion__pie">Y en cada libro, además: sus récords, el cuaderno de exploración e inventa tu animal.</p>
     </section>
 
     <section class="escena escena--cuidar" id="e-cuidar" aria-labelledby="t-cuidar">
@@ -414,9 +341,10 @@
   <script src="js/eleccion.js"></script>
   <script src="js/pintadas.js"></script>
   <script src="js/juego.js"></script>
-  <script src="js/duelo.js"></script>
+  <script src="js/arena.js"></script>
   <script src="js/juegos.js"></script>
   <script src="js/conoce.js"></script>
+  <script src="js/ritmo.js"></script>
   <script src="js/anuncio.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/amazon.js"></script>

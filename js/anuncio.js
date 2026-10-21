@@ -5,6 +5,9 @@
   raiz.classList.add('cine');
   const $ = id => document.getElementById(id);
   const FIJO = /[?&]fijo/.test(location.search);
+  const TACTIL = !matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const RITMO = TACTIL && !/[?&]sinritmo/.test(location.search) ? window.RITMO_TACTIL || {} : {};
+  const DERIVA = Object.keys(RITMO).length ? 0.06 : 0;
   const lim = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const tramo = (p, a, b) => lim((p - a) / (b - a));
   const suave = t => t * t * (3 - 2 * t);
@@ -22,7 +25,8 @@
     const t = dentro * (1 - fuera);
     el.style.opacity = t.toFixed(3);
     el.style.visibility = t > 0.001 ? 'visible' : 'hidden';
-    el.style.transform = `translateY(${((1 - dentro) * 28 - fuera * 28).toFixed(1)}px)`;
+    const deriva = DERIVA * innerHeight * (0.5 - tramo(p, b, c));
+    el.style.transform = `translateY(${((1 - dentro) * 28 - fuera * 28 + deriva).toFixed(1)}px)`;
   }
   const FOTO_A = { w: 2752, h: 1536 };
   const HORIZONTAL = { w: 2752, h: 1536, libro: [0.5015, 0.5042], ancho: 0.19 };
@@ -180,6 +184,7 @@
       0.42 * entra(p0, 0.14, 0.2) * (1 - entra(p0, 0.36, 0.42)), 0.28 * entra(p0, 0.47, 0.53) * (1 - entra(p0, 0.82, 0.88))).toFixed(3);
     caraTapa.style.filter = '';
     rotulo($('r-libro'), r, -1, -0.5, 0.06, 0.1);
+    rotulo($('r-pista'), r, -1, -0.5, 0.01, 0.04);
     rotulo($('r-abre'), p0, 0.15, 0.2, 0.36, 0.41);
     rotulo($('r-entra'), p0, 0.48, 0.53, 0.82, 0.87);
     $('velo-papel').style.opacity = entra(p, 0.93, 0.99).toFixed(3);
@@ -490,6 +495,15 @@
     ['e-granbatalla', escenaGranBatalla, p => p < 0.96], ['e-cuidar', escenaCuidar],
     ['e-mundos', escenaMundos], ['e-proximo', escenaProximo],
   ].map(([id, fn, claro, medida]) => ({ el: $(id), fn, claro, medida, top: 0, alto: 1, ultimo: null, pv: null, sigue: false }));
+  for (const e of escenas) {   
+    const r = RITMO[e.el.id];
+    if (!r) continue;
+    const ida = tramos(...r.puntos), fn = e.fn, claro = e.claro;
+    e.fn = p => fn(ida(p));
+    if (claro) e.claro = p => claro(ida(p));
+    e.vuelta = tramos(...r.puntos.map(([a, b]) => [b, a]));
+    e.el.style.setProperty('--alto', r.alto);
+  }
   const marca = document.querySelector('.barra__marca img');
   function medir() {
     medirSala();
@@ -498,7 +512,7 @@
       e.ultimo = null;
     }
   }
-  const SUAVE = 120, PELICULA = 320, ALCANZA = 60, COLA = 0.95;
+  const SUAVE = 120, PELICULA = TACTIL ? 200 : 320, ALCANZA = 60, COLA = 0.95;
   let s = scrollY, antes = performance.now();
   function actualizar() {
     const ahora = performance.now(), dt = Math.min(100, ahora - antes);
@@ -529,7 +543,9 @@
   const ENTRADA = { 'e-granbatalla': 0.06, 'e-mundos': 0.12 };
   function saltar(id) {
     const destino = id ? $(id) : null;
-    const dentro = destino && ENTRADA[id] ? ENTRADA[id] * (destino.offsetHeight - innerHeight) : 0;
+    const e = escenas.find(x => x.el === destino);
+    const p = ENTRADA[id] && e && e.vuelta ? e.vuelta(ENTRADA[id] / COLA) * COLA : ENTRADA[id] || 0;
+    const dentro = destino ? p * (destino.offsetHeight - innerHeight) : 0;
     scrollTo(0, destino ? destino.getBoundingClientRect().top + scrollY + dentro : 0);
     s = scrollY;
     for (const e of escenas) e.pv = null;
