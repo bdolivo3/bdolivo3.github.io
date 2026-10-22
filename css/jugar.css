@@ -1,7 +1,6 @@
-.pagina-jugar .barra { background: linear-gradient(var(--noche) 55%, transparent); }
-.pagina-jugar .barra__menu a[aria-current] { opacity: 1; text-decoration: underline; text-underline-offset: .5em; text-decoration-thickness: 1px; }
-.jugar__cabeza { max-width: 1040px; margin: 0 auto; padding: 130px 16px 0; text-align: center; }
-.jugar__libros { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 26px; }
+.pagina-jugar .pie-web { border-top: 1px solid rgba(var(--marfil-rgb), .25); }
+.jugar__cabeza { max-width: 1040px; margin: 0 auto; padding: clamp(24px, 6vw, 64px) 16px 0; text-align: left; }   
+.jugar__libros { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 8px; margin-top: 26px; }
 .jugar__libros a {
   padding: 9px 15px; border: 1px solid rgba(var(--marfil-rgb), .5); border-radius: 999px; color: var(--marfil);
   font-size: 13px; letter-spacing: .04em; text-decoration: none; transition: background .3s, color .3s, border-color .3s;
@@ -11,3 +10,10 @@
 .pagina-jugar .reglas { padding-top: clamp(64px, 10vh, 100px); }
 .jugar__pie { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: clamp(70px, 11vh, 110px) 16px 70px; text-align: center; }
 .jugar__pie img { width: min(70vw, 260px); }
+.jugar__cabeza .sub { margin-left: 0; }
+.jugar__libros a::before { content: ""; display: inline-block; width: .7em; height: .7em; margin-right: .45em; border-radius: 50%;
+  background: var(--m); box-shadow: 0 0 0 1px rgba(var(--marfil-rgb), .6); vertical-align: -.05em; }
+.jugar__libros a[data-libro="sabana"] { --m: var(--m-sabana); } .jugar__libros a[data-libro="amazonas"] { --m: var(--m-amazonas); }
+.jugar__libros a[data-libro="norte"] { --m: var(--m-norte); } .jugar__libros a[data-libro="oriente"] { --m: var(--m-oriente); }
+.jugar__libros a[data-libro="bosques"] { --m: var(--m-bosques); } .jugar__libros a[data-libro="australia"] { --m: var(--m-australia); }
+.jugar__libros a[data-libro="pinguino"] { --m: var(--m-pinguino); } .jugar__libros a[data-libro="artico"] { --m: var(--m-artico); }

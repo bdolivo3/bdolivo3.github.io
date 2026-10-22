@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Selvativo · Un mundo en cada libro</title>
   <link rel="canonical" href="https://selvativo.com/">
   <meta property="og:type" content="website">
@@ -18,337 +18,152 @@
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="css/fuentes.css">
-  <link rel="stylesheet" href="css/anuncio.css">
+  <link rel="stylesheet" href="css/web.css">
+  <link rel="stylesheet" href="css/portada.css">
 </head>
-<body>
+<body class="web">
   <script src="js/elige.js"></script>
-  <a class="saltar" href="#fin">Saltar el anuncio</a>
 
-  <header class="barra">
-    <a class="barra__marca" href="#" aria-label="Selvativo, volver al principio">
-      <img src="logo/Selvativo_marca_pequena_marfil.svg" alt="" width="30" height="30">
-    </a>
-    <nav class="barra__menu" aria-label="Menú">
-      <a href="#">Inicio</a>
-      <a href="libros.html">Libros</a>      <a href="jugar.html">Jugar</a>      <a href="#e-funciona">Así funciona</a>
-      <a href="#e-pinta">Píntalo</a>
-      <a href="#conocelos">Conócelos</a>
-      <a href="#como-se-juega">Cómo se juega</a>
-      <a href="#e-granbatalla">La gran batalla</a>
-      <a href="#e-cuidar">Cuidarlos</a>
-      <a href="#e-mundos">Los ocho mundos</a>
+  <header class="cabecera cabecera--encima">
+    <a href="/" aria-label="Selvativo, al principio"><img src="logo/Selvativo_marca_pequena_negro.svg" alt="" width="30" height="30"></a>
+    <nav aria-label="Menú">
+      <a href="libros.html">Libros</a>
+      <a href="jugar.html">Jugar</a>
     </nav>
+    <a class="estas" href="#mundos" aria-label="El mundo en el que estás; ver los ocho"><span id="estas-libro">Guardianes de la Sabana</span></a>
   </header>
 
   <main>
+    <section class="portada" id="portada" aria-label="Píntalo">
+      <div class="lamina" id="lamina">
+        <img id="base" src="img/anuncio/pinta/sabana-002.webp" alt="Lámina para pintar del elefante, de Guardianes de la Sabana" width="1200" height="1706">
+        <canvas id="lienzo" aria-hidden="true"></canvas>
+      </div>
+      <div class="portada__texto" id="texto" aria-live="polite">
+        <h1 id="titulo">Píntalo con el dedo.</h1>
+        <p class="quien" id="quien">Es una lámina del libro: <b>el elefante</b>, <span class="num">n.º 002</span> de <i>Guardianes de la Sabana</i>.</p>
+        <p class="acciones" id="acciones"><button class="enlace" type="button" data-accion="ver">Ver cómo queda pintado</button></p>
+      </div>
+    </section>
 
-    <section class="escena escena--libro" id="e-libro" aria-labelledby="t-libro">
-      <div class="escenario">
-        <div class="fotos">
-          <picture>
-            <source media="(max-aspect-ratio: 3/4)" srcset="img/anuncio/mesa_arriba_v.webp" width="1536" height="2752">
-            <img class="foto foto--final" id="foto-final" src="img/anuncio/mesa_arriba.webp" width="2752" height="1536" alt="" aria-hidden="true">
-          </picture>
+    <section class="banda" aria-labelledby="t-paginas">
+      <div class="caja">
+        <div class="cabeza">
+          <h2 id="t-paginas">Cada animal, tres páginas.</h2>
+          <p class="sub" id="paginas-sub">El elefante tiene su ficha, su retrato y la lámina que acabas de pintar. Como los otros once de su libro.</p>
         </div>
-        <div class="mundo" id="mundo">
-        <div class="libro" id="libro">
-          <div class="libro__cuerpo">
-            <img class="libro__pagina" id="pagina" src="img/p11/sabana.webp" alt="La página 11 de Guardianes de la Sabana">
-            <i class="libro__pliegue"></i>
-            <i class="libro__canto libro__canto--der"></i>
-            <i class="libro__canto libro__canto--arr"></i>
-            <i class="libro__canto libro__canto--aba"></i>
-            <i class="libro__lomo"></i>
-            <i class="libro__trasera"></i>
+        <div class="paginas" tabindex="0" aria-label="Las tres páginas del animal">
+          <figure class="pagina"><img id="p-ficha" src="img/fichas/sabana-002.webp" alt="La ficha del elefante" width="798" height="1135" loading="lazy">
+            <figcaption><h3>La ficha</h3><p>Cuánto pesa, dónde vive, qué come y algo sorprendente. Y cuatro números para jugar.</p></figcaption></figure>
+          <figure class="pagina"><img id="p-retrato" src="img/animales/sabana-002.webp" alt="El retrato del elefante" width="798" height="1135" loading="lazy">
+            <figcaption><h3>El retrato</h3><p>El animal de verdad, en su mundo y con sus crías.</p></figcaption></figure>
+          <figure class="pagina"><img id="p-lamina" src="img/anuncio/pinta/sabana-002.webp" alt="La lámina del elefante, para pintar" width="1200" height="1706" loading="lazy">
+            <figcaption><h3>La lámina</h3><p>Un dibujo a lápiz para pintarlo como quieras.</p></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="banda mundo" aria-labelledby="t-ficha">
+      <div class="caja ficha-datos">
+        <div class="cabeza">
+          <h2 id="t-ficha">Y su ficha es una carta de juego.</h2>
+          <div class="quien-es">
+            <p class="nombre" id="f-nombre">Elefante</p>
+            <p><span class="num" id="f-cod">N.º 002</span>, <span id="f-rareza">legendario</span> <span class="estrellas" id="f-estrellas" aria-hidden="true">★★★★☆</span></p>
+            <p id="f-tipos">De tipo tierra y planta.</p>
           </div>
-          <div class="libro__tapa" id="tapa">
-            <div class="libro__cara">
-              <img src="img/portadas/sabana.webp" alt="Portada de Guardianes de la Sabana">
+          <div class="habilidades">
+            <p id="f-ataque">Al atacar, <i>Topetazo</i>: +15 a su golpe.</p>
+            <p id="f-defensa">Al defenderse, <i>Aguante</i>: −15 al golpe que recibe.</p>
+          </div>
+        </div>
+        <div class="cifras" id="cifras"></div>
+      </div>
+    </section>
+
+    <section class="banda" id="duelo" aria-labelledby="t-duelo">
+      <div class="caja">
+        <div class="cabeza">
+          <h2 id="t-duelo">Dos animales, un lápiz.</h2>
+          <p class="sub">Un duelo se juega con las fichas, con las reglas del libro, y cada golpe se apunta a lápiz en la arena.</p>
+        </div>
+        <div class="duelo">
+          <figure class="arena"><img id="arena" src="img/anuncio/arena/sabana.webp" alt="La arena de duelo del libro, para apuntar los golpes" width="1093" height="698" loading="lazy">
+            <figcaption>La arena de duelo, al final del libro.</figcaption></figure>
+          <div class="textos">
+            <ol class="pasos">
+              <li><span><b>Empieza el más rápido.</b> El de más velocidad. Además esquiva: el primer golpe que recibe le hace la mitad.</span></li>
+              <li><span><b>Cada turno, un golpe.</b> Tu ataque menos la defensa del rival.</span></li>
+              <li><span><b>Antes, una habilidad.</b> La de ataque suma a tu golpe; la de defensa resta al próximo que recibas.</span></li>
+              <li><span><b>La rueda de los tipos.</b> La primera vez que uno de tus tipos gana a uno de los suyos, +10.</span></li>
+              <li><span><b>Gana quien deje al otro sin vida.</b></span></li>
+            </ol>
+            <div class="ejemplo">
+              <p class="pie" id="e-quien">Un golpe del elefante al tigre de Bengala:</p>
+              <p class="cuenta" id="e-cuenta">35 − 10 = 25</p>
+              <p class="pie">Su ataque menos la defensa del rival.</p>
             </div>
-            <div class="libro__dorso"></div>
-          </div>
-          <i class="libro__brillo" id="brillo"></i>
-        </div>
-        </div>
-        <div class="velo velo--noche velo--bajo" id="velo-sala" aria-hidden="true"></div>
-        <div class="rotulo rotulo--arriba" id="r-libro">
-          <p class="antetitulo">Selvativo</p>
-          <h1 class="titular" id="t-libro">Un mundo en cada libro.</h1>
-        </div>
-        <p class="pista" id="r-pista" aria-hidden="true">Desliza siempre hacia abajo</p>
-        <p class="grande grande--sobre" id="r-abre" aria-hidden="true">Ábrelo.</p>
-        <p class="grande grande--sobre" id="r-entra" aria-hidden="true">Entra.</p>
-        <div class="velo velo--papel" id="velo-papel" aria-hidden="true"></div>
-      </div>
-    </section>
-
-    <section class="escena escena--funciona" id="e-funciona" aria-labelledby="t-funciona">
-      <div class="escenario">
-        <div class="rotulo rotulo--arriba rotulo--tinta" id="r-funciona">
-          <p class="antetitulo">Cómo funciona</p>
-          <h2 class="titular" id="t-funciona">Así funciona.</h2>
-          <p class="sub">Aquí pintas animales y descubres sus secretos. Después, sus fichas se convierten en cartas de juego.</p>
-          <p class="ejemplo" id="ejemplo">Por ejemplo, <span>el león</span>, de <i>Guardianes de la Sabana</i>.</p>
-        </div>
-        <ol class="trio" id="trio">
-          <li class="trio__pag"><img loading="lazy" src="img/fichas/sabana.webp" alt="La ficha del león"><p class="trio__pie"><span class="trio__num">1</span> La ficha<span class="trio__txt">Cuánto pesa, dónde vive y algo sorprendente.</span></p></li>
-          <li class="trio__pag"><img loading="lazy" src="img/animales/sabana.webp" alt="El retrato del león con sus cachorros"><p class="trio__pie"><span class="trio__num">2</span> El retrato<span class="trio__txt">El animal en su mundo.</span></p></li>
-          <li class="trio__pag"><img loading="lazy" src="img/laminas/sabana.webp" alt="La lámina para colorear del león"><p class="trio__pie"><span class="trio__num">3</span> La lámina<span class="trio__txt">Un dibujo para pintar.</span></p></li>
-        </ol>
-        <div class="rotulo rotulo--arriba rotulo--tinta" id="r-doce">
-          <h2 class="titular">Doce animales en cada libro.</h2>
-          <p class="sub">Cada uno, con su ficha, su retrato y su lámina.</p>
-        </div>
-        <ul class="doce" id="doce" aria-label="Los doce animales de Guardianes de la Sabana">
-          <li><img loading="lazy" src="img/anuncio/siluetas/leon.webp" alt=""><span>León</span></li>
-          <li><img loading="lazy" src="img/anuncio/siluetas/elefante.webp" alt=""><span>Elefante</span></li>
-          <li><img loading="lazy" src="img/anuncio/siluetas/jirafa.webp" alt=""><span>Jirafa</span></li>
-          <li><img loading="lazy" src="img/anuncio/siluetas/cebra.webp" alt=""><span>Cebra</span></li>
-          <li><img loading="lazy" src="img/anuncio/siluetas/rinoceronte.webp" alt=""><span>Rinoceronte</span></li>
-          <li><img loading="lazy" src="img/anuncio/siluetas/hipopotamo.webp" alt=""><span>Hipopótamo</span></li>
-          <li><img loading="lazy" src="img/anuncio/siluetas/guepardo.webp" alt=""><span>Guepardo</span></li>
-          <li><img loading="lazy" src="img/anuncio/siluetas/bufalo.webp" alt=""><span>Búfalo</span></li>
-          <li><img loading="lazy" src="img/anuncio/siluetas/nu.webp" alt=""><span>Ñu</span></li>
-          <li><img loading="lazy" src="img/anuncio/siluetas/avestruz.webp" alt=""><span>Avestruz</span></li>
-          <li><img loading="lazy" src="img/anuncio/siluetas/licaon.webp" alt=""><span>Licaón</span></li>
-          <li><img loading="lazy" src="img/anuncio/siluetas/suricata.webp" alt=""><span>Suricata</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="escena escena--pinta" id="e-pinta" aria-labelledby="t-pinta">
-      <div class="escenario">
-        <div class="lienzo" id="lienzo">
-          <img loading="lazy" class="lienzo__base" src="img/anuncio/lamina19.webp" alt="La lámina del león de Guardianes de la Sabana, para colorear">
-        </div>
-        <svg class="lapiz" id="lapiz" viewBox="0 0 40 320" aria-hidden="true">
-          <defs>
-            <linearGradient id="lapiz-madera" x1="0" x2="1">
-              <stop offset="0" stop-color="#c9a77a"/><stop offset=".5" stop-color="#ead2ad"/><stop offset="1" stop-color="#b8925f"/>
-            </linearGradient>
-            <linearGradient id="lapiz-brillo" x1="0" x2="1">
-              <stop offset="0" stop-color="#000" stop-opacity=".25"/><stop offset=".45" stop-color="#fff" stop-opacity=".25"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/>
-            </linearGradient>
-          </defs>
-          <path d="M20 0 L40 70 L40 330 L8 330 L8 70 Z" transform="translate(9 6)" fill="#000" opacity=".08"/>
-          <path class="lapiz__color" d="M20 0 L26 18 L14 18 Z"/>
-          <path d="M14 18 L26 18 L36 62 L4 62 Z" fill="url(#lapiz-madera)"/>
-          <rect class="lapiz__color" x="4" y="62" width="32" height="250"/>
-          <rect x="4" y="62" width="32" height="250" fill="url(#lapiz-brillo)"/>
-        </svg>
-        <div class="rotulo rotulo--arriba rotulo--tinta" id="r-pinta">
-          <h2 class="titular" id="t-pinta">Píntalo.</h2>
-        </div>
-        <p class="sub sub--tinta sub--abajo" id="r-pinta-sub">Una lámina para pintar de cada animal.</p>
-      </div>
-    </section>
-
-    <section class="conoce" id="conocelos" aria-labelledby="t-conoce">
-      <div class="conoce__cabeza">
-        <p class="antetitulo" id="conoce-ante">León · Ficha 001</p>
-        <h2 class="titular" id="t-conoce">Conócelos.</h2>
-        <p class="sub">El primero de cada libro, con su retrato y su ficha. Elige uno y toca la carta para darle la vuelta.</p>
-      </div>
-      <div class="conoce__elige" id="conoce-elige" role="group" aria-label="Elige un animal"></div>
-      <div class="conoce__mesa">
-        <div class="conoce__escenario" id="conoce-escenario">
-        <button type="button" class="cromo carta-ficha" id="carta-ficha" aria-pressed="false" aria-label="Dar la vuelta a la carta del león: retrato o ficha">
-          <img loading="lazy" class="cromo__cara" src="img/animales/sabana.webp" width="798" height="1135" alt="El retrato del león: leona y cachorros sobre un montículo de la sabana">
-          <span class="cromo__dorso carta-ficha__dorso"><img loading="lazy" src="img/fichas/sabana.webp" width="798" height="1135" alt="La ficha del león"><span class="marcas" id="marcas" aria-hidden="true"></span></span>
-          <i class="cromo__brillo" aria-hidden="true"></i>
-        </button>
-        <div class="cromo carta-rival" id="carta-rival" aria-hidden="true">
-          <img class="cromo__cara" src="img/animales/oriente.webp" width="798" height="1135" alt="" loading="lazy">
-          <span class="cromo__dorso carta-ficha__dorso"><img src="img/fichas/oriente.webp" width="798" height="1135" alt="" loading="lazy"></span>
-          <i class="cromo__brillo"></i>
-        </div>
-        <i class="duelo__choque" id="choque" aria-hidden="true"></i>
-        <div class="conoce__juega" id="conoce-juega">
-          <div class="rotulo rotulo--arriba" id="r-batalla">
-            <h2 class="titular" id="t-batalla">Juega.</h2>
-            <p class="sub">Cada ficha es una carta de juego. ¿Quién gana?</p>
+            <p><a class="btn btn--tinta" href="jugar.html">Juega un duelo</a></p>
           </div>
         </div>
-        </div>
-        <div class="conoce__leyenda">
-          <p class="conoce__como">Así se lee una ficha</p>
-          <ol class="leyenda" id="leyenda"></ol>
-          <p class="conoce__pie">Todas las fichas hablan el mismo idioma: puedes enfrentar a los animales de un libro con los de cualquier otro de la colección.</p>
-          <div class="conoce__pista" id="conoce-pista" aria-hidden="true"></div>
-        </div>
       </div>
     </section>
 
-    <section class="reglas" id="como-se-juega" aria-labelledby="t-reglas">
-      <div class="reglas__cabeza">
-        <p class="antetitulo">Cómo se juega</p>
-        <h2 class="titular" id="t-reglas">El duelo, en la arena.</h2>
-        <p class="sub">Dos jugadores, un animal cada uno. Las reglas son las del libro, y cada golpe se apunta a lápiz en la arena de duelo.</p>
+    <section class="banda" id="mundos" aria-labelledby="t-mundos" style="padding-top: 0">
+      <div class="caja">
+        <div class="cabeza">
+          <h2 id="t-mundos">Ocho libros, ocho mundos.</h2>
+          <p class="sub">Noventa y seis animales, del 001 al 096. Elige un libro y la web entera se va a su mundo.</p>
+        </div>
+        <ul class="mundos" id="lista-mundos"></ul>
       </div>
-      <ol class="reglas__pasos">
-        <li><b>Empieza el más rápido.</b> El que tenga más velocidad en su ficha. Además, esquiva: el primer golpe que recibe le hace la mitad.</li>
-        <li><b>Cada turno, un golpe.</b> Tu ataque menos la defensa del rival. Antes eliges una habilidad: la de ataque suma a tu golpe; la de defensa le resta al próximo golpe que recibas. La misma, nunca tres turnos seguidos.</li>
-        <li><b>La rueda de los tipos.</b> La primera vez que uno de tus tipos gana a uno de los suyos, +10 al golpe. Y un golpe nunca baja de 10 antes de restarle la defensa.</li>
-        <li><b>Todo se apunta en la arena.</b> Una fila por golpe: lo que te quitan y la vida que te queda.</li>
-        <li><b>Gana quien deje al otro sin vida.</b></li>
-      </ol>
-      <div class="arena-guia">
-        <figure class="arena">
-          <div class="arena__hoja">
-            <img loading="lazy" src="img/anuncio/arena_p73.webp" width="1093" height="698" alt="La arena de duelo del libro, donde se apunta cada golpe">
-            <span class="marcas" id="arena-marcas" aria-hidden="true"></span>
+    </section>
+
+    <section class="banda mundo" aria-labelledby="t-cuidar">
+      <div class="caja cuidar-caja">
+        <div class="textos">
+          <h2 id="t-cuidar">Cuidar la sabana.</h2>
+          <p id="c-entrada"></p>
+          <div class="uicn">
+            <p class="dice" id="c-dice">El elefante está en peligro.</p>
+            <ol id="c-escala" aria-hidden="true"><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ol>
+            <p class="ext"><span>Preocupación menor</span><span>Extinta</span></p>
+            <p class="pie">Según la Lista Roja de la UICN, que va de «preocupación menor» a «extinta». Cada ficha lo dice abajo a la izquierda.</p>
           </div>
-          <figcaption>La arena de duelo, en la página 73 del libro: en cada golpe, se resta y se apunta la vida que queda.</figcaption>
-        </figure>
-        <div class="guia">
-          <p class="conoce__como">Así se rellena la hoja</p>
-          <ol class="leyenda" id="guia-hoja"></ol>
-          <p class="guia__pie">A lápiz, como dice el libro: para borrar y volver a jugar.</p>
+          <div><h3 id="c-btitulo"></h3><p id="c-btexto"></p></div>
         </div>
-      </div>
-      <p class="reglas__jugar"><a class="boton" href="jugar.html">Juega tu primer duelo</a></p>
-    </section>
-
-    <section class="escena escena--granbatalla" id="e-granbatalla" aria-labelledby="t-granbatalla">
-      <div class="escenario">
-        <div class="hoja77" id="hoja77">
-          <img loading="lazy" class="hoja77__base" src="img/anuncio/batalla_p77.webp" width="1200" height="1707" alt="La hoja de la gran batalla, en la página 77 del libro, rellenada con una batalla de seis contra seis">
-          <div class="hoja77__escrito" id="hoja77-escrito" aria-hidden="true"></div>
-        </div>
-        <div class="rotulo rotulo--arriba rotulo--tinta" id="r-granbatalla">
-          <h2 class="titular" id="t-granbatalla">La gran batalla.</h2>
-          <p class="sub">Como el duelo, pero por equipos: seis animales cada uno.</p>
-        </div>
-        <p class="pie-hoja globo-hoja" id="r-gb-reparto"><span>Primero, el reparto: tres rondas de piedra, papel o tijera. En cada una, quien gana elige uno, quien pierde dos y quien gana, otro más.</span></p>
-        <p class="pie-hoja globo-hoja" id="r-gb-combate"><span id="gb-combate"></span></p>
-        <p class="pie-hoja globo-hoja" id="r-gb-final"><span>Gana quien deje al otro sin animales.</span></p>
-        <div class="velo velo--noche" id="velo-gb" aria-hidden="true"></div>
-      </div>
-    </section>
-
-    <section class="escena escena--cuidar" id="e-cuidar" aria-labelledby="t-cuidar">
-      <div class="escenario">
-        <div class="rotulo rotulo--arriba" id="r-cuidar">
-          <p class="antetitulo">Al final del libro</p>
-          <h2 class="titular" id="t-cuidar">Cuidar la sabana.</h2>
-          <p class="sub">Los doce animales de este libro son de verdad. Viven en un sitio de verdad, muy lejos de aquí, y ese sitio está cambiando.</p>
-        </div>
-        <ol class="necesitan" id="necesitan">
-          <li><h3>Necesitan sitio.</h3><p>La sabana es enorme, pero cada año queda un poco menos. Donde antes había hierba ahora hay campos, carreteras y pueblos. Las personas también necesitan un sitio donde vivir; lo difícil es dejar bastante para todos.</p><p class="necesitan__dato"><span class="cifra">Una sexta parte</span>Más de la mitad de África les valdría a los elefantes africanos para vivir, y hoy solo andan por una sexta parte de ese sitio.</p></li>
-          <li><h3>Necesitan agua.</h3><p>Muchos animales del libro beben en las mismas charcas. Hay años en que llueve poco y quedan muy pocas: entonces todos tienen que ir allí, cada uno a su hora. Por eso se cruzan el hipopótamo, la cebra y el león.</p><p>Y cada vez hace más calor, así que el agua de las charcas se evapora más deprisa.</p></li>
-        </ol>
-        <figure class="peor" id="peor">
-          <figcaption class="peor__cabeza"><h3>Los que están peor.</h3><p>De algunos de estos animales quedan muchos. De otros, muy pocos. Lo dice la UICN, y en cada ficha lo pone, abajo a la izquierda.</p></figcaption>
-          <div class="peor__fila">
-            <p class="peor__cat"><b>En peligro</b>Corren un riesgo muy alto de desaparecer.</p>
-            <ul class="peor__animales">
-              <li><img loading="lazy" src="img/anuncio/siluetas/elefante.webp" alt=""><span>Elefante</span></li>
-              <li><img loading="lazy" src="img/anuncio/siluetas/jirafa.webp" alt=""><span>Jirafa</span></li>
-              <li><img loading="lazy" src="img/anuncio/siluetas/licaon.webp" alt=""><span>Licaón</span></li>
-            </ul>
-          </div>
-          <div class="peor__fila">
-            <p class="peor__cat"><b>Vulnerable</b>Corren un riesgo alto de desaparecer.</p>
-            <ul class="peor__animales">
-              <li><img loading="lazy" src="img/anuncio/siluetas/leon.webp" alt=""><span>León</span></li>
-              <li><img loading="lazy" src="img/anuncio/siluetas/guepardo.webp" alt=""><span>Guepardo</span></li>
-              <li><img loading="lazy" src="img/anuncio/siluetas/hipopotamo.webp" alt=""><span>Hipopótamo</span></li>
-            </ul>
-          </div>
-          <p class="peor__resto">Los otros seis: la cebra, el rinoceronte blanco y el búfalo cafre están casi amenazados (todavía no corren peligro, pero podrían correrlo pronto); del avestruz, la suricata y el ñu azul hay muchos y, por ahora, no corren peligro.</p>
-        </figure>
-        <figure class="campo" id="campo">
-          <canvas id="campo-lienzo" width="1060" height="690" aria-hidden="true"></canvas>
-          <figcaption><span class="cifra"><span id="campo-cuenta">6.600</span> licaones</span>En toda África quedan unos seis mil seiscientos licaones adultos. Caben todos en un campo de fútbol, y sobra sitio.</figcaption>
-        </figure>
-        <figure class="rinos" id="rinos">
-          <div class="rinos__rejilla" id="rinos-rejilla" aria-hidden="true"></div>
-          <figcaption><span class="rinos__titulo">Ya pasó una vez.</span><span class="cifra" id="rinos-cuenta">más de 10.000</span>Hace más de cien años quedaban menos de cien rinocerontes blancos del sur en el mundo entero. La gente se puso a cuidarlos y hoy son más de diez mil.</figcaption>
-        </figure>
-        <figure class="rinos info vuelven" id="vuelven">
-          <span class="rinos__titulo">Que nadie se los lleve.</span>
-          <div class="info__cifras"><p><span class="cifra">unos 2.400</span>rinocerontes negros en 1995</p><span class="info__flecha" aria-hidden="true">→</span><p><span class="cifra">6.788</span>a finales de 2024</p></div>
-          <figcaption>Al rinoceronte no lo caza ningún león: lo cazan personas, por su cuerno. En 2023 mataron así a 586 en África, más de uno y medio cada día. Por eso hay guardas que vigilan las reservas de día y de noche, y los rinocerontes negros ya son casi el triple que en 1995.</figcaption>
-        </figure>
-        <p class="grande grande--cuidar" id="r-cuidar-banda">Quien explora, mira.<br>Y lo que mira, lo cuida.</p>
-      </div>
-    </section>
-
-    <section class="seccion puedes" aria-labelledby="t-puedes">
-      <div class="seccion__cabeza">
-        <p class="antetitulo">Lo que sí puedes hacer</p>
-        <h2 class="titular" id="t-puedes">No hace falta irse a África.</h2>
-        <p class="sub">Se empieza mucho más cerca.</p>
-      </div>
-      <ol class="puedes__lista">
-        <li><h3>Aprende sus nombres.</h3><p>Lo que tiene nombre deja de ser «un bicho». Ya te sabes doce.</p></li>
-        <li><h3>Cuida el agua.</h3><p>El agua de tu casa no viaja hasta la sabana, pero la costumbre sí: quien no la desperdicia aquí, no la desperdicia en ningún sitio. Cierra el grifo mientras te lavas los dientes.</p></li>
-        <li><h3>Déjales su sitio.</h3><p>Un gorrión, una hormiga, un lagarto, un gato. Míralos sin tocarlos y no les quites su rincón. Y no tires nada al suelo: el río que pasa por tu ciudad casi siempre acaba en el mar, y el mar es de todos.</p></li>
-        <li><h3>Cuéntaselo a alguien.</h3><p>Elige tu animal preferido de este libro y cuéntale a otra persona tres cosas suyas. Parece poco, y es lo más importante de esta página.</p></li>
-      </ol>
-    </section>
-
-    <section class="escena escena--mundos" id="e-mundos" aria-labelledby="t-mundos">
-      <div class="escenario">
-        <div class="carrusel" id="carrusel">
-          <a class="carrusel__libro" href="libros.html#sabana"><img loading="lazy" src="img/portadas/sabana.webp" alt="Guardianes de la Sabana"></a>
-          <a class="carrusel__libro" href="libros.html#amazonas"><img loading="lazy" src="img/portadas/amazonas.webp" alt="Amazonas Salvaje"></a>
-          <a class="carrusel__libro" href="libros.html#bosques"><img loading="lazy" src="img/portadas/bosques.webp" alt="Bosques Encantados"></a>
-          <a class="carrusel__libro" href="libros.html#artico"><img loading="lazy" src="img/portadas/artico.webp" alt="Reyes del Ártico"></a>
-          <a class="carrusel__libro" href="libros.html#pinguino"><img loading="lazy" src="img/portadas/pinguino.webp" alt="Reino Pingüino"></a>
-          <a class="carrusel__libro" href="libros.html#oriente"><img loading="lazy" src="img/portadas/oriente.webp" alt="Tesoros de Oriente"></a>
-          <a class="carrusel__libro" href="libros.html#australia"><img loading="lazy" src="img/portadas/australia.webp" alt="Bestias de Australia"></a>
-          <a class="carrusel__libro" href="libros.html#norte"><img loading="lazy" src="img/portadas/norte.webp" alt="Gigantes del Norte"></a>
-        </div>
-        <div class="rotulo rotulo--arriba" id="r-mundos">
-          <h2 class="titular" id="t-mundos">Ocho mundos.</h2>
-          <p class="sub">Un libro para cada rincón del planeta.</p>
+        <div class="textos">
+          <h3>Lo que sí puedes hacer</h3>
+          <p id="p-entrada"></p>
+          <ul class="puedes" id="p-lista"></ul>
         </div>
       </div>
     </section>
 
-    <section class="escena escena--proximo" id="e-proximo" aria-labelledby="t-proximo">
-      <div class="escenario">
-        <div class="rotulo" id="r-proximo">
-          <p class="antetitulo">Próximamente</p>
-          <h2 class="titular" id="t-proximo">Ocho mundos más.</h2>
+    <section class="banda mundo final" aria-labelledby="t-final" style="padding-top: 0">
+      <div class="caja">
+        <img class="final__portada" id="fin-portada" src="img/portadas/sabana.webp" alt="Portada de Guardianes de la Sabana" width="800" height="1130" loading="lazy">
+        <div class="textos">
+          <h2 id="t-final">Guardianes de la Sabana</h2>
+          <p class="sub" id="fin-sub">Doce animales de África, del 001 al 012, para colorear y para jugar.</p>
+          <p class="acciones" id="fin-acciones"></p>
         </div>
-        <ul class="proximos" id="proximos">
-          <li><img loading="lazy" src="img/proximamente/misterios.webp" alt="Misterios de la Jungla"></li>
-          <li><img loading="lazy" src="img/proximamente/cumbres.webp" alt="Cumbres de los Andes"></li>
-          <li><img loading="lazy" src="img/proximamente/animales-norte.webp" alt="Animales del Norte"></li>
-          <li><img loading="lazy" src="img/proximamente/pequenos-hielo.webp" alt="Pequeños del Hielo"></li>
-          <li><img loading="lazy" src="img/proximamente/gigantes-hielo.webp" alt="Gigantes del Hielo"></li>
-          <li><img loading="lazy" src="img/proximamente/selvas.webp" alt="Selvas Ocultas"></li>
-          <li><img loading="lazy" src="img/proximamente/coral.webp" alt="Secretos del Coral"></li>
-          <li><img loading="lazy" src="img/proximamente/aventureros.webp" alt="Aventureros del Río"></li>
-        </ul>
       </div>
     </section>
-
-    <section class="final" id="fin" aria-label="Selvativo">
-      <img loading="lazy" class="final__logo" src="logo/Selvativo_principal_marfil.svg" alt="Selvativo">
-      <p class="final__frase">Ocho mundos. Noventa y seis animales.<br>Para colorear y para jugar.</p>
-      <p class="final__botones"><a class="boton final__amazon" id="final-amazon" target="_blank" rel="noopener" hidden>Juega conmigo <small>· en Amazon</small></a><span class="final__pronto" id="final-pronto" hidden>Próximamente en Amazon</span> <a class="boton" href="libros.html">Ver los libros</a> <a class="boton boton--claro" href="#como-se-juega">Cómo se juega</a></p>
-      <p class="final__redes"><a href="https://www.instagram.com/selvativo/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg>Síguenos en Instagram <b>@selvativo</b></a></p>
-      <p class="final__legal"><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad</a></p>
-    </section>
-
   </main>
 
+  <footer class="pie-web">
+    <div class="caja">
+      <img src="logo/Selvativo_principal_marfil.svg" alt="Selvativo" width="200" height="60">
+      <p><a href="https://www.instagram.com/selvativo/" target="_blank" rel="noopener">Instagram @selvativo</a></p>
+      <p class="final__legal"><a href="aviso-legal.html">Aviso legal</a> <a href="privacidad.html">Privacidad</a> <a href="cookies.html">Cookies</a></p>
+    </div>
+  </footer>
+
+  <script src="js/datos_libros.js"></script>
   <script src="js/datos_sabana.js"></script>
-  <script src="js/rellena.js"></script>
-  <script src="js/eleccion.js"></script>
-  <script src="js/pintadas.js"></script>
-  <script src="js/juego.js"></script>
-  <script src="js/arena.js"></script>
-  <script src="js/juegos.js"></script>
-  <script src="js/conoce.js"></script>
-  <script src="js/ritmo.js"></script>
-  <script src="js/anuncio.js"></script>
-  <script src="js/menu.js"></script>
   <script src="js/amazon.js"></script>
-  <script>    (() => { const a = document.getElementById('final-amazon'), u = (window.AMAZON || {})[window.ELEGIDO]; if (a && u) { a.href = u; a.hidden = false; } else { const p = document.getElementById('final-pronto'); if (p) p.hidden = false; } })();
-  </script>
+  <script src="js/portada.js"></script>
+  <script src="js/menu.js"></script>
 </body>
 </html>
