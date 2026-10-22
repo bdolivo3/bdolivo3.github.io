@@ -79,8 +79,8 @@
     const aviso = !okA ? `<p class="jugada__nota">${na} no: ya la has usado dos turnos seguidos.</p>` : !okD ? `<p class="jugada__nota">${nd} no: ya la has usado dos turnos seguidos.</p>` : '';
     const arraigo = tigre.defiende ? ` ${may(EL)} se defiende con ${TIGRE.defensa[0]}: te quitará ${TIGRE.defensa[1]}.` : '';
     return [`<p><strong>Turno ${turno}. Te toca.</strong> Tu golpe: ataque menos la defensa ${del(EL)}, <strong>${LEON.atq} − ${TIGRE.df} = ${base}</strong>.${arraigo} Elige una habilidad:</p>${aviso}`,
-      boton(`${na} +${va} · suma a tu golpe`, 'ataque', false, okA ? '' : 'disabled') +
-      boton(`${nd} −${vd} · resta al golpe que recibas`, 'defensa', true, okD ? '' : 'disabled')];
+      boton(`${na} +${va}: suma a tu golpe`, 'ataque', false, okA ? '' : 'disabled') +
+      boton(`${nd} −${vd}: resta al golpe que recibas`, 'defensa', true, okD ? '' : 'disabled')];
   }
   function golpeLeon(h) {
     const r = J.golpe(leon, tigre, h);

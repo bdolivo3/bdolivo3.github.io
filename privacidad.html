@@ -19,25 +19,21 @@
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="css/fuentes.css">
-  <link rel="stylesheet" href="css/anuncio.css">
+  <link rel="stylesheet" href="css/web.css">
   <link rel="stylesheet" href="css/legal.css">
 </head>
-<body class="pagina-legal">
-  <header class="barra">
-    <a class="barra__marca" href="/" aria-label="Selvativo, volver al principio">
-      <img src="logo/Selvativo_marca_pequena_marfil.svg" alt="" width="30" height="30">
-    </a>
-    <nav class="barra__menu" aria-label="Menú">
-      <a href="/">Inicio</a>
+<body class="web pagina-legal">
+  <script src="js/elige.js"></script>  <header class="cabecera">
+    <a href="/" aria-label="Selvativo, al principio"><img src="logo/Selvativo_marca_pequena_negro.svg" alt="" width="30" height="30"></a>
+    <nav aria-label="Menú">
       <a href="libros.html">Libros</a>
       <a href="jugar.html">Jugar</a>
     </nav>
   </header>
 
   <main class="legal">
-    <p class="antetitulo">Selvativo</p>
-    <h1 class="titular titular--medio">Política de privacidad.</h1>
-    <p class="legal__fecha legal__fecha--arriba">Última actualización: 18 de octubre de 2026.</p>
+    <h1>Política de privacidad.</h1>
+    <p class="legal__fecha legal__fecha--arriba">Última actualización: 22 de octubre de 2026.</p>
 
     <h2>Quién es el responsable</h2>
     <p>Selvativo es una colección de libros infantiles de Bruno D'Olivo Bayerri. Para cualquier cosa sobre esta política, escribe
@@ -54,7 +50,8 @@
         seguridad. Lo hace según su propia
         <a href="https://docs.github.com/es/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">declaración de privacidad</a>.
         Nosotros no tenemos acceso a esos registros.</li>
-      <li><em>Cookies.</em> La web no instala cookies ni guarda nada en tu navegador.</li>
+      <li><em>Cookies.</em> La web no instala cookies. Solo guarda en tu navegador, mientras tengas la pestaña abierta, qué
+        libro te ha tocado, para que no cambie al pasar de página. Lo explica la <a href="cookies.html">política de cookies</a>.</li>
       <li><em>Enlaces a otras webs.</em> Algunos botones llevan a Amazon, para comprar los libros, y a nuestro Instagram. Al
         pulsarlos sales de selvativo.com y se aplican las políticas de privacidad y de cookies de esas webs.</li>
     </ul>
@@ -79,8 +76,13 @@
       arriba antes de que ocurra.</p>
   </main>
 
-  <footer class="legal__pie">
-    <a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html" aria-current="page">Privacidad</a>
+  <footer class="pie-web">
+    <div class="caja">
+      <img src="logo/Selvativo_principal_marfil.svg" alt="Selvativo" width="200" height="60">
+      <p><a href="https://www.instagram.com/selvativo/" target="_blank" rel="noopener">Instagram @selvativo</a></p>
+      <p class="final__legal"><a href="aviso-legal.html">Aviso legal</a> <a href="privacidad.html" aria-current="page">Privacidad</a> <a href="cookies.html">Cookies</a></p>
+    </div>
   </footer>
+  <script src="js/menu.js"></script>
 </body>
 </html>

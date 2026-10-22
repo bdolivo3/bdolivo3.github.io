@@ -1,13 +1,11 @@
-.pagina-legal .barra { background: linear-gradient(var(--noche) 55%, transparent); }
-.legal { max-width: 680px; margin: 0 auto; padding: 130px 16px 40px; }
-.legal .titular { margin-bottom: 28px; }
-.legal h2 { margin: 36px 0 10px; font-family: var(--serif); font-size: clamp(22px, 2.6vw, 28px); font-weight: 400; }
-.legal p { margin: 0 0 14px; font-size: 16px; line-height: 1.65; opacity: .92; }
+.legal { max-width: 680px; margin: 0 auto; padding: clamp(32px, 7vw, 88px) var(--gutter-r) clamp(56px, 9vw, 104px) var(--gutter); }
+.legal h1 { margin-bottom: 28px; }
+.legal h2 { margin: 36px 0 10px; font: 400 clamp(22px, 2.6vw, 28px)/1.2 var(--serif); }
+.legal p { margin: 0 0 14px; font-size: 17px; line-height: 1.65; }
 .legal a { text-underline-offset: .2em; }
-.legal__entrada { font-size: 19px !important; }
-.legal__fecha { margin-top: 40px !important; font-size: 13px !important; opacity: .7 !important; }
-.legal__fecha--arriba { margin: -14px 0 8px !important; }
+.legal__entrada { font-size: 21px !important; line-height: 1.5 !important; }
+.legal__fecha { margin-top: 40px !important; font-size: 15px !important; opacity: .75; }
+.legal__fecha--arriba { margin: -14px 0 18px !important; }
 .legal__lista { margin: 0 0 14px; padding-left: 1.2em; display: grid; gap: 10px; }
-.legal__lista li { font-size: 16px; line-height: 1.65; opacity: .92; }
-.hueco { padding: 0 4px; border-radius: 4px; background: rgba(233, 194, 122, .25); outline: 1px dashed rgba(233, 194, 122, .7); }
-.legal__pie { padding: 30px 16px 50px; text-align: center; font-size: 13px; letter-spacing: .08em; opacity: .8; }
+.legal__lista li { font-size: 17px; line-height: 1.65; }
+.hueco { padding: 0 4px; border-radius: 4px; background: rgba(233, 194, 122, .35); outline: 1px dashed rgba(42, 36, 28, .5); }

@@ -1,0 +1,88 @@
+html { scroll-behavior: smooth; }
+.portada { display: grid; grid-template-columns: minmax(0, 1fr); min-height: 100dvh; }
+.lamina { position: relative; width: 100%; aspect-ratio: 1200 / 1706; touch-action: pan-y; cursor: crosshair; user-select: none; -webkit-user-select: none; }
+.lamina.hecha { cursor: default; }
+.lamina img, .lamina canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lamina img { -webkit-user-drag: none; }
+.portada__texto { position: relative; isolation: isolate; display: grid; align-content: start; gap: 14px; min-width: 0;
+  padding-block: 22px calc(30px + env(safe-area-inset-bottom, 0px)); padding-left: var(--gutter); padding-right: var(--gutter-r); transition: color .5s .15s; }
+.portada__texto::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--mundo);
+  transform: scaleY(0); transform-origin: bottom; transition: transform .7s cubic-bezier(.2, .7, .2, 1); }
+.portada.pintada .portada__texto { color: var(--marfil); }
+.portada.pintada .portada__texto::before { transform: none; }
+.portada__texto > * { max-width: 34rem; transition: opacity .25s; }
+.portada__texto.cambia > * { opacity: 0; }
+.quien b { font-weight: 400; }
+.acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; margin-top: 6px; }
+.paginas { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 76%); gap: 16px; overflow-x: auto;
+  scroll-snap-type: x mandatory; margin-right: calc(-1 * var(--gutter-r)); padding: 4px var(--gutter-r) 18px 0; scrollbar-width: none; }
+.paginas::-webkit-scrollbar { display: none; }
+.pagina { scroll-snap-align: start; display: grid; gap: 14px; align-content: start; }
+.pagina img { width: 100%; aspect-ratio: 800 / 1137; object-fit: cover; background: #fff; box-shadow: 0 1px 0 var(--papel-2), 0 18px 34px -18px rgba(42, 36, 28, .45); }
+.pagina p { font-size: 15px; max-width: 26em; }
+.pagina h3 { margin-bottom: 2px; }
+.ficha-datos { display: grid; gap: 28px; }
+.quien-es { display: grid; gap: 6px; }
+.quien-es .nombre { font: 400 clamp(28px, 5vw, 44px)/1.05 var(--serif); }
+.estrellas { color: var(--oro); letter-spacing: .12em; }
+.cifras { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 20px; }
+.cifra { display: grid; gap: 8px; align-content: start; }
+.cifra .etq { font-size: 15px; }
+.cifra .valor { font: 400 clamp(68px, 17vw, 112px)/.9 var(--serif); color: var(--oro); font-variant-numeric: lining-nums tabular-nums; }
+.regla { position: relative; height: 18px; }
+.regla::before { content: ""; position: absolute; left: 0; right: 0; top: 8px; height: 1px; background: rgba(244, 239, 230, .45); }
+.regla i { position: absolute; top: 3px; width: 2px; height: 12px; background: var(--marfil); transform: translateX(-1px); }
+.regla span { position: absolute; top: 18px; font-size: 13px; opacity: .8; }
+.regla span:last-of-type { right: 0; }
+.cifra p { margin-top: 14px; font-size: 15px; max-width: 18em; }
+.habilidades { display: grid; gap: 10px; padding-top: 22px; border-top: 1px solid rgba(244, 239, 230, .3); }
+.duelo { display: grid; gap: clamp(28px, 4vw, 56px); }
+.arena img { width: 100%; box-shadow: 0 18px 34px -18px rgba(42, 36, 28, .45); }
+.arena figcaption { margin-top: 10px; font-size: 15px; }
+.textos { display: grid; gap: 26px; max-width: 40rem; }
+.textos p { text-wrap: pretty; }
+.pasos { display: grid; gap: 18px; padding: 0; list-style: none; counter-reset: paso; }
+.pasos li { counter-increment: paso; display: grid; grid-template-columns: 2.2em minmax(0, 1fr); gap: 4px 12px; }
+.pasos li::before { content: counter(paso); font: 400 28px/1 var(--serif); }
+.pasos b { font-weight: 400; display: block; font-family: var(--serif); font-size: 21px; line-height: 1.25; }
+.ejemplo { display: grid; gap: 6px; padding: 18px 20px; background: var(--papel-2); }
+.ejemplo .cuenta { font: 400 clamp(26px, 6vw, 36px)/1.15 var(--serif); font-variant-numeric: tabular-nums; }
+.pie { font-size: 15px; }
+.mundos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 0; list-style: none; }
+.mundos button { display: grid; gap: 10px; align-content: start; width: 100%; height: 100%; padding: 12px 12px 16px; border: 0;
+  background: var(--c); color: var(--marfil); font: inherit; text-align: left; cursor: pointer; }
+.mundos img { width: 100%; aspect-ratio: 800 / 1130; object-fit: cover; }
+.mundos .t { font: 400 19px/1.15 var(--serif); }
+.mundos .r { font-size: 14px; }
+.mundos [aria-current="true"] { outline: 2px solid var(--tinta); outline-offset: 3px; }
+.mundos [aria-current="true"] .r::after { content: ", aquí estás"; }
+.uicn { display: grid; gap: 10px; }
+.uicn ol { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; padding: 0; list-style: none; }
+.uicn li { height: 10px; background: rgba(244, 239, 230, .28); }
+.uicn li.es { background: var(--marfil); height: 22px; margin-top: -6px; }
+.uicn .ext { display: flex; justify-content: space-between; font-size: 13px; opacity: .85; }
+.uicn .dice { font: 400 clamp(26px, 5vw, 36px)/1.1 var(--serif); }
+.puedes { display: grid; gap: 22px; padding: 0; list-style: none; }
+.final { padding-bottom: 0; }
+.final .caja { align-items: center; }
+.final__portada { width: min(72%, 340px); box-shadow: 0 24px 50px -20px rgba(0, 0, 0, .55); }
+@media (min-width: 760px) {
+  .paginas { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; margin-right: 0; padding-right: 0; }
+  .cifras { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .mundos { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+}
+@media (min-width: 960px) {
+  .portada { grid-template-columns: auto minmax(0, 1fr); }
+  .lamina { width: auto; height: 100dvh; }
+  .portada__texto { align-content: center; gap: 20px; padding-inline: clamp(40px, 6vw, 96px); }
+  .web h1 { font-size: clamp(52px, 5.4vw, 84px); }
+  .ficha-datos { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); align-items: start; column-gap: 56px; }
+  .duelo { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: start; }
+  .cuidar-caja { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); column-gap: 72px; align-items: start; }
+  .final .caja { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .final__portada { width: 100%; max-width: 380px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .portada__texto, .portada__texto::before, .portada__texto > * { transition: none; }
+}

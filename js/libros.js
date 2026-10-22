@@ -7,7 +7,7 @@
   const REGIONES = [...new Set(D.libros.map(l => l.region))];
   const AMAZON = window.AMAZON || {};   
   const comprar = clave => AMAZON[clave]
-    ? `<a class="boton libro-ficha__comprar" href="${AMAZON[clave]}" target="_blank" rel="noopener">Juega conmigo <small>· en Amazon</small></a>`
+    ? `<a class="boton libro-ficha__comprar" href="${AMAZON[clave]}" target="_blank" rel="noopener">Juega conmigo <small>en Amazon</small></a>`
     : `<p class="libro-ficha__pronto">Próximamente en Amazon</p>`;
   const estante = $('estante');
   const fichas = D.libros.map(l => {

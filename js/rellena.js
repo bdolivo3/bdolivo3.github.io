@@ -26,7 +26,7 @@
     caras[1].src = a.ficha;
     q('button', art).setAttribute('aria-label', `Dar la vuelta: la ficha ${a.el.replace(/^el /, 'del ').replace(/^la /, 'de la ')}`);
     pon(q('.luchador__nombre', art), f.nombre);
-    pon(q('.luchador__datos', art), `Ataque ${f.atq} · Defensa ${f.df} · Velocidad ${f.vel}`);
+    pon(q('.luchador__datos', art), `Ataque ${f.atq}, defensa ${f.df}, velocidad ${f.vel}`);
     pon(q('.luchador__vida span', art), f.vida);
   });
   const arena = q('.arena__hoja img');
