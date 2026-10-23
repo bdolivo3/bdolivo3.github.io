@@ -49,7 +49,8 @@
     b.type = 'button';
     b.setAttribute('aria-pressed', 'false');
     const img = `<img src="${silueta(a.silueta)}" alt="">`;
-    b.innerHTML = `<span class="carta__cara">${libro(a.libro)}<span class="carta__txt carta__txt--cita">${a.t}</span><span class="carta__pie">¿Quién soy?</span></span>` +
+    const pistas = a.pistas.map(([q, t]) => `<span><b>${q}</b>${t}</span>`).join('');
+    b.innerHTML = `<span class="carta__cara">${libro(a.libro)}<span class="carta__pistas">${pistas}</span><span class="carta__pie">¿Quién es? Toca para verlo</span></span>` +
       `<span class="carta__dorso">${img}<span class="carta__txt">${a.r}</span></span>`;
     b.addEventListener('click', () => { const v = b.classList.toggle('carta--vuelta'); b.setAttribute('aria-pressed', String(v)); });
     adivinanzas.appendChild(b);

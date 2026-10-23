@@ -17,3 +17,5 @@
 .jugar__libros a[data-libro="norte"] { --m: var(--m-norte); } .jugar__libros a[data-libro="oriente"] { --m: var(--m-oriente); }
 .jugar__libros a[data-libro="bosques"] { --m: var(--m-bosques); } .jugar__libros a[data-libro="australia"] { --m: var(--m-australia); }
 .jugar__libros a[data-libro="pinguino"] { --m: var(--m-pinguino); } .jugar__libros a[data-libro="artico"] { --m: var(--m-artico); }
+.carta__pistas { display: grid; gap: 10px; font-size: 15px; line-height: 1.4; }
+.carta__pistas b { display: block; margin-bottom: 1px; font: italic 400 17px/1.2 var(--serif); color: #9b6d1f; }
