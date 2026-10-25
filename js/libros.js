@@ -5,9 +5,10 @@
   const el = (tag, clase, html) => { const e = document.createElement(tag); if (clase) e.className = clase; if (html != null) e.innerHTML = html; return e; };
   const plano = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
   const REGIONES = [...new Set(D.libros.map(l => l.region))];
+  const serie = t => t.replace(/(\d) de (\d+)$/, '$1\u00a0de\u00a0$2');   
   const AMAZON = window.AMAZON || {};   
   const comprar = clave => AMAZON[clave]
-    ? `<a class="boton libro-ficha__comprar" href="${AMAZON[clave]}" target="_blank" rel="noopener">Juega conmigo <small>en Amazon</small></a>`
+    ? `<a class="boton libro-ficha__comprar" href="${AMAZON[clave]}" target="_blank" rel="noopener">Comprar <small>en Amazon</small></a>`
     : `<p class="libro-ficha__pronto">Próximamente en Amazon</p>`;
   const estante = $('estante');
   const fichas = D.libros.map(l => {
@@ -16,9 +17,8 @@
     art.innerHTML =
       `<img class="libro-ficha__portada" src="img/portadas/${l.clave}.webp" width="800" height="1130" alt="Portada de ${l.libro}" loading="lazy">` +
       `<div class="libro-ficha__txt">` +
-        `<p class="libro-ficha__serie">${l.serie}</p>` +
+        `<p class="libro-ficha__serie">${serie(l.serie)}</p>` +
         `<h2 class="libro-ficha__titulo">${l.libro}</h2>` +
-        `<p class="libro-ficha__lema">${l.lema} <span class="libro-ficha__num">N.º ${l.desde} a ${l.hasta}</span></p>` +
         `<ul class="libro-ficha__animales">${l.animales.map(a => `<li>${a}</li>`).join('')}</ul>` +
         comprar(l.clave) +
       `</div>`;
@@ -30,9 +30,8 @@
     const art = el('article', 'viene');
     art.innerHTML =
       `<img class="viene__portada" src="img/proximamente/${l.clave}.webp" width="800" height="1130" alt="Portada de ${l.libro}" loading="lazy">` +
-      `<p class="libro-ficha__serie">${l.serie}</p>` +
-      `<h3 class="viene__titulo">${l.libro}</h3>` +
-      `<p class="viene__txt">${l.texto}</p>`;
+      `<p class="libro-ficha__serie">${serie(l.serie)}</p>` +
+      `<h3 class="viene__titulo">${l.libro}</h3>`;
     vienen.appendChild(art);
     return { l, art };
   });

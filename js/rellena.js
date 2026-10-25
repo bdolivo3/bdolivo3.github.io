@@ -12,12 +12,12 @@
   const frase = t => may(t.toLowerCase()).replace(new RegExp(`(?<=^|\\s)(${PROPIOS.map(p => p.toLowerCase()).join('|')})(?=$|[\\s.,])`, 'g'),
     m => PROPIOS.find(p => p.toLowerCase() === m));
   const frases = t => t.match(/[^.!?]+[.!?]+/g) || [t];
-  pon(q('#ponte-a-prueba .sub'), `Sobre ${S.libro}, distintas de las del libro. Toca cada carta para ver la respuesta.`);
+  pon(q('#ponte-a-prueba .sub'), 'Toca cada carta para ver la respuesta.');
   const txt = [...document.querySelectorAll('#juegos .juego__txt')];
-  pon(txt.find(p => p.textContent.includes('escondidos')), `Los doce animales de ${S.libro} están escondidos aquí. Rodéalos: arrastra el dedo de la primera letra a la última. En la sopa no hay tildes.`);
-  pon(txt.find(p => p.textContent.includes('pista')), `Los doce animales de ${S.libro}. Las pistas son sus récords y, alguna, lo que dice su ficha.`);
+  pon(txt.find(p => p.textContent.includes('escondidos')), `Los doce de ${S.libro}, escondidos. Arrastra el dedo de la primera letra a la última.`);
+  pon(txt.find(p => p.textContent.includes('pista')), `Los doce de ${S.libro}, con una pista para cada uno.`);
   if (S.clave === 'sabana') return;
-  pon(q('#duelo .sub'), `Tú llevas ${S.jugador.el}. Las reglas son las del libro, y la hoja de duelo se rellena como en el libro: debajo de las fichas tienes la guía.`);
+  pon(q('#duelo .sub'), `Tú llevas ${S.jugador.el}. Las reglas son las del libro.`);
   [['l-leon', S.jugador], ['l-tigre', S.rival]].forEach(([id, a]) => {
     const art = $(id), f = S.fichas.find(x => x.nombre === a.nombre);
     if (!art || !f) return;

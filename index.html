@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="css/portada.css">
 </head>
 <body class="web">
-  <script src="js/elige.js"></script>
+  <script src="js/amazon.js"></script>  <script src="js/elige.js"></script>
 
   <header class="cabecera cabecera--encima">
     <a href="/" aria-label="Selvativo, al principio"><img src="logo/Selvativo_marca_pequena_negro.svg" alt="" width="30" height="30"></a>
@@ -31,6 +31,7 @@
       <a href="jugar.html">Jugar</a>
     </nav>
     <a class="estas" href="#mundos" aria-label="El mundo en el que estás; ver los ocho"><span id="estas-libro">Guardianes de la Sabana</span></a>
+    <a class="comprar-pildora" data-comprar="corto" href="https://www.amazon.es/dp/B0HN4R56X5" target="_blank" rel="noopener">Comprar en Amazon</a>
   </header>
 
   <main>
@@ -38,11 +39,13 @@
       <div class="lamina" id="lamina">
         <img id="base" src="img/anuncio/pinta/sabana-002.webp" alt="Lámina para pintar del elefante, de Guardianes de la Sabana" width="1200" height="1706">
         <canvas id="lienzo" aria-hidden="true"></canvas>
+        <div class="pista" id="pista" aria-hidden="true"><svg class="pista__mano" viewBox="0 0 48 48" width="56" height="56"><path d="M22 4a4 4 0 0 1 4 4v14l2-.6a3.6 3.6 0 0 1 4.4 2.4l.3.9 1.6-.4a3.6 3.6 0 0 1 4.4 2.6l.2.8 1-.2a3.4 3.4 0 0 1 4 3.3V36c0 6.6-5.4 12-12 12h-2.4c-4 0-7.6-2.2-9.6-5.6L10.2 33a3.4 3.4 0 0 1 5.6-3.8L18 32V8a4 4 0 0 1 4-4z"/></svg></div>
       </div>
       <div class="portada__texto" id="texto" aria-live="polite">
-        <h1 id="titulo">Píntalo con el dedo.</h1>
-        <p class="quien" id="quien">Es una lámina del libro: <b>el elefante</b>, <span class="num">n.º 002</span> de <i>Guardianes de la Sabana</i>.</p>
-        <p class="acciones" id="acciones"><button class="enlace" type="button" data-accion="ver">Ver cómo queda pintado</button></p>
+        <h1 id="titulo">Píntame con el dedo.</h1>
+        <p class="quien" id="quien">El elefante, de Guardianes de la Sabana.</p>
+        <p class="acciones" id="acciones"><a class="btn btn--tinta" data-comprar href="https://www.amazon.es/dp/B0HN4R56X5" target="_blank" rel="noopener">Comprar en Amazon</a>
+          <button class="enlace" type="button" data-accion="ver">Ver cómo queda</button></p>
       </div>
     </section>
 
@@ -50,15 +53,14 @@
       <div class="caja">
         <div class="cabeza">
           <h2 id="t-paginas">Cada animal, tres páginas.</h2>
-          <p class="sub" id="paginas-sub">El elefante tiene su ficha, su retrato y la lámina que acabas de pintar. Como los otros once de su libro.</p>
         </div>
         <div class="paginas" tabindex="0" aria-label="Las tres páginas del animal">
           <figure class="pagina"><img id="p-ficha" src="img/fichas/sabana-002.webp" alt="La ficha del elefante" width="798" height="1135" loading="lazy">
-            <figcaption><h3>La ficha</h3><p>Cuánto pesa, dónde vive, qué come y algo sorprendente. Y cuatro números para jugar.</p></figcaption></figure>
+            <figcaption><h3>La ficha</h3></figcaption></figure>
           <figure class="pagina"><img id="p-retrato" src="img/animales/sabana-002.webp" alt="El retrato del elefante" width="798" height="1135" loading="lazy">
-            <figcaption><h3>El retrato</h3><p>El animal de verdad, en su mundo y con sus crías.</p></figcaption></figure>
+            <figcaption><h3>El retrato</h3></figcaption></figure>
           <figure class="pagina"><img id="p-lamina" src="img/anuncio/pinta/sabana-002.webp" alt="La lámina del elefante, para pintar" width="1200" height="1706" loading="lazy">
-            <figcaption><h3>La lámina</h3><p>Un dibujo a lápiz para pintarlo como quieras.</p></figcaption></figure>
+            <figcaption><h3>La lámina</h3></figcaption></figure>
         </div>
       </div>
     </section>
@@ -70,13 +72,9 @@
           <div class="quien-es">
             <p class="nombre" id="f-nombre">Elefante</p>
             <p><span class="num" id="f-cod">N.º 002</span>, <span id="f-rareza">legendario</span> <span class="estrellas" id="f-estrellas" aria-hidden="true">★★★★☆</span></p>
-            <p id="f-tipos">De tipo tierra y planta.</p>
-          </div>
-          <div class="habilidades">
-            <p id="f-ataque">Al atacar, <i>Topetazo</i>: +15 a su golpe.</p>
-            <p id="f-defensa">Al defenderse, <i>Aguante</i>: −15 al golpe que recibe.</p>
           </div>
         </div>
+        <figure class="carta-viva" id="carta-viva"><img id="c-ficha" src="img/fichas/sabana-002.webp" alt="La ficha del elefante, del libro" width="798" height="1135" loading="lazy"></figure>
         <div class="cifras" id="cifras"></div>
       </div>
     </section>
@@ -84,27 +82,39 @@
     <section class="banda" id="duelo" aria-labelledby="t-duelo">
       <div class="caja">
         <div class="cabeza">
-          <h2 id="t-duelo">Dos animales, un lápiz.</h2>
-          <p class="sub">Un duelo se juega con las fichas, con las reglas del libro, y cada golpe se apunta a lápiz en la arena.</p>
+          <h2 id="t-duelo">Dos animales, un duelo.</h2>
         </div>
         <div class="duelo">
-          <figure class="arena"><img id="arena" src="img/anuncio/arena/sabana.webp" alt="La arena de duelo del libro, para apuntar los golpes" width="1093" height="698" loading="lazy">
-            <figcaption>La arena de duelo, al final del libro.</figcaption></figure>
+          <div class="frente" id="frente">
+            <figure class="luchador-foto" id="d-a"><img id="d-a-img" src="img/animales/sabana-002.webp" alt="El elefante, con su cría" width="798" height="1135" loading="lazy">
+              <figcaption><b id="d-a-nombre">Elefante</b><span><span id="d-a-vida">127</span> de vida</span></figcaption></figure>
+            <p class="contra" aria-hidden="true">contra</p>
+            <figure class="luchador-foto luchador-foto--rival" id="d-b"><img id="d-b-img" src="img/animales/oriente.webp" alt="El tigre de Bengala, con sus crías" width="798" height="1135" loading="lazy">
+              <figcaption><b id="d-b-nombre">Tigre de Bengala</b><span><span id="d-b-vida">135</span> de vida</span></figcaption>
+              <span class="golpe-num" id="d-golpe" aria-hidden="true">−25</span></figure>
+          </div>
           <div class="textos">
             <ol class="pasos">
-              <li><span><b>Empieza el más rápido.</b> El de más velocidad. Además esquiva: el primer golpe que recibe le hace la mitad.</span></li>
-              <li><span><b>Cada turno, un golpe.</b> Tu ataque menos la defensa del rival.</span></li>
-              <li><span><b>Antes, una habilidad.</b> La de ataque suma a tu golpe; la de defensa resta al próximo que recibas.</span></li>
-              <li><span><b>La rueda de los tipos.</b> La primera vez que uno de tus tipos gana a uno de los suyos, +10.</span></li>
+              <li><span><b>Empieza el más rápido.</b></span></li>
+              <li><span><b>Golpe: tu ataque menos su defensa.</b></span></li>
               <li><span><b>Gana quien deje al otro sin vida.</b></span></li>
             </ol>
             <div class="ejemplo">
               <p class="pie" id="e-quien">Un golpe del elefante al tigre de Bengala:</p>
               <p class="cuenta" id="e-cuenta">35 − 10 = 25</p>
-              <p class="pie">Su ataque menos la defensa del rival.</p>
             </div>
             <p><a class="btn btn--tinta" href="jugar.html">Juega un duelo</a></p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="banda mundo compra" aria-label="Comprar el libro">
+      <div class="caja">
+        <img class="compra__portada" id="mitad-portada" src="img/portadas/sabana.webp" alt="" width="800" height="1130" loading="lazy">
+        <div class="compra__txt">
+          <p class="compra__titulo" id="mitad-libro">Guardianes de la Sabana</p>
+          <p><a class="btn" data-comprar href="https://www.amazon.es/dp/B0HN4R56X5" target="_blank" rel="noopener">Comprar en Amazon</a></p>
         </div>
       </div>
     </section>
@@ -113,44 +123,49 @@
       <div class="caja">
         <div class="cabeza">
           <h2 id="t-mundos">Ocho libros, ocho mundos.</h2>
-          <p class="sub">Noventa y seis animales, del 001 al 096. Elige un libro y la web entera se va a su mundo.</p>
+          <p class="sub">Elige uno y la web se va a su mundo.</p>
         </div>
         <ul class="mundos" id="lista-mundos"></ul>
       </div>
     </section>
 
-    <section class="banda mundo" aria-labelledby="t-cuidar">
+    <section class="banda cuidar" aria-labelledby="t-cuidar">
       <div class="caja cuidar-caja">
         <div class="textos">
           <h2 id="t-cuidar">Cuidar la sabana.</h2>
-          <p id="c-entrada"></p>
           <div class="uicn">
             <p class="dice" id="c-dice">El elefante está en peligro.</p>
             <ol id="c-escala" aria-hidden="true"><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ol>
             <p class="ext"><span>Preocupación menor</span><span>Extinta</span></p>
-            <p class="pie">Según la Lista Roja de la UICN, que va de «preocupación menor» a «extinta». Cada ficha lo dice abajo a la izquierda.</p>
+            <p class="pie">Según la Lista Roja de la UICN.</p>
           </div>
-          <div><h3 id="c-btitulo"></h3><p id="c-btexto"></p></div>
         </div>
         <div class="textos">
           <h3>Lo que sí puedes hacer</h3>
-          <p id="p-entrada"></p>
           <ul class="puedes" id="p-lista"></ul>
         </div>
       </div>
     </section>
 
-    <section class="banda mundo final" aria-labelledby="t-final" style="padding-top: 0">
+    <section class="banda mundo final" aria-labelledby="t-final">
       <div class="caja">
         <img class="final__portada" id="fin-portada" src="img/portadas/sabana.webp" alt="Portada de Guardianes de la Sabana" width="800" height="1130" loading="lazy">
         <div class="textos">
           <h2 id="t-final">Guardianes de la Sabana</h2>
-          <p class="sub" id="fin-sub">Doce animales de África, del 001 al 012, para colorear y para jugar.</p>
+          <p class="sub" id="fin-sub">Doce animales de África, para pintar y jugar.</p>
           <p class="acciones" id="fin-acciones"></p>
         </div>
       </div>
     </section>
   </main>
+
+  <dialog class="tienda" id="tienda" aria-labelledby="t-tienda">
+    <div class="tienda__caja">
+      <p class="tienda__titulo" id="t-tienda">Ya en Amazon</p>
+      <ul class="tienda__lista" id="tienda-lista"></ul>
+      <button class="enlace" type="button" data-cerrar>Cerrar</button>
+    </div>
+  </dialog>
 
   <footer class="pie-web">
     <div class="caja">
@@ -162,7 +177,6 @@
 
   <script src="js/datos_libros.js"></script>
   <script src="js/datos_sabana.js"></script>
-  <script src="js/amazon.js"></script>
   <script src="js/portada.js"></script>
   <script src="js/menu.js"></script>
 </body>

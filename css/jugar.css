@@ -18,4 +18,39 @@
 .jugar__libros a[data-libro="bosques"] { --m: var(--m-bosques); } .jugar__libros a[data-libro="australia"] { --m: var(--m-australia); }
 .jugar__libros a[data-libro="pinguino"] { --m: var(--m-pinguino); } .jugar__libros a[data-libro="artico"] { --m: var(--m-artico); }
 .carta__pistas { display: grid; gap: 10px; font-size: 15px; line-height: 1.4; }
-.carta__pistas b { display: block; margin-bottom: 1px; font: italic 400 17px/1.2 var(--serif); color: #9b6d1f; }
+.carta__pistas b { display: block; margin-bottom: 1px; font: italic 400 17px/1.2 var(--serif); color: #7a5414; }
+.libro-de { display: none; }
+.luchador__nombre, .cuenta, .seccion__sub, .carta__txt, .intruso__pregunta, .juego__titulo, .sopa__letra, .cruci__celda input,
+.reglas__pasos li::before { font-family: var(--sans); font-weight: 500; }
+.guia__pie, .juego__aviso, .carta__txt--cita, .jugada__nota, .jugada__pista { font-family: var(--sans); font-style: normal; }
+.luchador__nombre { font-size: clamp(20px, 2.2vw, 26px); }
+.seccion__sub { font-size: clamp(24px, 2.8vw, 34px); }
+.carta__txt, .intruso__pregunta { font-size: clamp(19px, 1.8vw, 22px); line-height: 1.35; }
+.juego__titulo { font-size: clamp(22px, 2.4vw, 28px); }
+.luchador__datos, .luchador__vida, .jugada__paso, .cuenta__paso small { font-size: 15px; }
+.tablero__ayuda, .arena figcaption, .conoce__como, .leyenda, .cruci__pistas li, .antetitulo, .chip, .seccion__pie, .guia__pie,
+.jugada__nota, .jugada__pista, .final__legal { font-size: 16px; }
+.carta__pie { font-size: 15px; }
+.juego__txt { font-size: 17px; line-height: 1.55; }
+.jugar__libros a { font-size: 15px; letter-spacing: .02em; }
+.carta__pistas { gap: 12px; font-size: 16px; line-height: 1.5; }
+.carta__pistas b { font: 500 15px/1.3 var(--sans); letter-spacing: .02em; text-transform: uppercase; }
+body.pagina-jugar { font-weight: 450; }   
+.pagina-jugar .sub { font-size: clamp(19px, 1.8vw, 22px); line-height: 1.5; }
+.jugada__texto { font-size: clamp(18px, 1.7vw, 20px); line-height: 1.6; }
+.sopa__lista { font-size: 15px; letter-spacing: .06em; }
+.jugada { padding: 22px 20px 24px; background: var(--papel); color: var(--tinta); text-align: left; box-shadow: 0 18px 40px rgba(0, 0, 0, .35); }
+.jugada__paso { font-weight: 500; }
+.jugada__texto { min-height: 0; }
+.jugada__botones { justify-content: flex-start; }
+.jugada .boton { background: var(--tinta); color: var(--papel); border-color: var(--tinta); }
+.jugada .boton--claro { background: transparent; color: var(--tinta); border-color: var(--tinta); }
+.chip, .chip:disabled { border-color: var(--papel); background: var(--papel); color: var(--tinta); font-weight: 500; }
+.chip:hover:not(:disabled) { border-color: var(--papel-2); background: var(--papel-2); }
+.jugar__libros a { border-color: transparent; background: rgba(0, 0, 0, .18); }
+.jugar__libros a[aria-current] { background: var(--marfil); color: var(--noche); }
+.carta__num { font: 500 26px/1 var(--sans); }
+.intruso { gap: 34px; }
+.luchador__datos { font-size: 16px; }
+.sopa__lista { grid-template-columns: repeat(auto-fill, minmax(8.5em, 1fr)); gap: 8px 14px; letter-spacing: .04em; }
+.luchador__vida span { font: 500 40px/1.1 var(--sans); letter-spacing: 0; }

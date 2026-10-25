@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="css/jugar.css">
 </head>
 <body class="pagina-jugar">
-  <script src="js/elige.js"></script>
+  <script src="js/amazon.js"></script>  <script src="js/elige.js"></script>
   <a class="saltar" href="#duelo">Saltar al duelo</a>
 
   <header class="cabecera">
@@ -37,7 +37,7 @@
   <main class="jugar">
     <div class="jugar__cabeza">
       <h1 class="titular">Juega.</h1>
-      <p class="sub">Con los animales de <span id="jugar-libro">Guardianes de la Sabana</span>. Elige otro libro cuando quieras.</p>
+      <p class="sub">Con los animales de <span id="jugar-libro">Guardianes de la Sabana</span>.</p>
       <nav class="jugar__libros" aria-label="Libro">
         <a href="jugar.html?libro=sabana" data-libro="sabana">Guardianes de la Sabana</a>
         <a href="jugar.html?libro=amazonas" data-libro="amazonas">Amazonas Salvaje</a>
@@ -53,7 +53,7 @@
     <section class="reglas" id="duelo" aria-labelledby="t-reglas">
       <div class="reglas__cabeza">
         <h2 class="titular" id="t-reglas">Juega tu primer duelo.</h2>
-        <p class="sub">Tú llevas el león. Las reglas son las del libro, y la hoja de duelo se rellena como en el libro: debajo de las fichas tienes la guía.</p>
+        <p class="sub">Tú llevas el león. Las reglas son las del libro.</p>
       </div>
       <div class="tablero">
         <article class="luchador" id="l-leon">
@@ -94,13 +94,13 @@
             <div class="arena__escrito" id="arena-escrito"></div>
             <span class="marcas" id="arena-marcas" aria-hidden="true"></span>
           </div>
-          <figcaption>La arena de duelo, en la página 73 del libro: en cada golpe, se resta y se apunta la vida que queda.</figcaption>
+          <figcaption>La arena de duelo del libro: en cada golpe, apunta la vida que queda.</figcaption>
         </figure>
-        <div class="guia">
-          <p class="conoce__como">Así se rellena la hoja</p>
+        <details class="guia">
+          <summary class="conoce__como">Así se rellena la hoja</summary>
           <ol class="leyenda" id="guia-hoja"></ol>
-          <p class="guia__pie">A lápiz, como dice el libro: para borrar y volver a jugar.</p>
-        </div>
+          <p class="guia__pie">A lápiz, para borrar y volver a jugar.</p>
+        </details>
       </div>
     </section>
 
@@ -108,7 +108,7 @@
       <div class="seccion__cabeza">
         <p class="antetitulo">Preguntas</p>
         <h2 class="titular" id="t-prueba">Ponte a prueba.</h2>
-        <p class="sub">Ocho preguntas, una de cada libro. Toca cada carta para ver la respuesta.</p>
+        <p class="sub">Toca cada carta para ver la respuesta.</p>
       </div>
       <div class="preguntas" id="preguntas"></div>
       <h3 class="seccion__sub">¿Quién es el intruso?</h3>
@@ -133,14 +133,14 @@
         </article>
         <article class="juego">
           <h3 class="juego__titulo"><span>2</span> Sopa de letras</h3>
-          <p class="juego__txt">Doce animales de siete libros están escondidos aquí. Rodéalos: arrastra el dedo de la primera letra a la última. En la sopa no hay tildes.</p>
+          <p class="juego__txt">Doce animales escondidos. Arrastra el dedo de la primera letra a la última.</p>
           <div class="sopa" id="sopa"></div>
           <ul class="sopa__lista" id="sopa-lista"></ul>
           <p class="juego__aviso" id="sopa-aviso" aria-live="polite"></p>
         </article>
         <article class="juego juego--ancho">
           <h3 class="juego__titulo"><span>3</span> Crucigrama</h3>
-          <p class="juego__txt">Doce animales de los ocho libros, con la pista que les escribió su libro.</p>
+          <p class="juego__txt">Doce animales, con una pista para cada uno.</p>
           <div class="cruci">
             <div class="cruci__caja" id="crucigrama"></div>
             <ol class="cruci__pistas" id="crucigrama-pistas"></ol>

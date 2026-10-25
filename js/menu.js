@@ -14,6 +14,12 @@
     + enlaces.map(([h, t]) => `<a href="${h}"${!h.startsWith('#') && pagina(h) === pagina(location.href) ? ' aria-current="page"' : ''}>${t}</a>`).join('')
     + '</nav>';
   document.body.appendChild(caja);
+  const compra = cabecera.querySelector('[data-comprar]');
+  if (compra) caja.prepend(compra.cloneNode(true));
+  const logo = cabecera.querySelector('a').cloneNode(true);
+  logo.className = 'rayas__logo';
+  const img = logo.querySelector('img'); if (img) img.src = img.getAttribute('src').replace('_marfil', '_negro');
+  caja.prepend(logo);
   const boton = caja.querySelector('button');
   const abrir = si => {
     caja.classList.toggle('rayas--abierta', si);

@@ -9,10 +9,7 @@
   const ID = k => (k === 'sabana' ? 'sabana-002' : k);
   const EL = { sabana: 'el elefante', amazonas: 'el jaguar', norte: 'el oso pardo', oriente: 'el tigre de Bengala',
     bosques: 'el lobo ibérico', australia: 'el canguro rojo', pinguino: 'el pingüino emperador', artico: 'el oso polar' };
-  const RANGOS = { atq: ['Ataque', 25, 50, 'Lo que quita cada golpe, antes de la defensa del rival.'],
-    df: ['Defensa', 0, 15, 'Lo que le resta a cada golpe que recibe.'],
-    vel: ['Velocidad', 1, 10, 'El más rápido golpea primero.'],
-    vida: ['Vida', 75, 150, 'Lo que aguanta antes de caer.'] };
+  const RANGOS = { atq: ['Ataque', 25, 50], df: ['Defensa', 0, 15], vel: ['Velocidad', 1, 10], vida: ['Vida', 75, 150] };
   const UICN = ['Preocupación menor', 'Casi amenazada', 'Vulnerable', 'En peligro', 'En peligro crítico', 'Extinta en estado silvestre', 'Extinta'];
   const ESTADO = { 'Preocupación menor': 'no corre peligro, por ahora', 'Casi amenazada': 'está casi amenazado', 'Vulnerable': 'es vulnerable',
     'En peligro': 'está en peligro', 'En peligro crítico': 'está en peligro crítico', 'No evaluada': 'todavía no está evaluado' };
@@ -24,7 +21,7 @@
     const l = L[k], b = S[k], cod = k === 'sabana' ? '002' : l.desde;
     return { k, id: ID(k), el: EL[k], libro: l.libro, region: l.region, desde: l.desde, hasta: l.hasta,
       de: l.lema.replace(/^Doce animales /, '').replace(/\.$/, ''), amazon: AMAZON[k] || '',
-      animal: b.fichas.find(f => f.cod === cod), rival: { el: b.rival.el, ...TODAS.find(f => f.nombre === b.rival.nombre) },
+      animal: b.fichas.find(f => f.cod === cod), rival: { el: b.rival.el, retrato: b.rival.retrato, ...TODAS.find(f => f.nombre === b.rival.nombre) },
       cuidar: b.cuidar, puedes: b.puedes };
   }
   let w;
@@ -41,15 +38,13 @@
     if (!fundido || QUIETO) return pon();
     texto.classList.add('cambia'); setTimeout(pon, 260);
   }
-  const comprar = () => (w.amazon
-    ? `<a class="btn" href="${w.amazon}" target="_blank" rel="noopener">Juega conmigo en Amazon</a>`
-    : '<span class="pronto">Muy pronto en Amazon</span>');
-  const inicial = () => [`Píntalo con ${RATON ? 'el ratón' : 'el dedo'}.`,
-    `Es una lámina del libro: <b>${w.el}</b>, <span class="num">n.º ${w.animal.cod}</span> de <i>${w.libro}</i>.`,
-    '<button class="enlace" type="button" data-accion="ver">Ver cómo queda pintado</button>'];
+  const comprar = clase => `<a class="btn${clase || ''}" data-comprar href="${w.amazon || '#tienda'}"${w.amazon ? ' target="_blank" rel="noopener"' : ''}>Comprar en Amazon</a>`;
+  const inicial = () => [`Píntame con ${RATON ? 'el ratón' : 'el dedo'}.`,
+    `${may(w.el)}, de ${w.libro}.`,   
+    `${comprar(' btn--tinta')} <button class="enlace" type="button" data-accion="ver">Ver cómo queda</button>`];
   const final = () => ['Primero lo pintas. Después, juegas con él.',
-    `<i>${w.libro}</i> trae doce animales ${w.de}, <span class="num">del ${w.desde} al ${w.hasta}</span>. Cada uno con su lámina para pintar, su retrato y su ficha, que es una carta de juego.`,
-    `${comprar()}<button class="enlace" type="button" data-accion="otro">Pinta otro mundo</button>`];
+    `Doce animales ${w.de}, para pintar y jugar.`,
+    `${comprar()} <button class="enlace" type="button" data-accion="otro">Pinta otro mundo</button>`];
   texto.addEventListener('click', e => {
     const b = e.target.closest('[data-accion]'); if (!b) return;
     if (b.dataset.accion === 'ver') acabar(true);
@@ -85,7 +80,7 @@
     for (let i = 0; i <= pasos; i++) rayas(px + (x - px) * i / pasos, py + (y - py) * i / pasos, 3, R);
     ultimo = [x, y];
   }
-  lamina.addEventListener('pointerdown', e => { if (hecho || !listo) return; apretado = true; ultimo = null; recorrer(e); });
+  lamina.addEventListener('pointerdown', e => { sabe = true; pista.classList.add('fuera'); if (hecho || !listo) return; apretado = true; ultimo = null; recorrer(e); });
   lamina.addEventListener('pointermove', e => { if (!hecho && listo && (apretado || e.pointerType === 'mouse')) recorrer(e); });
   const soltar = () => { apretado = false; ultimo = null; };
   lamina.addEventListener('pointerup', soltar); lamina.addEventListener('pointercancel', soltar);
@@ -100,7 +95,7 @@
   function acabar(deGolpe) {   
     if (hecho) return;
     if (!listo) { color.addEventListener('load', () => acabar(deGolpe), { once: true }); return; }
-    hecho = true; apretado = false; lamina.classList.add('hecha');
+    hecho = true; apretado = false; lamina.classList.add('hecha'); pista.classList.add('fuera');
     const fin = () => { m.globalAlpha = 1; m.fillRect(0, 0, MW, MH); sucio = true; portada.classList.add('pintada'); escribe(final(), true); };
     if (QUIETO) return fin();
     const t0 = performance.now(), DUR = deGolpe ? 1500 : 1000;
@@ -114,23 +109,92 @@
     hecho = false; listo = false; ultimo = null; m.clearRect(0, 0, MW, MH); sucio = true;
     portada.classList.remove('pintada'); lamina.classList.remove('hecha');
     base.src = `img/anuncio/pinta/${w.id}.webp`; base.alt = `Lámina para pintar ${de(w.el)}, de ${w.libro}`;
-    color = new Image(); color.onload = () => { listo = true; sucio = true; }; color.src = `img/anuncio/pinta/${w.id}_color.webp`;
+    color = new Image(); color.onload = () => { listo = true; sucio = true; muestraPista(); }; color.src = `img/anuncio/pinta/${w.id}_color.webp`;
     escribe(inicial(), fundido);
   }
-  function cifras(a) {
-    $('cifras').innerHTML = Object.entries(RANGOS).map(([k, [nombre, min, max, que]]) => {
-      const v = a[k], x = (v - min) / (max - min) * 100;
-      return `<div class="cifra"><p class="etq">${nombre}</p><p class="valor">${v}</p>
-        <div class="regla" aria-hidden="true"><i style="left:${x}%"></i><span>${min}</span><span>${max}</span></div>
-        <p>${que}</p></div>`;
-    }).join('');
+  const pista = $('pista');
+  const CENTRO = { sabana: [.58, .77], amazonas: [.6, .34], norte: [.48, .69], oriente: [.68, .54], bosques: [.68, .34],
+    australia: [.65, .59], pinguino: [.5, .35], artico: [.62, .31] };
+  const IDA = [[-.15, .02], [.13, -.03], [-.11, .06], [.15, .02]];
+  const dentro = v => Math.min(.92, Math.max(.08, v));
+  let TRAZO = IDA, sabe = false, pistaT = 0;
+  const ponMano = (x, y) => { pista.style.setProperty('--x', `${x * 100}%`); pista.style.setProperty('--y', `${y * 100}%`); };
+  function muestraPista() {
+    clearTimeout(pistaT);
+    if (sabe || hecho) return pista.classList.add('fuera');
+    const [cx, cy] = CENTRO[w.k] || [.5, .5];
+    TRAZO = IDA.map(([dx, dy]) => [dentro(cx + dx), dentro(cy + dy)]);
+    pista.classList.remove('fuera', 'espera'); ponMano(...TRAZO[0]);
+    if (QUIETO) return pista.classList.add('espera');
+    pistaT = setTimeout(() => {
+      const t0 = performance.now(), DUR = 1700, N = TRAZO.length - 1; let antes = null;
+      (function paso(t) {
+        if (sabe || hecho) return;
+        const q = Math.min(1, (t - t0) / DUR) * N, i = Math.min(N - 1, Math.floor(q)), f = q - i;
+        const x = TRAZO[i][0] + (TRAZO[i + 1][0] - TRAZO[i][0]) * f, y = TRAZO[i][1] + (TRAZO[i + 1][1] - TRAZO[i][1]) * f;
+        ponMano(x, y);
+        const mx = x * MW, my = y * MH;
+        if (antes) {
+          const n = Math.max(1, Math.hypot(mx - antes[0], my - antes[1]) / 5);
+          for (let k = 1; k <= n; k++) rayas(antes[0] + (mx - antes[0]) * k / n, antes[1] + (my - antes[1]) * k / n, 5, R * 1.15);
+        }
+        antes = [mx, my];
+        if (q < N) requestAnimationFrame(paso); else pista.classList.add('espera');
+      })(t0);
+    }, 700);
+  }
+  const tienda = $('tienda');
+  $('tienda-lista').innerHTML = ORDEN.filter(k => AMAZON[k]).map(k => `<li><a href="${AMAZON[k]}" target="_blank" rel="noopener">
+    <img src="img/portadas/${k}.webp" alt="" width="800" height="1130" loading="lazy"><span>${L[k].libro}</span></a></li>`).join('');
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[data-comprar]');
+    if (a && !w.amazon) {
+      e.preventDefault();
+      $('t-tienda').innerHTML = `<i>${w.libro}</i> llega muy pronto. Ya en Amazon:`;
+      if (tienda.showModal) tienda.showModal(); else location.href = 'libros.html';
+    }
+    if (e.target.closest('[data-cerrar]') || e.target === tienda) tienda.close();
+  });
+  function cifras(a, abajo) {
+    $('cifras').innerHTML = Object.entries(RANGOS).map(([k, [nombre]]) =>
+      `<div class="cifra"><p class="valor" data-v="${a[k]}">${abajo ? 0 : a[k]}</p><p class="etq">${nombre}</p></div>`).join('');
+  }
+  const cuenta = (el, desde, hasta, ms) => {
+    if (QUIETO) { el.textContent = hasta; return; }
+    const t0 = performance.now();
+    const paso = t => { const p = Math.min(1, (t - t0) / ms);
+      el.textContent = Math.round(desde + (hasta - desde) * (1 - (1 - p) ** 3)); if (p < 1) requestAnimationFrame(paso); };
+    requestAnimationFrame(paso);
+  };
+  let vigias = [];
+  const al_llegar = (caja, hacer) => {
+    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); hacer(); } },
+      { rootMargin: '0px 0px -20% 0px' });
+    io.observe(caja); vigias.push(io);
+  };
+  const debajo = el => el.getBoundingClientRect().top > innerHeight * .8;
+  function vida(a) {
+    vigias.forEach(io => io.disconnect()); vigias = [];
+    const carta = $('carta-viva'), frente = $('frente'), r = w.rival, golpe = Math.max(10, a.atq) - r.df;
+    const espera = !QUIETO && debajo(carta);
+    cifras(a, espera);
+    carta.classList.toggle('espera', espera); carta.classList.remove('viva');
+    al_llegar(carta, () => {
+      carta.classList.remove('espera'); carta.classList.add('viva');
+      document.querySelectorAll('#cifras .valor').forEach(v => cuenta(v, Number(v.textContent), Number(v.dataset.v), 900));
+    });
+    frente.classList.remove('viva'); $('d-b-vida').textContent = r.vida; $('d-golpe').textContent = `−${golpe}`;
+    al_llegar(frente, () => {
+      frente.classList.add('viva');
+      setTimeout(() => cuenta($('d-b-vida'), r.vida, r.vida - golpe, 700), QUIETO ? 0 : 950);
+    });
   }
   function mundos() {
     $('lista-mundos').innerHTML = ORDEN.map(k => {
       const l = L[k];
       return `<li><button type="button" data-mundo="${k}" style="--c: var(--m-${k})" aria-current="${k === w.k}">
         <img src="img/portadas/${k}.webp" alt="" width="800" height="1130" loading="lazy">
-        <span class="t">${l.libro}</span><span class="r">${l.region}, <span class="num">del ${l.desde} al ${l.hasta}</span></span></button></li>`;
+        <span class="t">${l.libro}</span><span class="r">${l.region}</span></button></li>`;
     }).join('');
   }
   $('lista-mundos').addEventListener('click', e => {
@@ -144,34 +208,34 @@
     try { sessionStorage.setItem('selvativo-libro', k); } catch (e) {}
     $('estas-libro').textContent = w.libro;
     nuevaLamina(fundido);
-    $('paginas-sub').textContent = `${may(w.el)} tiene su ficha, su retrato y la lámina que acabas de pintar. Como los otros once de su libro.`;
     $('p-ficha').src = `img/fichas/${w.id}.webp`; $('p-ficha').alt = `La ficha ${de(w.el)}`;
     $('p-retrato').src = `img/animales/${w.id}.webp`; $('p-retrato').alt = `El retrato ${de(w.el)}`;
     $('p-lamina').src = `img/anuncio/pinta/${w.id}.webp`; $('p-lamina').alt = `La lámina ${de(w.el)}, para pintar`;
     $('f-nombre').textContent = a.nombre; $('f-cod').textContent = `N.º ${a.cod}`;
     $('f-rareza').textContent = a.rareza.toLowerCase();
     $('f-estrellas').textContent = '★'.repeat(a.estrellas) + '☆'.repeat(5 - a.estrellas);
-    $('f-tipos').textContent = `De tipo ${a.tipos.map(t => t.toLowerCase()).join(' y ')}.`;
-    $('f-ataque').innerHTML = `Al atacar, <i>${a.ataque[0]}</i>: +${a.ataque[1]} a su golpe.`;
-    $('f-defensa').innerHTML = `Al defenderse, <i>${a.defensa[0]}</i>: −${a.defensa[1]} al golpe que recibe.`;
-    cifras(a);
-    $('arena').src = `img/anuncio/arena/${k}.webp`;
+    $('c-ficha').src = `img/fichas/${w.id}.webp`; $('c-ficha').alt = `La ficha ${de(w.el)}, del libro`;
+    $('d-a-img').src = `img/animales/${w.id}.webp`; $('d-a-img').alt = `${may(w.el)}, con su cría`;
+    $('d-b-img').src = w.rival.retrato; $('d-b-img').alt = `${may(w.rival.el)}, con su cría`;
+    $('d-a-nombre').textContent = a.nombre; $('d-a-vida').textContent = a.vida; $('d-b-nombre').textContent = w.rival.nombre;
+    vida(a);
     $('e-quien').textContent = `Un golpe ${de(w.el)} ${a_(w.rival.el)}:`;
     $('e-cuenta').textContent = `${a.atq} − ${w.rival.df} = ${Math.max(10, a.atq) - w.rival.df}`;
+    $('mitad-portada').src = `img/portadas/${k}.webp`; $('mitad-libro').textContent = w.libro;
     mundos();
     $('t-cuidar').textContent = may(w.cuidar.titulo.toLowerCase()) + '.';
-    $('c-entrada').textContent = w.cuidar.entrada;
     const i = UICN.indexOf(a.conservacion);
     $('c-dice').textContent = `${may(w.el)} ${ESTADO[a.conservacion] || 'está ' + a.conservacion.toLowerCase()}.`;
     [...$('c-escala').children].forEach((li, j) => li.classList.toggle('es', j === i));
-    $('c-btitulo').textContent = w.cuidar.bloques[0][0].replace(/\.$/, '') + '.';
-    $('c-btexto').textContent = w.cuidar.bloques[0][1];
-    $('p-entrada').textContent = w.puedes.entrada;
-    $('p-lista').innerHTML = w.puedes.bloques.slice(0, 3).map(([t, x]) => `<li><h3>${t}</h3><p>${x}</p></li>`).join('');
+    $('p-lista').innerHTML = w.puedes.bloques.slice(0, 3).map(([t]) => `<li><h3>${t}</h3></li>`).join('');
     $('fin-portada').src = `img/portadas/${k}.webp`; $('fin-portada').alt = `Portada de ${w.libro}`;
     $('t-final').textContent = w.libro;
-    $('fin-sub').innerHTML = `Doce animales ${w.de}, <span class="num">del ${w.desde} al ${w.hasta}</span>, para colorear y para jugar.`;
+    $('fin-sub').textContent = `Doce animales ${w.de}, para pintar y jugar.`;
     $('fin-acciones').innerHTML = comprar();
+    document.querySelectorAll('a[data-comprar]').forEach(b => {
+      b.href = w.amazon || '#tienda';
+      if (w.amazon) { b.target = '_blank'; b.rel = 'noopener'; } else b.removeAttribute('target');
+    });
   }
   addEventListener('resize', medir);
   medir(); poner(ORDEN.includes(window.ELEGIDO) ? window.ELEGIDO : ORDEN[0], false); requestAnimationFrame(pintar);
