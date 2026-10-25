@@ -16,6 +16,33 @@
   function vida(quien, l) {
     $(`vida-${quien}`).textContent = l.vida;
     $(`barra-${quien}`).style.width = `${(100 * l.vida / l.f.vida).toFixed(1)}%`;
+    const c = celda(quien, 'vida');
+    if (c && c.textContent !== String(l.vida)) { c.textContent = l.vida; c.classList.remove('baja'); void c.offsetWidth; c.classList.add('baja'); }
+  }
+  const cuadro = $('caracteristicas');
+  const FILAS_CUADRO = [['atq', 'Ataque', f => f.atq], ['df', 'Defensa', f => f.df], ['vel', 'Velocidad', f => f.vel],
+    ['vida', 'Vida', f => f.vida], ['hab-a', 'Habilidad de ataque', f => `${f.ataque[0]} +${f.ataque[1]}`],
+    ['hab-d', 'Habilidad de defensa', f => `${f.defensa[0]} −${f.defensa[1]}`]];
+  function cuadroNuevo() {
+    cuadro.innerHTML = `<thead><tr><td></td><th scope="col" data-quien="leon">${LEON.nombre}</th><th scope="col" data-quien="tigre">${TIGRE.nombre}</th></tr></thead>` +
+      `<tbody>${FILAS_CUADRO.map(([k, nombre, v]) => `<tr><th scope="row">${nombre}</th>` +
+        `<td data-quien="leon" data-k="${k}">${v(LEON)}</td><td data-quien="tigre" data-k="${k}">${v(TIGRE)}</td></tr>`).join('')}</tbody>`;
+  }
+  const celda = (quien, k) => cuadro.querySelector(`td[data-quien="${quien}"][data-k="${k}"]`);
+  function luce(ataca, cosas) {   
+    cuadro.querySelectorAll('.luce').forEach(c => c.classList.remove('luce'));
+    cuadro.querySelectorAll('thead th').forEach(th => {
+      th.classList.toggle('ataca', th.dataset.quien === ataca);
+      th.classList.toggle('recibe', !!ataca && th.dataset.quien !== ataca);
+    });
+    cosas.forEach(([q, k]) => celda(q, k)?.classList.add('luce'));
+  }
+  function luceGolpe(at, de, fAt, fDe, h, r) {
+    const cosas = [[at, 'atq'], [de, 'df']];
+    if (h === 'ataque') cosas.push([at, 'hab-a']);
+    if (r.cuentas.some(c => c.que === fDe.defensa[0])) cosas.push([de, 'hab-d']);
+    if (r.esquiva) cosas.push([at, 'vel'], [de, 'vel']);
+    luce(at, cosas);
   }
   function golpeado(quien) {
     const el = $(`l-${quien}`);
@@ -62,8 +89,10 @@
   }
   function empezar() {
     leon = J.luchador(LEON); tigre = J.luchador(TIGRE); turno = 1;
+    cuadroNuevo();
     vida('leon', leon); vida('tigre', tigre);
     arenaNueva();
+    luce(null, [['leon', 'vel'], ['tigre', 'vel']]);   
     const pista = perdidas ? `<p class="jugada__pista">Pista: ${EL} ataca siempre con todo. Tu ${LEON.defensa[0]} le quita ${LEON.defensa[1]} a su próximo golpe; úsala a tiempo.</p>` : '';
     const empieza = yoEmpiezo
       ? `Empieza el más rápido: ${YO}, con velocidad ${LEON.vel} contra ${TIGRE.vel}.` + (LEON.vel > TIGRE.vel ? ' Y como eres más rápido, el primer golpe que recibas te hará la mitad.' : '')
@@ -78,7 +107,8 @@
     const okA = J.puede(leon.historial, 'ataque'), okD = J.puede(leon.historial, 'defensa');
     const aviso = !okA ? `<p class="jugada__nota">${na} no: ya la has usado dos turnos seguidos.</p>` : !okD ? `<p class="jugada__nota">${nd} no: ya la has usado dos turnos seguidos.</p>` : '';
     const arraigo = tigre.defiende ? ` ${may(EL)} se defiende con ${TIGRE.defensa[0]}: te quitará ${TIGRE.defensa[1]}.` : '';
-    return [`<p><strong>Turno ${turno}. Te toca.</strong> Tu golpe: ataque menos la defensa ${del(EL)}, <strong>${LEON.atq} − ${TIGRE.df} = ${base}</strong>.${arraigo} Elige una habilidad:</p>${aviso}`,
+    luce('leon', [['leon', 'atq'], ['tigre', 'df']].concat(tigre.defiende ? [['tigre', 'hab-d']] : []));
+    return [`<p><strong>Turno ${turno}. Te toca.</strong> Tu golpe es tu ataque menos su defensa: <strong>${LEON.atq} − ${TIGRE.df} = ${base}</strong>.${arraigo} Elige una habilidad:</p>${aviso}`,
       boton(`${na} +${va}: suma a tu golpe`, 'ataque', false, okA ? '' : 'disabled') +
       boton(`${nd} −${vd}: resta al golpe que recibas`, 'defensa', true, okD ? '' : 'disabled')];
   }
@@ -87,6 +117,7 @@
     const antes = tigre.vida;
     J.aplicar(leon, tigre, h, r);
     vida('tigre', tigre); golpeado('tigre'); arenaGolpe('tigre', tigre, r);
+    luceGolpe('leon', 'tigre', LEON, TIGRE, h, r);
     if (!yoEmpiezo) turno += 1;
     const que = (h === 'ataque' ? `${LEON.ataque[0]} suma ${LEON.ataque[1]} a tu golpe.` : `Tu golpe se queda como está; a cambio, ${LEON.defensa[0]} le quitará ${LEON.defensa[1]} al próximo golpe ${del(EL)}.`) +
       (r.esquiva ? ' Es el primer golpe que recibe y es más rápido: le haces la mitad. En la arena se marca «Esquiva».' : '');
@@ -99,6 +130,7 @@
     const antes = leon.vida;
     J.aplicar(tigre, leon, h, r);
     vida('leon', leon); golpeado('leon'); arenaGolpe('leon', leon, r);
+    luceGolpe('tigre', 'leon', TIGRE, LEON, h, r);
     if (yoEmpiezo) turno += 1;
     const que = h === 'ataque' ? `${may(EL)} elige ${TIGRE.ataque[0]}, +${TIGRE.ataque[1]}.`
       : `${may(EL)} ya ha usado ${TIGRE.ataque[0]} dos turnos seguidos: esta vez elige ${TIGRE.defensa[0]}, que le quitará ${TIGRE.defensa[1]} a tu próximo golpe.`;
@@ -108,6 +140,7 @@
   }
   function final(gana, html) {
     marca(gana ? CORONA.leon : CORONA.tigre, 0.065, 'lapiz-marca--corona');
+    luce(null, [[gana ? 'leon' : 'tigre', 'vida']]);
     $('l-leon').classList.toggle('luchador--gana', gana);
     $('l-tigre').classList.toggle('luchador--gana', !gana);
     if (!gana) perdidas += 1;

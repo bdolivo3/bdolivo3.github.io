@@ -54,3 +54,32 @@ body.pagina-jugar { font-weight: 450; }
 .luchador__datos { font-size: 16px; }
 .sopa__lista { grid-template-columns: repeat(auto-fill, minmax(8.5em, 1fr)); gap: 8px 14px; letter-spacing: .04em; }
 .luchador__vida span { font: 500 40px/1.1 var(--sans); letter-spacing: 0; }
+.mesa { display: grid; gap: 16px; max-width: 1000px; margin: clamp(36px, 6vh, 56px) auto 0; }
+.mesa .jugada { margin: 0; max-width: none; }
+@media (min-width: 760px) { .mesa { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: start; } }
+@media (max-width: 759px) {
+  .caracteristicas { order: -1; position: sticky; top: calc(64px + env(safe-area-inset-top, 0px)); z-index: 5; padding: 8px 10px 6px; }
+  .caracteristicas__titulo, .caracteristicas__pie { display: none; }
+  .caracteristicas table { font-size: 15px; line-height: 1.2; }
+  .caracteristicas th, .caracteristicas td { padding: 5px 4px; }
+  .caracteristicas thead th { padding-top: 20px; font-size: 14px; }
+  .caracteristicas tbody tr:nth-child(n+5) td, .caracteristicas tbody tr:nth-child(n+5) th { font-size: 14px; }
+}
+.caracteristicas { padding: 16px 14px 14px; background: var(--papel); color: var(--tinta); box-shadow: 0 18px 40px rgba(0, 0, 0, .35); }
+.caracteristicas__titulo { margin: 0 0 10px; font-weight: 700; font-size: 17px; }
+.caracteristicas table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 16px; line-height: 1.3; font-variant-numeric: tabular-nums; }
+.caracteristicas th, .caracteristicas td { padding: 8px 6px; border-bottom: 1px solid rgba(42, 36, 28, .14); vertical-align: middle; }
+.caracteristicas tbody th { width: 36%; text-align: left; font-weight: 400; }
+.caracteristicas td { text-align: center; font-weight: 700; transition: background-color .35s, color .35s; }
+.caracteristicas tbody tr:nth-child(n+5) td { font-weight: 400; font-size: 15px; }
+.caracteristicas thead th { position: relative; padding-top: 22px; font-size: 15px; font-weight: 700; text-align: center; }
+.caracteristicas thead th.ataca::before, .caracteristicas thead th.recibe::before { position: absolute; top: 2px; left: 50%; translate: -50% 0;
+  padding: 1px 8px; border-radius: 10px; font-size: 12px; font-weight: 700; letter-spacing: .02em; white-space: nowrap; }
+.caracteristicas thead th.ataca::before { content: "ataca"; background: var(--tinta); color: var(--papel); }
+.caracteristicas thead th.recibe::before { content: "recibe"; border: 1px solid var(--tinta); }
+.caracteristicas td.luce { background: #F2D27E; color: var(--tinta); box-shadow: inset 0 0 0 2px #C99A2E; }
+.caracteristicas td.baja { animation: baja .9s ease-out; }
+@keyframes baja { from { background: #E7A08F; } to { background: transparent; } }
+.caracteristicas__pie { margin: 12px 0 0; font-size: 15px; line-height: 1.45; }
+.caracteristicas__pie b { font-weight: 700; }
+@media (prefers-reduced-motion: reduce) { .caracteristicas td { transition: none; } .caracteristicas td.baja { animation: none; } }
