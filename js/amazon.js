@@ -5,5 +5,7 @@ window.AMAZON = {
   bosques: 'https://www.amazon.es/dp/B0HN4WWD5H',
   pinguino: 'https://www.amazon.es/dp/B0HNGZ2GXL',   
   artico: 'https://www.amazon.es/dp/B0HNJBY893',   
-  norte: '', oriente: '', australia: '',
+  oriente: 'https://www.amazon.es/dp/B0HPBFT1KZ',   
+  australia: 'https://www.amazon.es/dp/B0HP88J5J9',   
+  norte: '',
 };
