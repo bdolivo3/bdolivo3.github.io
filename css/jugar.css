@@ -101,3 +101,4 @@ body.pagina-jugar { font-weight: 450; }
 .jugar__libros a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0; box-sizing: border-box; }
 .guia .conoce__como { padding-block: 12px; }   
 .compra-jugar__titulo a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .2em; }   
+.compra-jugar__accion { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; }

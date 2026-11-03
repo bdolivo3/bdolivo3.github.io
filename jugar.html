@@ -190,7 +190,7 @@
   <script src="js/arena.js"></script>
   <script src="js/duelo.js"></script>
   <script src="js/juegos.js"></script>
-  <script src="js/paginas.js"></script>  <script>    (() => {   
+  <script src="js/paginas.js"></script>  <script src="js/compartir.js"></script>  <script>    (() => {   
       const S = window.SABANA;
       document.getElementById('jugar-libro').textContent = S.libro;
       for (const a of document.querySelectorAll('.jugar__libros a')) if (a.dataset.libro === S.clave) a.setAttribute('aria-current', 'true');
@@ -202,6 +202,7 @@
         c.querySelector('.compra-jugar__accion').innerHTML = A
           ? `<a class="boton boton--tinta" href="${A}" target="_blank" rel="noopener">Comprar en Amazon</a>`
           : '<p class="compra-jugar__pronto">Próximamente en Amazon</p>';
+        if (c.id === 'compra-duelo' && P) c.querySelector('.compra-jugar__accion').insertAdjacentHTML('beforeend', ' ' + window.enlaceCompartir(S.libro, P));
       }
     })();
   </script>

@@ -103,3 +103,4 @@ a.comprar-pildora { display: inline-flex; align-items: center; padding: 8px 14px
 a.comprar-pildora, .estas { min-height: 44px; }
 .pie-web p a { display: inline-flex; align-items: center; min-height: 44px; }
 .enlace { min-height: 44px; }
+.compartir { display: inline-flex; align-items: center; min-height: 44px; color: inherit; font-size: 17px; text-underline-offset: .3em; }

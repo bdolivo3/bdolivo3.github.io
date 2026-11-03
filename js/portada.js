@@ -114,7 +114,7 @@
     base.addEventListener('load', ya, { once: true }); base.addEventListener('error', ya, { once: true });
   }
   const despues = f => (window.requestIdleCallback ? requestIdleCallback(f, { timeout: 2000 }) : setTimeout(f, 300));
-  function pideColor() { if (!color.src) color.src = `img/anuncio/pinta/${w.id}_color.webp`; }
+  function pideColor() { if (!color.src) color.src = `img/anuncio/pinta/${base.currentSrc.includes('/w800/') ? 'w1000/' : ''}${w.id}_color.webp`; }
   lamina.addEventListener('pointerdown', pideColor);
   function nuevaLamina(fundido) {
     hecho = false; listo = false; ultimo = null; m.clearRect(0, 0, MW, MH); sucio = true;
