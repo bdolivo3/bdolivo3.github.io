@@ -83,3 +83,21 @@ body.pagina-jugar { font-weight: 450; }
 .caracteristicas__pie { margin: 12px 0 0; font-size: 15px; line-height: 1.45; }
 .caracteristicas__pie b { font-weight: 700; }
 @media (prefers-reduced-motion: reduce) { .caracteristicas td { transition: none; } .caracteristicas td.baja { animation: none; } }
+.compra-jugar { display: grid; grid-template-columns: 84px minmax(0, 1fr); align-items: center; gap: 18px; box-sizing: border-box;
+  width: min(1040px, calc(100% - 32px)); margin: 32px auto 0; padding: 18px; border-radius: 10px; background: var(--papel); color: var(--tinta); }
+.compra-jugar[hidden] { display: none; }
+.compra-jugar--pie { margin-block: clamp(56px, 9vh, 96px); }
+.compra-jugar__portada { display: block; width: 84px; height: auto; box-shadow: 0 12px 24px -12px rgba(0, 0, 0, .55); }
+.compra-jugar__txt { display: grid; gap: 10px; justify-items: start; min-width: 0; }
+.compra-jugar p { margin: 0; }
+.compra-jugar__antes { font-size: 15px; line-height: 1.4; }
+.compra-jugar__titulo { font: 500 21px/1.25 var(--sans); text-wrap: balance; }
+.compra-jugar .boton { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.compra-jugar__pronto { font-size: 15px; font-style: italic; }
+@media (min-width: 760px) {
+  .compra-jugar { grid-template-columns: 110px minmax(0, 1fr); gap: 28px; padding: 24px 28px; }
+  .compra-jugar__portada { width: 110px; }
+}
+.jugar__libros a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0; box-sizing: border-box; }
+.guia .conoce__como { padding-block: 12px; }   
+.compra-jugar__titulo a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .2em; }   

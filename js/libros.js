@@ -7,6 +7,7 @@
   const REGIONES = [...new Set(D.libros.map(l => l.region))];
   const serie = t => t.replace(/(\d) de (\d+)$/, '$1\u00a0de\u00a0$2');   
   const AMAZON = window.AMAZON || {};   
+  const PAG = window.PAGINAS_LIBRO || {};   
   const comprar = clave => AMAZON[clave]
     ? `<a class="boton libro-ficha__comprar" href="${AMAZON[clave]}" target="_blank" rel="noopener">Comprar <small>en Amazon</small></a>`
     : `<p class="libro-ficha__pronto">Próximamente en Amazon</p>`;
@@ -15,10 +16,10 @@
     const art = el('article', 'libro-ficha');
     art.id = l.clave;
     art.innerHTML =
-      `<img class="libro-ficha__portada" src="img/portadas/${l.clave}.webp" width="800" height="1130" alt="Portada de ${l.libro}" loading="lazy">` +
+      `<img class="libro-ficha__portada" src="img/portadas/${l.clave}.webp" width="800" height="1130" alt="Portada de ${l.libro}, libro de animales para colorear" loading="lazy">` +
       `<div class="libro-ficha__txt">` +
         `<p class="libro-ficha__serie">${serie(l.serie)}</p>` +
-        `<h2 class="libro-ficha__titulo">${l.libro}</h2>` +
+        `<h2 class="libro-ficha__titulo">${PAG[l.clave] ? `<a href="${PAG[l.clave]}">${l.libro}</a>` : l.libro}</h2>` +
         `<ul class="libro-ficha__animales">${l.animales.map(a => `<li>${a}</li>`).join('')}</ul>` +
         comprar(l.clave) +
       `</div>`;

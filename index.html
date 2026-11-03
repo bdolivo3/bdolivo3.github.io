@@ -3,23 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Selvativo · Un mundo en cada libro</title>
+  <title>Selvativo · Libros de animales para colorear y jugar</title>
   <link rel="canonical" href="https://selvativo.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Selvativo">
-  <meta property="og:title" content="Selvativo · Un mundo en cada libro">
-  <meta property="og:description" content="Ocho libros, ocho mundos y doce animales en cada uno, para colorear y para jugar.">
+  <meta property="og:title" content="Selvativo · Libros de animales para colorear y jugar">
+  <meta property="og:description" content="Libros para colorear de animales del mundo, a partir de 6 años: doce animales por libro, con su ficha, su retrato y su lámina, y un juego de cartas.">
   <meta property="og:url" content="https://selvativo.com/">
   <meta property="og:image" content="https://selvativo.com/img/compartir.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="description" content="Selvativo: ocho libros, ocho mundos y doce animales en cada uno, para colorear y para jugar.">
+  <meta name="description" content="Libros para colorear de animales del mundo, a partir de 6 años: doce animales por libro, con su ficha, su retrato y su lámina, y un juego de cartas.">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="css/fuentes.css">
   <link rel="stylesheet" href="css/web.css">
   <link rel="stylesheet" href="css/portada.css">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Selvativo", "url": "https://selvativo.com/", "logo": "https://selvativo.com/apple-touch-icon.png", "sameAs": ["https://www.instagram.com/selvativo/"]}</script>
 </head>
 <body class="web">
   <script src="js/amazon.js"></script>  <script src="js/elige.js"></script>
@@ -37,12 +38,14 @@
   <main>
     <section class="portada" id="portada" aria-label="Píntalo">
       <div class="lamina" id="lamina">
-        <img id="base" src="img/anuncio/pinta/sabana-002.webp" alt="Lámina para pintar del elefante, de Guardianes de la Sabana" width="1200" height="1706">
+        <img id="base" alt="Lámina para pintar" width="1200" height="1706" fetchpriority="high">
+        <script>document.getElementById('base').src = 'img/anuncio/pinta/' + (window.ELEGIDO === 'sabana' ? 'sabana-002' : window.ELEGIDO) + '.webp';</script>
         <canvas id="lienzo" aria-hidden="true"></canvas>
         <div class="pista" id="pista" aria-hidden="true"><svg class="pista__mano" viewBox="0 0 48 48" width="56" height="56"><path d="M22 4a4 4 0 0 1 4 4v14l2-.6a3.6 3.6 0 0 1 4.4 2.4l.3.9 1.6-.4a3.6 3.6 0 0 1 4.4 2.6l.2.8 1-.2a3.4 3.4 0 0 1 4 3.3V36c0 6.6-5.4 12-12 12h-2.4c-4 0-7.6-2.2-9.6-5.6L10.2 33a3.4 3.4 0 0 1 5.6-3.8L18 32V8a4 4 0 0 1 4-4z"/></svg></div>
       </div>
       <div class="portada__texto" id="texto" aria-live="polite">
         <h1 id="titulo">Píntame con el dedo.</h1>
+        <p class="que-es">Libro de animales para colorear y jugar, a partir de 6 años. 84 páginas.</p>
         <p class="quien" id="quien">El elefante, de Guardianes de la Sabana.</p>
         <p class="acciones" id="acciones"><a class="btn btn--tinta" data-comprar href="https://www.amazon.es/dp/B0HN4R56X5" target="_blank" rel="noopener">Comprar en Amazon</a>
           <button class="enlace" type="button" data-accion="ver">Ver cómo queda</button></p>
@@ -55,11 +58,11 @@
           <h2 id="t-paginas">Cada animal, tres páginas.</h2>
         </div>
         <div class="paginas" tabindex="0" aria-label="Las tres páginas del animal">
-          <figure class="pagina"><img id="p-ficha" src="img/fichas/sabana-002.webp" alt="La ficha del elefante" width="798" height="1135" loading="lazy">
+          <figure class="pagina"><img id="p-ficha" alt="La ficha del elefante" width="798" height="1135" loading="lazy">
             <figcaption><h3>La ficha</h3></figcaption></figure>
-          <figure class="pagina"><img id="p-retrato" src="img/animales/sabana-002.webp" alt="El retrato del elefante" width="798" height="1135" loading="lazy">
+          <figure class="pagina"><img id="p-retrato" alt="El retrato del elefante" width="798" height="1135" loading="lazy">
             <figcaption><h3>El retrato</h3></figcaption></figure>
-          <figure class="pagina"><img id="p-lamina" src="img/anuncio/pinta/sabana-002.webp" alt="La lámina del elefante, para pintar" width="1200" height="1706" loading="lazy">
+          <figure class="pagina"><img id="p-lamina" alt="La lámina del elefante, para pintar" width="1200" height="1706" loading="lazy">
             <figcaption><h3>La lámina</h3></figcaption></figure>
         </div>
       </div>
@@ -74,7 +77,7 @@
             <p><span class="num" id="f-cod">N.º 002</span>, <span id="f-rareza">legendario</span> <span class="estrellas" id="f-estrellas" aria-hidden="true">★★★★☆</span></p>
           </div>
         </div>
-        <figure class="carta-viva" id="carta-viva"><img id="c-ficha" src="img/fichas/sabana-002.webp" alt="La ficha del elefante, del libro" width="798" height="1135" loading="lazy"></figure>
+        <figure class="carta-viva" id="carta-viva"><img id="c-ficha" alt="La ficha del elefante, del libro" width="798" height="1135" loading="lazy"></figure>
         <div class="cifras" id="cifras"></div>
       </div>
     </section>
@@ -86,10 +89,10 @@
         </div>
         <div class="duelo">
           <div class="frente" id="frente">
-            <figure class="luchador-foto" id="d-a"><img id="d-a-img" src="img/animales/sabana-002.webp" alt="El elefante, con su cría" width="798" height="1135" loading="lazy">
+            <figure class="luchador-foto" id="d-a"><img id="d-a-img" alt="El elefante, con su cría" width="798" height="1135" loading="lazy">
               <figcaption><b id="d-a-nombre">Elefante</b><span><span id="d-a-vida">127</span> de vida</span></figcaption></figure>
             <p class="contra" aria-hidden="true">contra</p>
-            <figure class="luchador-foto luchador-foto--rival" id="d-b"><img id="d-b-img" src="img/animales/oriente.webp" alt="El tigre de Bengala, con sus crías" width="798" height="1135" loading="lazy">
+            <figure class="luchador-foto luchador-foto--rival" id="d-b"><img id="d-b-img" alt="El tigre de Bengala, con sus crías" width="798" height="1135" loading="lazy">
               <figcaption><b id="d-b-nombre">Tigre de Bengala</b><span><span id="d-b-vida">135</span> de vida</span></figcaption>
               <span class="golpe-num" id="d-golpe" aria-hidden="true">−25</span></figure>
           </div>
@@ -111,7 +114,7 @@
 
     <section class="banda mundo compra" aria-label="Comprar el libro">
       <div class="caja">
-        <img class="compra__portada" id="mitad-portada" src="img/portadas/sabana.webp" alt="" width="800" height="1130" loading="lazy">
+        <img class="compra__portada" id="mitad-portada" alt="" width="800" height="1130" loading="lazy">
         <div class="compra__txt">
           <p class="compra__titulo" id="mitad-libro">Guardianes de la Sabana</p>
           <p><a class="btn" data-comprar href="https://www.amazon.es/dp/B0HN4R56X5" target="_blank" rel="noopener">Comprar en Amazon</a></p>
@@ -149,7 +152,7 @@
 
     <section class="banda mundo final" aria-labelledby="t-final">
       <div class="caja">
-        <img class="final__portada" id="fin-portada" src="img/portadas/sabana.webp" alt="Portada de Guardianes de la Sabana" width="800" height="1130" loading="lazy">
+        <img class="final__portada" id="fin-portada" alt="Portada de Guardianes de la Sabana" width="800" height="1130" loading="lazy">
         <div class="textos">
           <h2 id="t-final">Guardianes de la Sabana</h2>
           <p class="sub" id="fin-sub">Doce animales de África, para pintar y jugar.</p>
@@ -177,7 +180,7 @@
 
   <script src="js/datos_libros.js"></script>
   <script src="js/datos_sabana.js"></script>
-  <script src="js/portada.js"></script>
+  <script src="js/paginas.js"></script>  <script src="js/portada.js"></script>
   <script src="js/menu.js"></script>
 </body>
 </html>

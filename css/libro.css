@@ -1,0 +1,24 @@
+.libro-cabeza { padding-block: clamp(28px, 6vw, 80px) clamp(48px, 8vw, 104px); padding-left: var(--gutter); padding-right: var(--gutter-r); }
+.libro-cabeza .caja { grid-template-columns: minmax(0, 1fr); align-items: center; }
+.libro-cabeza__portada { width: min(60vw, 260px); box-shadow: 0 24px 44px -20px rgba(0, 0, 0, .6); }
+.libro-cabeza__txt { display: grid; gap: 16px; justify-items: start; min-width: 0; }
+.libro-cabeza__serie { font-size: 15px; letter-spacing: .04em; }
+.web .libro-cabeza .sub { font-size: 18px; }
+.pagina-libro .acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 6px; }
+.libro-cabeza__jugar { display: inline-flex; align-items: center; min-height: 44px; font-size: 17px; text-underline-offset: .3em; }
+.libro-pronto { display: inline-flex; align-items: center; min-height: 44px; font-style: italic; }
+@media (min-width: 760px) {
+  .libro-cabeza .caja { grid-template-columns: 300px minmax(0, 1fr); gap: clamp(40px, 6vw, 80px); }
+  .libro-cabeza__portada { width: 300px; }
+}
+.libro-muestra { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 3vw, 32px); max-width: 760px; }
+.libro-muestra img { width: 100%; box-shadow: 0 14px 30px -18px rgba(42, 36, 28, .55); }
+.libro-muestra figcaption { margin-top: 10px; font-size: 15px; }
+.libro-desc { padding-top: 0; }
+.libro-desc .caja { gap: 16px; }
+.libro-desc .caja > * { max-width: 42rem; }
+.web .libro-desc h3 { margin-top: 18px; font: 600 14px/1.3 var(--sans); letter-spacing: .08em; }
+.libro-desc ul { display: grid; gap: 10px; margin: 0; padding-left: 1.2em; }
+.libro-desc p, .libro-desc li { text-wrap: pretty; }
+.libro-final .caja { justify-items: start; gap: 18px; }
+.libro-final__titulo { font: 400 clamp(30px, 6vw, 48px)/1.05 var(--serif); text-wrap: balance; }

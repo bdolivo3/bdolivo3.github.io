@@ -67,3 +67,4 @@
   .libro-ficha__animales, .libro-ficha .libro-ficha__comprar, .libro-ficha__pronto { grid-column: 1 / -1; justify-self: start; }
   .libro-ficha__animales li { font-size: 16px; padding: 0 2px; }
 }
+.libro-ficha__titulo a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .2em; }

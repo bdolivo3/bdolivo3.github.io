@@ -139,6 +139,7 @@
     return [`<p>${que}${esq}</p>${cuentas(r.cuentas)}<p>${may(YO)} pasa de ${antes} a <strong>${leon.vida}</strong> de vida.</p>`, boton('Tu turno', 'leon')];
   }
   function final(gana, html) {
+    const compra = $('compra-duelo'); if (compra) compra.hidden = false;   
     marca(gana ? CORONA.leon : CORONA.tigre, 0.065, 'lapiz-marca--corona');
     luce(null, [[gana ? 'leon' : 'tigre', 'vida']]);
     $('l-leon').classList.toggle('luchador--gana', gana);

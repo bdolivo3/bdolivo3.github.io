@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Selvativo · Jugar</title>
+  <title>Juegos de animales para niños · Selvativo</title>
   <link rel="canonical" href="https://selvativo.com/jugar.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Selvativo">
-  <meta property="og:title" content="Selvativo · Jugar">
-  <meta property="og:description" content="Ocho libros, ocho mundos y doce animales en cada uno, para colorear y para jugar.">
+  <meta property="og:title" content="Juegos de animales para niños · Selvativo">
+  <meta property="og:description" content="Juega gratis con los animales de Selvativo: un duelo con las reglas del libro, preguntas, adivinanzas, laberinto, sopa de letras y crucigrama.">
   <meta property="og:url" content="https://selvativo.com/jugar.html">
   <meta property="og:image" content="https://selvativo.com/img/compartir.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="description" content="Juega con los animales de Selvativo: un duelo con las reglas del libro, preguntas, adivinanzas, el laberinto, la sopa de letras y el crucigrama.">
+  <meta name="description" content="Juega gratis con los animales de Selvativo: un duelo con las reglas del libro, preguntas, adivinanzas, laberinto, sopa de letras y crucigrama.">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="css/fuentes.css">
@@ -94,6 +94,14 @@
         <p class="caracteristicas__pie">Cada golpe es el <b>ataque</b> de quien ataca menos la <b>defensa</b> de quien lo recibe. Se ilumina lo que cuenta en cada turno.</p>
       </aside>
       </div>
+      <aside class="compra-jugar" id="compra-duelo" data-compra aria-label="El libro" hidden>
+        <img class="compra-jugar__portada" src="img/portadas/sabana.webp" alt="" width="800" height="1130" loading="lazy">
+        <div class="compra-jugar__txt">
+          <p class="compra-jugar__antes">Las reglas del duelo y doce fichas, en cada libro.</p>
+          <p class="compra-jugar__titulo">Guardianes de la Sabana</p>
+          <div class="compra-jugar__accion"></div>
+        </div>
+      </aside>
       <div class="arena-guia">
         <figure class="arena">
           <div class="arena__hoja">
@@ -158,6 +166,14 @@
       <p class="seccion__pie">Y en cada libro, además: sus récords, el cuaderno de exploración e inventa tu animal.</p>
     </section>
 
+    <aside class="compra-jugar compra-jugar--pie" data-compra aria-label="El libro">
+      <img class="compra-jugar__portada" src="img/portadas/sabana.webp" alt="" width="800" height="1130" loading="lazy">
+      <div class="compra-jugar__txt">
+        <p class="compra-jugar__antes">Todos estos juegos, en el libro.</p>
+        <p class="compra-jugar__titulo">Guardianes de la Sabana</p>
+        <div class="compra-jugar__accion"></div>
+      </div>
+    </aside>
   </main>
 
   <footer class="pie-web">
@@ -174,10 +190,19 @@
   <script src="js/arena.js"></script>
   <script src="js/duelo.js"></script>
   <script src="js/juegos.js"></script>
-  <script>    (() => {   
+  <script src="js/paginas.js"></script>  <script>    (() => {   
       const S = window.SABANA;
       document.getElementById('jugar-libro').textContent = S.libro;
       for (const a of document.querySelectorAll('.jugar__libros a')) if (a.dataset.libro === S.clave) a.setAttribute('aria-current', 'true');
+      const A = (window.AMAZON || {})[S.clave];
+      for (const c of document.querySelectorAll('[data-compra]')) {
+        const img = c.querySelector('img'); img.src = `img/portadas/${S.clave}.webp`; img.alt = `Portada de ${S.libro}`;
+        const P = (window.PAGINAS_LIBRO || {})[S.clave];   
+        c.querySelector('.compra-jugar__titulo').innerHTML = P ? `<a href="${P}">${S.libro}</a>` : S.libro;
+        c.querySelector('.compra-jugar__accion').innerHTML = A
+          ? `<a class="boton boton--tinta" href="${A}" target="_blank" rel="noopener">Comprar en Amazon</a>`
+          : '<p class="compra-jugar__pronto">Próximamente en Amazon</p>';
+      }
     })();
   </script>
   <script src="js/menu.js"></script>

@@ -1,7 +1,7 @@
  
 (() => {
   const L = Object.fromEntries(window.LIBROS.libros.map(l => [l.clave, l]));
-  const S = window.SABANAS, AMAZON = window.AMAZON || {};
+  const S = window.SABANAS, AMAZON = window.AMAZON || {}, PAG = window.PAGINAS_LIBRO || {};   
   const ORDEN = Object.keys(L).filter(k => S[k]);
   const $ = id => document.getElementById(id);
   const RATON = matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -94,7 +94,7 @@
   }, 350);
   function acabar(deGolpe) {   
     if (hecho) return;
-    if (!listo) { color.addEventListener('load', () => acabar(deGolpe), { once: true }); return; }
+    if (!listo) { pideColor(); color.addEventListener('load', () => acabar(deGolpe), { once: true }); return; }
     hecho = true; apretado = false; lamina.classList.add('hecha'); pista.classList.add('fuera');
     const fin = () => { m.globalAlpha = 1; m.fillRect(0, 0, MW, MH); sucio = true; portada.classList.add('pintada'); escribe(final(), true); };
     if (QUIETO) return fin();
@@ -105,11 +105,19 @@
       if (p < 1) requestAnimationFrame(barrido); else fin();
     })(t0);
   }
+  const despues = f => (window.requestIdleCallback ? requestIdleCallback(f, { timeout: 2000 }) : setTimeout(f, 300));
+  function pideColor() { if (!color.src) color.src = `img/anuncio/pinta/${w.id}_color.webp`; }
+  lamina.addEventListener('pointerdown', pideColor);
   function nuevaLamina(fundido) {
     hecho = false; listo = false; ultimo = null; m.clearRect(0, 0, MW, MH); sucio = true;
     portada.classList.remove('pintada'); lamina.classList.remove('hecha');
-    base.src = `img/anuncio/pinta/${w.id}.webp`; base.alt = `Lámina para pintar ${de(w.el)}, de ${w.libro}`;
-    color = new Image(); color.onload = () => { listo = true; sucio = true; muestraPista(); }; color.src = `img/anuncio/pinta/${w.id}_color.webp`;
+    const lam = `img/anuncio/pinta/${w.id}.webp`;
+    if (base.getAttribute('src') !== lam) base.src = lam;
+    base.alt = `Lámina para pintar ${de(w.el)}, de ${w.libro}`;
+    color = new Image(); color.onload = () => { listo = true; sucio = true; muestraPista(); };
+    if (fundido) pideColor();
+    else if (document.readyState === 'complete') despues(pideColor);
+    else addEventListener('load', () => despues(pideColor), { once: true });
     escribe(inicial(), fundido);
   }
   const pista = $('pista');
@@ -194,7 +202,7 @@
       const l = L[k];
       return `<li><button type="button" data-mundo="${k}" style="--c: var(--m-${k})" aria-current="${k === w.k}">
         <img src="img/portadas/${k}.webp" alt="" width="800" height="1130" loading="lazy">
-        <span class="t">${l.libro}</span><span class="r">${l.region}</span></button></li>`;
+        <span class="t">${l.libro}</span><span class="r">${l.region}</span>${AMAZON[k] ? '' : '<span class="p">Próximamente en Amazon</span>'}</button></li>`;
     }).join('');
   }
   $('lista-mundos').addEventListener('click', e => {
@@ -231,7 +239,7 @@
     $('fin-portada').src = `img/portadas/${k}.webp`; $('fin-portada').alt = `Portada de ${w.libro}`;
     $('t-final').textContent = w.libro;
     $('fin-sub').textContent = `Doce animales ${w.de}, para pintar y jugar.`;
-    $('fin-acciones').innerHTML = comprar();
+    $('fin-acciones').innerHTML = comprar() + (PAG[k] ? ` <a class="enlace" href="${PAG[k]}">Ver el libro</a>` : '');   
     document.querySelectorAll('a[data-comprar]').forEach(b => {
       b.href = w.amazon || '#tienda';
       if (w.amazon) { b.target = '_blank'; b.rel = 'noopener'; } else b.removeAttribute('target');

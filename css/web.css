@@ -97,3 +97,9 @@ a.comprar-pildora { display: inline-flex; align-items: center; padding: 8px 14px
 .pie-web p { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0; }
 .pie-web a { color: inherit; }
 .pie-web a[aria-current="page"] { text-decoration: none; }
+.cabecera > a:first-child, .rayas__logo { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; margin: -7px; }
+.cabecera nav a { display: inline-flex; align-items: center; min-height: 44px; }
+.cabecera--encima nav a { padding-block: 0; }
+a.comprar-pildora, .estas { min-height: 44px; }
+.pie-web p a { display: inline-flex; align-items: center; min-height: 44px; }
+.enlace { min-height: 44px; }
