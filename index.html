@@ -38,8 +38,9 @@
   <main>
     <section class="portada" id="portada" aria-label="Píntalo">
       <div class="lamina" id="lamina">
-        <img id="base" alt="Lámina para pintar" width="1200" height="1706" fetchpriority="high">
-        <script>document.getElementById('base').src = 'img/anuncio/pinta/' + (window.ELEGIDO === 'sabana' ? 'sabana-002' : window.ELEGIDO) + '.webp';</script>
+        <img id="base" alt="Lámina para pintar" width="1200" height="1706" sizes="(max-width: 767px) 100vw, 1200px" fetchpriority="high">
+        <script>(function () { var b = document.getElementById('base'), n = (window.ELEGIDO === 'sabana' ? 'sabana-002' : window.ELEGIDO) + '.webp', d = 'img/anuncio/pinta/';
+          b.srcset = d + 'w800/' + n + ' 800w, ' + d + n + ' 1200w'; b.src = d + n; })();</script>
         <canvas id="lienzo" aria-hidden="true"></canvas>
         <div class="pista" id="pista" aria-hidden="true"><svg class="pista__mano" viewBox="0 0 48 48" width="56" height="56"><path d="M22 4a4 4 0 0 1 4 4v14l2-.6a3.6 3.6 0 0 1 4.4 2.4l.3.9 1.6-.4a3.6 3.6 0 0 1 4.4 2.6l.2.8 1-.2a3.4 3.4 0 0 1 4 3.3V36c0 6.6-5.4 12-12 12h-2.4c-4 0-7.6-2.2-9.6-5.6L10.2 33a3.4 3.4 0 0 1 5.6-3.8L18 32V8a4 4 0 0 1 4-4z"/></svg></div>
       </div>
@@ -58,11 +59,11 @@
           <h2 id="t-paginas">Cada animal, tres páginas.</h2>
         </div>
         <div class="paginas" tabindex="0" aria-label="Las tres páginas del animal">
-          <figure class="pagina"><img id="p-ficha" alt="La ficha del elefante" width="798" height="1135" loading="lazy">
+          <figure class="pagina"><img id="p-ficha" alt="La ficha del elefante" width="798" height="1135" sizes="(max-width: 1023px) 240px, 384px" loading="lazy">
             <figcaption><h3>La ficha</h3></figcaption></figure>
-          <figure class="pagina"><img id="p-retrato" alt="El retrato del elefante" width="798" height="1135" loading="lazy">
+          <figure class="pagina"><img id="p-retrato" alt="El retrato del elefante" width="798" height="1135" sizes="(max-width: 1023px) 240px, 384px" loading="lazy">
             <figcaption><h3>El retrato</h3></figcaption></figure>
-          <figure class="pagina"><img id="p-lamina" alt="La lámina del elefante, para pintar" width="1200" height="1706" loading="lazy">
+          <figure class="pagina"><img id="p-lamina" alt="La lámina del elefante, para pintar" width="1200" height="1706" sizes="(max-width: 767px) 240px, 1200px" loading="lazy">
             <figcaption><h3>La lámina</h3></figcaption></figure>
         </div>
       </div>
@@ -77,7 +78,7 @@
             <p><span class="num" id="f-cod">N.º 002</span>, <span id="f-rareza">legendario</span> <span class="estrellas" id="f-estrellas" aria-hidden="true">★★★★☆</span></p>
           </div>
         </div>
-        <figure class="carta-viva" id="carta-viva"><img id="c-ficha" alt="La ficha del elefante, del libro" width="798" height="1135" loading="lazy"></figure>
+        <figure class="carta-viva" id="carta-viva"><img id="c-ficha" alt="La ficha del elefante, del libro" width="798" height="1135" sizes="400px" loading="lazy"></figure>
         <div class="cifras" id="cifras"></div>
       </div>
     </section>
@@ -89,10 +90,10 @@
         </div>
         <div class="duelo">
           <div class="frente" id="frente">
-            <figure class="luchador-foto" id="d-a"><img id="d-a-img" alt="El elefante, con su cría" width="798" height="1135" loading="lazy">
+            <figure class="luchador-foto" id="d-a"><img id="d-a-img" alt="El elefante, con su cría" width="798" height="1135" sizes="(max-width: 767px) 50vw, 362px" loading="lazy">
               <figcaption><b id="d-a-nombre">Elefante</b><span><span id="d-a-vida">127</span> de vida</span></figcaption></figure>
             <p class="contra" aria-hidden="true">contra</p>
-            <figure class="luchador-foto luchador-foto--rival" id="d-b"><img id="d-b-img" alt="El tigre de Bengala, con sus crías" width="798" height="1135" loading="lazy">
+            <figure class="luchador-foto luchador-foto--rival" id="d-b"><img id="d-b-img" alt="El tigre de Bengala, con sus crías" width="798" height="1135" sizes="(max-width: 767px) 50vw, 362px" loading="lazy">
               <figcaption><b id="d-b-nombre">Tigre de Bengala</b><span><span id="d-b-vida">135</span> de vida</span></figcaption>
               <span class="golpe-num" id="d-golpe" aria-hidden="true">−25</span></figure>
           </div>
@@ -114,7 +115,7 @@
 
     <section class="banda mundo compra" aria-label="Comprar el libro">
       <div class="caja">
-        <img class="compra__portada" id="mitad-portada" alt="" width="800" height="1130" loading="lazy">
+        <img class="compra__portada" id="mitad-portada" alt="" width="800" height="1130" sizes="120px" loading="lazy">
         <div class="compra__txt">
           <p class="compra__titulo" id="mitad-libro">Guardianes de la Sabana</p>
           <p><a class="btn" data-comprar href="https://www.amazon.es/dp/B0HN4R56X5" target="_blank" rel="noopener">Comprar en Amazon</a></p>
@@ -152,7 +153,7 @@
 
     <section class="banda mundo final" aria-labelledby="t-final">
       <div class="caja">
-        <img class="final__portada" id="fin-portada" alt="Portada de Guardianes de la Sabana" width="800" height="1130" loading="lazy">
+        <img class="final__portada" id="fin-portada" alt="Portada de Guardianes de la Sabana" width="800" height="1130" sizes="(max-width: 767px) 70vw, 472px" loading="lazy">
         <div class="textos">
           <h2 id="t-final">Guardianes de la Sabana</h2>
           <p class="sub" id="fin-sub">Doce animales de África, para pintar y jugar.</p>

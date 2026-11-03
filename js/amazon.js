@@ -7,5 +7,5 @@ window.AMAZON = {
   artico: 'https://www.amazon.es/dp/B0HNJBY893',   
   oriente: 'https://www.amazon.es/dp/B0HPBFT1KZ',   
   australia: 'https://www.amazon.es/dp/B0HP88J5J9',   
-  norte: '',
+  norte: 'https://www.amazon.es/dp/B0HQ1FRV9B',   
 };

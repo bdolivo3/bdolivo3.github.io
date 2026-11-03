@@ -105,6 +105,14 @@
       if (p < 1) requestAnimationFrame(barrido); else fin();
     })(t0);
   }
+  const juego = ruta => { const i = ruta.lastIndexOf('/') + 1, t = ruta.includes('/pinta/') ? [800, 1200] : [480, 800];
+    return t.map((a, j) => `${ruta.slice(0, i)}${j < t.length - 1 ? `w${a}/` : ''}${ruta.slice(i)} ${a}w`).join(', '); };
+  const pon = (img, ruta) => { img.srcset = juego(ruta); img.src = ruta; };
+  function foto(img, ruta) {
+    if (base.complete) return pon(img, ruta);
+    const ya = () => pon(img, ruta);
+    base.addEventListener('load', ya, { once: true }); base.addEventListener('error', ya, { once: true });
+  }
   const despues = f => (window.requestIdleCallback ? requestIdleCallback(f, { timeout: 2000 }) : setTimeout(f, 300));
   function pideColor() { if (!color.src) color.src = `img/anuncio/pinta/${w.id}_color.webp`; }
   lamina.addEventListener('pointerdown', pideColor);
@@ -112,7 +120,7 @@
     hecho = false; listo = false; ultimo = null; m.clearRect(0, 0, MW, MH); sucio = true;
     portada.classList.remove('pintada'); lamina.classList.remove('hecha');
     const lam = `img/anuncio/pinta/${w.id}.webp`;
-    if (base.getAttribute('src') !== lam) base.src = lam;
+    if (base.getAttribute('src') !== lam) pon(base, lam);
     base.alt = `Lámina para pintar ${de(w.el)}, de ${w.libro}`;
     color = new Image(); color.onload = () => { listo = true; sucio = true; muestraPista(); };
     if (fundido) pideColor();
@@ -138,7 +146,7 @@
       const t0 = performance.now(), DUR = 1700, N = TRAZO.length - 1; let antes = null;
       (function paso(t) {
         if (sabe || hecho) return;
-        const q = Math.min(1, (t - t0) / DUR) * N, i = Math.min(N - 1, Math.floor(q)), f = q - i;
+        const q = Math.max(0, Math.min(1, (t - t0) / DUR)) * N, i = Math.min(N - 1, Math.floor(q)), f = q - i;
         const x = TRAZO[i][0] + (TRAZO[i + 1][0] - TRAZO[i][0]) * f, y = TRAZO[i][1] + (TRAZO[i + 1][1] - TRAZO[i][1]) * f;
         ponMano(x, y);
         const mx = x * MW, my = y * MH;
@@ -201,7 +209,7 @@
     $('lista-mundos').innerHTML = ORDEN.map(k => {
       const l = L[k];
       return `<li><button type="button" data-mundo="${k}" style="--c: var(--m-${k})" aria-current="${k === w.k}">
-        <img src="img/portadas/${k}.webp" alt="" width="800" height="1130" loading="lazy">
+        <img src="img/portadas/${k}.webp" srcset="${juego(`img/portadas/${k}.webp`)}" sizes="(max-width: 767px) 40vw, 262px" alt="" width="800" height="1130" loading="lazy">
         <span class="t">${l.libro}</span><span class="r">${l.region}</span>${AMAZON[k] ? '' : '<span class="p">Próximamente en Amazon</span>'}</button></li>`;
     }).join('');
   }
@@ -216,27 +224,27 @@
     try { sessionStorage.setItem('selvativo-libro', k); } catch (e) {}
     $('estas-libro').textContent = w.libro;
     nuevaLamina(fundido);
-    $('p-ficha').src = `img/fichas/${w.id}.webp`; $('p-ficha').alt = `La ficha ${de(w.el)}`;
-    $('p-retrato').src = `img/animales/${w.id}.webp`; $('p-retrato').alt = `El retrato ${de(w.el)}`;
-    $('p-lamina').src = `img/anuncio/pinta/${w.id}.webp`; $('p-lamina').alt = `La lámina ${de(w.el)}, para pintar`;
+    foto($('p-ficha'), `img/fichas/${w.id}.webp`); $('p-ficha').alt = `La ficha ${de(w.el)}`;
+    foto($('p-retrato'), `img/animales/${w.id}.webp`); $('p-retrato').alt = `El retrato ${de(w.el)}`;
+    foto($('p-lamina'), `img/anuncio/pinta/${w.id}.webp`); $('p-lamina').alt = `La lámina ${de(w.el)}, para pintar`;
     $('f-nombre').textContent = a.nombre; $('f-cod').textContent = `N.º ${a.cod}`;
     $('f-rareza').textContent = a.rareza.toLowerCase();
     $('f-estrellas').textContent = '★'.repeat(a.estrellas) + '☆'.repeat(5 - a.estrellas);
-    $('c-ficha').src = `img/fichas/${w.id}.webp`; $('c-ficha').alt = `La ficha ${de(w.el)}, del libro`;
-    $('d-a-img').src = `img/animales/${w.id}.webp`; $('d-a-img').alt = `${may(w.el)}, con su cría`;
-    $('d-b-img').src = w.rival.retrato; $('d-b-img').alt = `${may(w.rival.el)}, con su cría`;
+    foto($('c-ficha'), `img/fichas/${w.id}.webp`); $('c-ficha').alt = `La ficha ${de(w.el)}, del libro`;
+    foto($('d-a-img'), `img/animales/${w.id}.webp`); $('d-a-img').alt = `${may(w.el)}, con su cría`;
+    foto($('d-b-img'), w.rival.retrato); $('d-b-img').alt = `${may(w.rival.el)}, con su cría`;
     $('d-a-nombre').textContent = a.nombre; $('d-a-vida').textContent = a.vida; $('d-b-nombre').textContent = w.rival.nombre;
     vida(a);
     $('e-quien').textContent = `Un golpe ${de(w.el)} ${a_(w.rival.el)}:`;
     $('e-cuenta').textContent = `${a.atq} − ${w.rival.df} = ${Math.max(10, a.atq) - w.rival.df}`;
-    $('mitad-portada').src = `img/portadas/${k}.webp`; $('mitad-libro').textContent = w.libro;
+    foto($('mitad-portada'), `img/portadas/${k}.webp`); $('mitad-libro').textContent = w.libro;
     mundos();
     $('t-cuidar').textContent = may(w.cuidar.titulo.toLowerCase()) + '.';
     const i = UICN.indexOf(a.conservacion);
     $('c-dice').textContent = `${may(w.el)} ${ESTADO[a.conservacion] || 'está ' + a.conservacion.toLowerCase()}.`;
     [...$('c-escala').children].forEach((li, j) => li.classList.toggle('es', j === i));
-    $('p-lista').innerHTML = w.puedes.bloques.slice(0, 3).map(([t]) => `<li><h3>${t}</h3></li>`).join('');
-    $('fin-portada').src = `img/portadas/${k}.webp`; $('fin-portada').alt = `Portada de ${w.libro}`;
+    $('p-lista').innerHTML = [...w.puedes.bloques.slice(0, 3).map(([t]) => t), 'Recicla.'].map(t => `<li><h3>${t}</h3></li>`).join('');
+    foto($('fin-portada'), `img/portadas/${k}.webp`); $('fin-portada').alt = `Portada de ${w.libro}`;
     $('t-final').textContent = w.libro;
     $('fin-sub').textContent = `Doce animales ${w.de}, para pintar y jugar.`;
     $('fin-acciones').innerHTML = comprar() + (PAG[k] ? ` <a class="enlace" href="${PAG[k]}">Ver el libro</a>` : '');   

@@ -68,3 +68,4 @@
   .libro-ficha__animales li { font-size: 16px; padding: 0 2px; }
 }
 .libro-ficha__titulo a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+.libro-ficha__titulo a { display: inline-block; padding-block: 10px; margin-block: -10px; }
