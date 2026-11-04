@@ -17,13 +17,35 @@
   <meta name="description" content="Libros para colorear de animales del mundo, a partir de 6 años: doce animales por libro, con su ficha, su retrato y su lámina, y un juego de cartas.">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <script>window.AMAZON = {
+  sabana: 'https://www.amazon.es/dp/B0HN4R56X5',
+  amazonas: 'https://www.amazon.es/dp/B0HN4YWVG7',
+  bosques: 'https://www.amazon.es/dp/B0HN4WWD5H',
+  pinguino: 'https://www.amazon.es/dp/B0HNGZ2GXL',   
+  artico: 'https://www.amazon.es/dp/B0HNJBY893',   
+  oriente: 'https://www.amazon.es/dp/B0HPBFT1KZ',   
+  australia: 'https://www.amazon.es/dp/B0HP88J5J9',   
+  norte: 'https://www.amazon.es/dp/B0HQ1FRV9B',   
+};</script>  <script>(() => {
+  const LIBROS = ['sabana', 'amazonas', 'norte', 'oriente', 'bosques', 'australia', 'pinguino', 'artico'];
+  const pedido = new URLSearchParams(location.search).get('libro');
+  let guardado = null;   
+  try { guardado = sessionStorage.getItem('selvativo-libro'); } catch (e) {}
+  const venta = LIBROS.filter(k => (window.AMAZON || {})[k]), bolsa = venta.length ? venta : LIBROS;
+  window.ELEGIDO = LIBROS.includes(pedido) ? pedido : LIBROS.includes(guardado) ? guardado : bolsa[Math.floor(Math.random() * bolsa.length)];
+  try { sessionStorage.setItem('selvativo-libro', window.ELEGIDO); } catch (e) {}
+  document.documentElement.dataset.elegido = window.ELEGIDO;
+})();</script>
+  <script>(function () { var n = (window.ELEGIDO === 'sabana' ? 'sabana-002' : window.ELEGIDO) + '.webp', d = 'img/anuncio/pinta/', l = document.createElement('link');
+    window.LAMINA = { srcset: d + 'w800/' + n + ' 800w, ' + d + n + ' 1200w', src: d + n, sizes: '(max-width: 767px) 100vw, 1200px' };
+    l.rel = 'preload'; l.as = 'image'; l.href = LAMINA.src; l.setAttribute('imagesrcset', LAMINA.srcset); l.setAttribute('imagesizes', LAMINA.sizes);
+    l.setAttribute('fetchpriority', 'high'); document.head.appendChild(l); })();</script>
   <link rel="stylesheet" href="css/fuentes.css">
   <link rel="stylesheet" href="css/web.css">
   <link rel="stylesheet" href="css/portada.css">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Selvativo", "url": "https://selvativo.com/", "logo": "https://selvativo.com/apple-touch-icon.png", "sameAs": ["https://www.instagram.com/selvativo/"]}</script>
 </head>
 <body class="web">
-  <script src="js/amazon.js"></script>  <script src="js/elige.js"></script>
 
   <header class="cabecera cabecera--encima">
     <a href="/" aria-label="Selvativo, al principio"><img src="logo/Selvativo_marca_pequena_negro.svg" alt="" width="30" height="30"></a>
@@ -39,8 +61,7 @@
     <section class="portada" id="portada" aria-label="Píntalo">
       <div class="lamina" id="lamina">
         <img id="base" alt="Lámina para pintar" width="1200" height="1706" sizes="(max-width: 767px) 100vw, 1200px" fetchpriority="high">
-        <script>(function () { var b = document.getElementById('base'), n = (window.ELEGIDO === 'sabana' ? 'sabana-002' : window.ELEGIDO) + '.webp', d = 'img/anuncio/pinta/';
-          b.srcset = d + 'w800/' + n + ' 800w, ' + d + n + ' 1200w'; b.src = d + n; })();</script>
+        <script>(function () { var b = document.getElementById('base'); b.srcset = LAMINA.srcset; b.src = LAMINA.src; })();</script>
         <canvas id="lienzo" aria-hidden="true"></canvas>
         <div class="pista" id="pista" aria-hidden="true"><svg class="pista__mano" viewBox="0 0 48 48" width="56" height="56"><path d="M22 4a4 4 0 0 1 4 4v14l2-.6a3.6 3.6 0 0 1 4.4 2.4l.3.9 1.6-.4a3.6 3.6 0 0 1 4.4 2.6l.2.8 1-.2a3.4 3.4 0 0 1 4 3.3V36c0 6.6-5.4 12-12 12h-2.4c-4 0-7.6-2.2-9.6-5.6L10.2 33a3.4 3.4 0 0 1 5.6-3.8L18 32V8a4 4 0 0 1 4-4z"/></svg></div>
       </div>

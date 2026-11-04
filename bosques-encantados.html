@@ -61,6 +61,20 @@
       </div>
     </section>
 
+    <section class="banda" aria-labelledby="t-reel">
+      <div class="caja libro-reel">
+        <h2 id="t-reel">El libro, en 30 segundos.</h2>
+        <video controls preload="none" playsinline width="720" height="1280" data-poster="video/reel_bosques.webp">
+          <source src="video/reel_bosques.mp4" type="video/mp4">
+        </video>
+        <script>(function () { var v = document.currentScript.previousElementSibling, pon = function () { v.poster = v.dataset.poster; };
+          addEventListener('load', function () {   
+            if (!('IntersectionObserver' in window)) return pon();
+            var o = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { pon(); o.disconnect(); } }, { rootMargin: '800px' });
+            o.observe(v); }); })();</script>
+      </div>
+    </section>
+
     <section class="banda libro-desc" aria-label="El libro, por dentro">
       <div class="caja">
         <h2>Doce animales. Doce fichas. Un solo campeón.</h2>
