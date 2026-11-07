@@ -16,7 +16,7 @@
     const art = el('article', 'libro-ficha');
     art.id = l.clave;
     art.innerHTML =
-      `<img class="libro-ficha__portada" src="img/portadas/${l.clave}.webp" width="800" height="1130" alt="Portada de ${l.libro}, libro de animales para colorear" loading="lazy">` +
+      `<span class="libro3d libro-ficha__portada"><span class="libro3d__libro"><img src="img/portadas/${l.clave}.webp" width="800" height="1130" alt="Portada de ${l.libro}, libro de animales para colorear" loading="lazy"><span class="libro3d__canto" aria-hidden="true"></span></span></span>` +
       `<div class="libro-ficha__txt">` +
         `<p class="libro-ficha__serie">${serie(l.serie)}</p>` +
         `<h2 class="libro-ficha__titulo">${PAG[l.clave] ? `<a href="${PAG[l.clave]}">${l.libro}</a>` : l.libro}</h2>` +

@@ -35,9 +35,10 @@
   </header>
 
   <main id="libro">
-    <section class="libro-cabeza mundo" aria-labelledby="t-libro">
+    <section class="libro-cabeza mundo con-vivo" aria-labelledby="t-libro">
+      <div class="vivo" aria-hidden="true"></div>
       <div class="caja">
-        <img class="libro-cabeza__portada" src="img/portadas/oriente.webp" alt="Portada de Tesoros de Oriente, libro de animales para colorear" width="800" height="1130" fetchpriority="high">
+        <span class="libro3d libro-cabeza__portada"><span class="libro3d__libro"><img src="img/portadas/oriente.webp" alt="Portada de Tesoros de Oriente, libro de animales para colorear" width="800" height="1130" fetchpriority="high"><span class="libro3d__canto" aria-hidden="true"></span></span></span>
         <div class="libro-cabeza__txt">
           <p class="libro-cabeza__serie">Asia, 1 de 3</p>
           <h1 id="t-libro">Tesoros de Oriente</h1>
@@ -121,6 +122,6 @@
     </div>
   </footer>
 
-  <script src="js/compartir.js"></script>  <script src="js/menu.js"></script>
+  <script src="js/compartir.js"></script>  <script src="js/libro3d.js"></script>  <script>addEventListener('load', function () { var s = document.createElement('script'); s.src="js/vivo.js"; document.body.appendChild(s); });</script>  <script src="js/menu.js"></script>
 </body>
 </html>

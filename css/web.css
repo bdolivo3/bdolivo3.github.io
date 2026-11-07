@@ -48,6 +48,48 @@ a.btn, button.btn { display: inline-block; padding: 14px 22px; border: 1px solid
 a.btn:hover, button.btn:hover { background: transparent; color: var(--marfil); }
 a.btn--tinta { border-color: var(--tinta); background: var(--tinta); color: var(--papel); }
 a.btn--tinta:hover { background: transparent; color: var(--tinta); }
+.libro3d { display: block; perspective: 1600px; }
+.web .libro3d { box-shadow: none; }   
+.libro3d__libro { position: relative; display: block; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2, .7, .2, 1);
+  transform: rotateY(var(--ry, 14deg)) rotateX(var(--rx, 0deg)) translateZ(var(--z, 0px)); }
+.libro3d--vivo .libro3d__libro { --z: 28px; transition-duration: .18s; }
+.libro3d img { display: block; width: 100%; height: auto; box-shadow: 0 22px 40px -18px rgba(0, 0, 0, .55); }
+.libro3d__libro::before { content: ""; position: absolute; inset: 0; transform: translateZ(1px); pointer-events: none;
+  background: linear-gradient(90deg, rgba(0, 0, 0, .3) 0, rgba(255, 255, 255, .24) 1.3%, rgba(0, 0, 0, .12) 2.8%, rgba(0, 0, 0, 0) 5.5%); }
+.libro3d__libro::after { content: ""; position: absolute; inset: 0; transform: translateZ(2px); pointer-events: none; opacity: 0;
+  background: radial-gradient(circle at var(--bx, 30%) var(--by, 20%), rgba(255, 255, 255, .42), rgba(255, 255, 255, 0) 52%);
+  transition: opacity .4s; }
+.libro3d--vivo .libro3d__libro::after { opacity: 1; }
+.libro3d--barre .libro3d__libro::after { opacity: 1; background: linear-gradient(105deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, .5) 50%,
+  rgba(255, 255, 255, 0) 60%) no-repeat 85% 0 / 260% 100%; animation: barrido 1.4s .3s ease-in-out forwards; }
+@keyframes barrido { to { background-position: 15% 0; } }   
+.libro3d__canto { position: absolute; top: .9%; bottom: .9%; right: 0; width: 4.6%; transform-origin: right center; transform: rotateY(-90deg);
+  background: linear-gradient(90deg, rgba(0, 0, 0, .22), rgba(0, 0, 0, 0) 45%), repeating-linear-gradient(90deg, #f5f0e6 0 1px, #d8cfbd 1px 2px); }
+@media (prefers-reduced-motion: reduce) { .libro3d__libro { transition: none; } }
+.con-vivo { position: relative; isolation: isolate; }
+.vivo { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; display: none; }
+.vivo--listo { display: block; animation: aparece 1.4s ease both; }
+@keyframes aparece { from { opacity: 0; } }
+.final .vivo { -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
+.vivo::before { content: ""; position: absolute; z-index: 1; left: calc(var(--lx, 30%) - var(--lw, 240px) / 2); top: calc(var(--ly, 40%) - var(--lh, 340px) / 2);
+  width: var(--lw, 240px); height: var(--lh, 340px); background: rgba(255, 228, 170, .3); box-shadow: 0 -12px 46px 8px rgba(255, 228, 170, .3);
+  animation: respira 7s ease-in-out infinite alternate; }
+@keyframes respira { from { opacity: .55; transform: scale(.97); } to { opacity: 1; transform: scale(1.04); } }
+.vivo::after { content: ""; position: absolute; inset: -35%;
+  background: radial-gradient(26% 20% at 22% 28%, rgba(0, 0, 0, .26), rgba(0, 0, 0, 0)),
+    radial-gradient(20% 28% at 72% 58%, rgba(0, 0, 0, .22), rgba(0, 0, 0, 0)),
+    radial-gradient(30% 16% at 46% 84%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
+    radial-gradient(18% 22% at 86% 18%, rgba(0, 0, 0, .18), rgba(0, 0, 0, 0));
+  animation: hojas 26s ease-in-out infinite alternate; }
+@keyframes hojas { to { transform: translate(7%, -5%) rotate(6deg) scale(1.08); } }
+.vivo__gl { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; opacity: 0; transition: opacity 1.6s; }
+.vivo--gl .vivo__gl { opacity: 1; }
+.vivo--gl::before, .vivo--gl::after, .vivo--quieto::before, .vivo--quieto::after { animation-play-state: paused; }
+.luces { position: fixed; inset: 0; z-index: 60; overflow: hidden; pointer-events: none; }
+.luciernaga { position: absolute; left: -3px; top: -3px; width: 6px; height: 6px; border-radius: 50%; background: #FFF7CC;
+  box-shadow: 0 0 6px 2px rgba(255, 222, 110, .9), 0 0 18px 6px rgba(255, 200, 70, .35); }
+.luciernaga--papel { background: #FFE9A0; box-shadow: 0 0 5px 2px rgba(205, 140, 20, .85), 0 0 16px 5px rgba(205, 140, 20, .35); }
+@media (prefers-reduced-motion: reduce) { .vivo::before, .vivo::after { animation: none; } }
 .web .saltar { position: fixed; left: 16px; top: -60px; z-index: 30; padding: 10px 14px; background: var(--tinta); color: var(--papel); }
 .web .saltar:focus { top: 12px; }
 .enlace { padding: 6px 0; border: 0; background: none; color: inherit; font: inherit; font-size: 17px; cursor: pointer;

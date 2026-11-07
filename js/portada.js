@@ -209,7 +209,7 @@
     $('lista-mundos').innerHTML = ORDEN.map(k => {
       const l = L[k];
       return `<li><button type="button" data-mundo="${k}" style="--c: var(--m-${k})" aria-current="${k === w.k}">
-        <img src="img/portadas/${k}.webp" srcset="${juego(`img/portadas/${k}.webp`)}" sizes="(max-width: 767px) 40vw, 262px" alt="" width="800" height="1130" loading="lazy">
+        <span class="libro3d"><span class="libro3d__libro"><img src="img/portadas/${k}.webp" srcset="${juego(`img/portadas/${k}.webp`)}" sizes="(max-width: 767px) 40vw, 262px" alt="" width="800" height="1130" loading="lazy"><span class="libro3d__canto" aria-hidden="true"></span></span></span>
         <span class="t">${l.libro}</span><span class="r">${l.region}</span>${AMAZON[k] ? '' : '<span class="p">Próximamente en Amazon</span>'}</button></li>`;
     }).join('');
   }

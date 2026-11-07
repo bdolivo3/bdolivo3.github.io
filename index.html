@@ -172,9 +172,10 @@
       </div>
     </section>
 
-    <section class="banda mundo final" aria-labelledby="t-final">
+    <section class="banda mundo final con-vivo" aria-labelledby="t-final">
+      <div class="vivo" aria-hidden="true"></div>
       <div class="caja">
-        <img class="final__portada" id="fin-portada" alt="Portada de Guardianes de la Sabana" width="800" height="1130" sizes="(max-width: 767px) 70vw, 472px" loading="lazy">
+        <span class="libro3d final__portada"><span class="libro3d__libro"><img id="fin-portada" alt="Portada de Guardianes de la Sabana" width="800" height="1130" sizes="(max-width: 767px) 70vw, 472px" loading="lazy"><span class="libro3d__canto" aria-hidden="true"></span></span></span>
         <div class="textos">
           <h2 id="t-final">Guardianes de la Sabana</h2>
           <p class="sub" id="fin-sub">Doce animales de África, para pintar y jugar.</p>
@@ -203,6 +204,6 @@
   <script src="js/datos_libros.js"></script>
   <script src="js/datos_sabana.js"></script>
   <script src="js/paginas.js"></script>  <script src="js/portada.js"></script>
-  <script src="js/menu.js"></script>
+  <script src="js/libro3d.js"></script>  <script>addEventListener('load', function () { var s = document.createElement('script'); s.src="js/vivo.js"; document.body.appendChild(s); });</script>  <script src="js/menu.js"></script>
 </body>
 </html>
