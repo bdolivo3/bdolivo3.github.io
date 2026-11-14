@@ -6,7 +6,7 @@
     ...[...cabecera.querySelectorAll('nav a')].map(a => [a.getAttribute('href'), a.textContent])];
   const estas = cabecera.querySelector('.estas');
   if (estas) enlaces.push([estas.getAttribute('href'), 'Cambiar de mundo']);
-  const pagina = p => new URL(p, location.href).pathname.replace(/(index|anuncio)\.html$/, '');
+  const pagina = p => new URL(p, document.baseURI).pathname.replace(/(index|anuncio)\.html$/, '');
   const caja = document.createElement('div');
   caja.className = 'rayas';
   caja.innerHTML = '<button class="rayas__boton" type="button" aria-controls="menu-rayas" aria-expanded="false" aria-label="Menú">'

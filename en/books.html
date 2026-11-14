@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selvativo books · Animals from every continent</title>
+  <link rel="alternate" hreflang="es" href="https://selvativo.com/libros.html">
+  <link rel="alternate" hreflang="en" href="https://selvativo.com/en/books.html">
+  <link rel="alternate" hreflang="x-default" href="https://selvativo.com/libros.html">
+  <link rel="canonical" href="https://selvativo.com/en/books.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Selvativo">
+  <meta property="og:title" content="Selvativo books · Animals from every continent">
+  <meta property="og:description" content="Eight books, one for each corner of the planet: Africa, South America, North America, Asia, Europe, Oceania, Antarctica and the Arctic. Twelve animals in each.">
+  <meta property="og:url" content="https://selvativo.com/en/books.html">
+  <meta property="og:image" content="https://selvativo.com/img/compartir.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="description" content="Eight books, one for each corner of the planet: Africa, South America, North America, Asia, Europe, Oceania, Antarctica and the Arctic. Twelve animals in each.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="css/fuentes.css">
+  <link rel="stylesheet" href="css/web.css">
+  <link rel="stylesheet" href="css/libros.css">
+  <script src="en/js/amazon.js"></script>  <script src="js/elige.js"></script></head>
+<body class="web pagina-libros">
+  <a class="saltar" href="en/books.html#estante">Skip to the books</a>
+
+  <header class="cabecera">
+    <a href="en/" aria-label="Selvativo, home"><img src="logo/Selvativo_marca_pequena_negro.svg" alt="" width="30" height="30"></a>
+    <nav aria-label="Menu">
+      <a href="en/books.html" aria-current="page">Books</a>
+    </nav>
+  </header>
+
+  <main class="libros">
+    <div class="libros__cabeza">
+      <h1>The books.</h1>
+      <p class="sub">Eight worlds, twelve animals in each. Search by region or by animal.</p>
+    </div>
+
+    <div class="filtros" id="filtros" hidden>
+      <div class="filtros__regiones" id="regiones" role="group" aria-label="Region"></div>
+      <label class="buscador">
+        <span class="buscador__txt">Find an animal</span>
+        <input type="search" id="buscar" placeholder="Koala, wolf, penguin…" autocomplete="off" spellcheck="false">
+      </label>
+      <p class="filtros__cuenta" id="cuenta" aria-live="polite"></p>
+    </div>
+
+    <section class="estante" id="estante" aria-label="The eight books in the collection"></section>
+
+    <section class="vienen" id="vienen" aria-labelledby="t-vienen">
+      <div class="vienen__cabeza">
+        <h2 id="t-vienen">Eight more worlds.</h2>
+        <p class="sub">Coming soon: the second book for each region, with twelve new animals in each.</p>
+      </div>
+      <div class="vienen__lista" id="vienen-lista"></div>
+    </section>
+  </main>
+
+  <footer class="pie-web">
+    <div class="caja">
+      <img src="logo/Selvativo_principal_marfil.svg" alt="Selvativo" width="200" height="60">
+      <p><a href="https://www.instagram.com/selvativo/" target="_blank" rel="noopener">Instagram @selvativo</a></p>
+      <p class="final__legal"><a href="en/legal-notice.html">Legal notice</a> <a href="en/privacy.html">Privacy</a> <a href="en/cookies.html">Cookies</a></p>
+      <p class="idioma"><a href="/libros.html" hreflang="es" lang="es">Español</a></p>
+    </div>
+  </footer>
+
+  <script src="en/js/datos_libros.js"></script>
+  <script src="en/js/paginas.js"></script>  <script src="en/js/libros.js"></script>
+  <script src="js/libro3d.js"></script>  <script>addEventListener('load', function () { var s = document.createElement('script'); s.src="js/vivo.js"; document.body.appendChild(s); });</script>  <script src="en/js/menu.js"></script>
+</body>
+</html>

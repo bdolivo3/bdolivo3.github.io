@@ -1,0 +1,2 @@
+/* Hecho por herramientas/traducir.py desde herramientas/idiomas/en.py. */
+window.PAGINAS_LIBRO = {"sabana": "en/guardians-of-the-savanna.html", "amazonas": "en/wild-amazon.html", "norte": "en/giants-of-the-north.html", "oriente": "en/treasures-of-the-east.html", "bosques": "en/enchanted-forests.html", "australia": "en/beasts-of-australia.html", "pinguino": "en/penguin-kingdom.html", "artico": "en/kings-of-the-arctic.html"};

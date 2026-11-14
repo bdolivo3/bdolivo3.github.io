@@ -15,7 +15,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="robots" content="noindex">
   <link rel="icon" href="/favicon.ico">
-  <link rel="stylesheet" href="css/fuentes.css">
+  <link rel="stylesheet" href="/css/fuentes.css">
   <link rel="stylesheet" href="/css/web.css">
 </head>
 <body class="web">
@@ -32,5 +32,11 @@
         <a class="enlace" href="/libros.html">Ver los libros</a></p>
     </div>
   </main>
+<script>(function () { var T = {"en": {"titulo": "Selvativo · Page not found", "h1": "This path doesn't lead to any world.", "sub": "Go back to the start and open a book.", "volver": "Back to the start", "libros": "See the books", "libros_href": "books.html"}}, c = location.pathname.split('/')[1], t = T[c];
+    if (!t) return;
+    document.documentElement.lang = c; document.title = t.titulo;
+    document.querySelector('h1').textContent = t.h1; document.querySelector('.sub').textContent = t.sub;
+    var a = document.querySelectorAll('main a');
+    a[0].textContent = t.volver; a[0].href = '/' + c + '/'; a[1].textContent = t.libros; a[1].href = '/' + c + '/' + t.libros_href; })();</script>
 </body>
 </html>

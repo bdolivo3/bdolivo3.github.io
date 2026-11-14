@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Selvativo · Animal coloring and activity books for kids</title>
+  <link rel="alternate" hreflang="es" href="https://selvativo.com/">
+  <link rel="alternate" hreflang="en" href="https://selvativo.com/en/">
+  <link rel="alternate" hreflang="x-default" href="https://selvativo.com/">
+  <link rel="canonical" href="https://selvativo.com/en/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Selvativo">
+  <meta property="og:title" content="Selvativo · Animal coloring and activity books for kids">
+  <meta property="og:description" content="Coloring books about animals from around the world, for ages 6 and up: twelve animals per book, each with a fact card, a portrait and a coloring page, plus a card game.">
+  <meta property="og:url" content="https://selvativo.com/en/">
+  <meta property="og:image" content="https://selvativo.com/img/compartir.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="description" content="Coloring books about animals from around the world, for ages 6 and up: twelve animals per book, each with a fact card, a portrait and a coloring page, plus a card game.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <script>window.AMAZON = {};</script>  <script>(() => {
+  const LIBROS = ['sabana', 'amazonas', 'norte', 'oriente', 'bosques', 'australia', 'pinguino', 'artico'];
+  const pedido = new URLSearchParams(location.search).get('libro');
+  let guardado = null;   
+  try { guardado = sessionStorage.getItem('selvativo-libro'); } catch (e) {}
+  const venta = LIBROS.filter(k => (window.AMAZON || {})[k]), bolsa = venta.length ? venta : LIBROS;
+  window.ELEGIDO = LIBROS.includes(pedido) ? pedido : LIBROS.includes(guardado) ? guardado : bolsa[Math.floor(Math.random() * bolsa.length)];
+  try { sessionStorage.setItem('selvativo-libro', window.ELEGIDO); } catch (e) {}
+  document.documentElement.dataset.elegido = window.ELEGIDO;
+})();</script>
+  <script>(function () { var n = (window.ELEGIDO === 'sabana' ? 'sabana-002' : window.ELEGIDO) + '.webp', d = 'img/anuncio/pinta/', l = document.createElement('link');
+    window.LAMINA = { srcset: d + 'w800/' + n + ' 800w, ' + d + n + ' 1200w', src: d + n, sizes: '(max-width: 767px) 100vw, 1200px' };
+    l.rel = 'preload'; l.as = 'image'; l.href = LAMINA.src; l.setAttribute('imagesrcset', LAMINA.srcset); l.setAttribute('imagesizes', LAMINA.sizes);
+    l.setAttribute('fetchpriority', 'high'); document.head.appendChild(l); })();</script>
+  <link rel="stylesheet" href="css/fuentes.css">
+  <link rel="stylesheet" href="css/web.css">
+  <link rel="stylesheet" href="css/portada.css">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Selvativo", "url": "https://selvativo.com/", "logo": "https://selvativo.com/apple-touch-icon.png", "sameAs": ["https://www.instagram.com/selvativo/"]}</script>
+  <style>.mundos [aria-current="true"] .r::after { content: ", you're here"; } .tienda__lista a::after { content: "Buy on Amazon"; }</style>
+</head>
+<body class="web">
+
+  <header class="cabecera cabecera--encima">
+    <a href="en/" aria-label="Selvativo, home"><img src="logo/Selvativo_marca_pequena_negro.svg" alt="" width="30" height="30"></a>
+    <nav aria-label="Menu">
+      <a href="en/books.html">Books</a>
+    </nav>
+    <a class="estas" href="en/#mundos" aria-label="The world you're in; see all eight"><span id="estas-libro">Guardians of the Savanna</span></a>
+    <a class="comprar-pildora" data-comprar="corto" href="#" style="display: none">Buy on Amazon</a>
+  </header>
+
+  <main>
+    <section class="portada" id="portada" aria-label="Color it in">
+      <div class="lamina" id="lamina">
+        <img id="base" alt="Coloring page" width="1200" height="1706" sizes="(max-width: 767px) 100vw, 1200px" fetchpriority="high">
+        <script>(function () { var b = document.getElementById('base'); b.srcset = LAMINA.srcset; b.src = LAMINA.src; })();</script>
+        <canvas id="lienzo" aria-hidden="true"></canvas>
+        <div class="pista" id="pista" aria-hidden="true"><svg class="pista__mano" viewBox="0 0 48 48" width="56" height="56"><path d="M22 4a4 4 0 0 1 4 4v14l2-.6a3.6 3.6 0 0 1 4.4 2.4l.3.9 1.6-.4a3.6 3.6 0 0 1 4.4 2.6l.2.8 1-.2a3.4 3.4 0 0 1 4 3.3V36c0 6.6-5.4 12-12 12h-2.4c-4 0-7.6-2.2-9.6-5.6L10.2 33a3.4 3.4 0 0 1 5.6-3.8L18 32V8a4 4 0 0 1 4-4z"/></svg></div>
+      </div>
+      <div class="portada__texto" id="texto" aria-live="polite">
+        <h1 id="titulo">Color me in with your finger.</h1>
+        <p class="que-es">An animal coloring and activity book for ages 6 and up. 84 pages.</p>
+        <p class="quien" id="quien">The elephant, from Guardians of the Savanna.</p>
+        <p class="acciones" id="acciones"><span class="libro-pronto">Coming soon in English</span>
+          <button class="enlace" type="button" data-accion="ver">See it colored in</button></p>
+      </div>
+    </section>
+
+    <section class="banda" aria-labelledby="t-paginas">
+      <div class="caja">
+        <div class="cabeza">
+          <h2 id="t-paginas">Three pages for every animal.</h2>
+        </div>
+        <div class="paginas" tabindex="0" aria-label="The animal's three pages">
+          <figure class="pagina"><img id="p-ficha" alt="The elephant's fact card" width="798" height="1135" sizes="(max-width: 1023px) 240px, 384px" loading="lazy">
+            <figcaption><h3>The fact card</h3></figcaption></figure>
+          <figure class="pagina"><img id="p-retrato" alt="The elephant's portrait" width="798" height="1135" sizes="(max-width: 1023px) 240px, 384px" loading="lazy">
+            <figcaption><h3>The portrait</h3></figcaption></figure>
+          <figure class="pagina"><img id="p-lamina" alt="The elephant's coloring page" width="1200" height="1706" sizes="(max-width: 767px) 240px, 1200px" loading="lazy">
+            <figcaption><h3>The coloring page</h3></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="banda mundo" aria-labelledby="t-ficha">
+      <div class="caja ficha-datos">
+        <div class="cabeza">
+          <h2 id="t-ficha">And its fact card is a game card.</h2>
+          <div class="quien-es">
+            <p class="nombre" id="f-nombre">Elephant</p>
+            <p><span class="num" id="f-cod">No. 002</span>, <span id="f-rareza">legendary</span> <span class="estrellas" id="f-estrellas" aria-hidden="true">★★★★☆</span></p>
+          </div>
+        </div>
+        <figure class="carta-viva" id="carta-viva"><img id="c-ficha" alt="The elephant's fact card, from the book" width="798" height="1135" sizes="400px" loading="lazy"></figure>
+        <div class="cifras" id="cifras"></div>
+      </div>
+    </section>
+
+    <section class="banda" id="duelo" aria-labelledby="t-duelo">
+      <div class="caja">
+        <div class="cabeza">
+          <h2 id="t-duelo">Two animals, one duel.</h2>
+        </div>
+        <div class="duelo">
+          <div class="frente" id="frente">
+            <figure class="luchador-foto" id="d-a"><img id="d-a-img" alt="The elephant with its young" width="798" height="1135" sizes="(max-width: 767px) 50vw, 362px" loading="lazy">
+              <figcaption><b id="d-a-nombre">Elephant</b><span><span id="d-a-vida">127</span> life</span></figcaption></figure>
+            <p class="contra" aria-hidden="true">vs.</p>
+            <figure class="luchador-foto luchador-foto--rival" id="d-b"><img id="d-b-img" alt="The Bengal tiger with its young" width="798" height="1135" sizes="(max-width: 767px) 50vw, 362px" loading="lazy">
+              <figcaption><b id="d-b-nombre">Bengal tiger</b><span><span id="d-b-vida">135</span> life</span></figcaption>
+              <span class="golpe-num" id="d-golpe" aria-hidden="true">−25</span></figure>
+          </div>
+          <div class="textos">
+            <ol class="pasos">
+              <li><span><b>The fastest one goes first.</b></span></li>
+              <li><span><b>A hit: your attack minus its defense.</b></span></li>
+              <li><span><b>You win when the other has no life left.</b></span></li>
+            </ol>
+            <div class="ejemplo">
+              <p class="pie" id="e-quien">A hit from the elephant on the Bengal tiger:</p>
+              <p class="cuenta" id="e-cuenta">35 − 10 = 25</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="banda mundo compra" aria-label="Buy the book" style="display: none">
+      <div class="caja">
+        <img class="compra__portada" id="mitad-portada" alt="" width="800" height="1130" sizes="120px" loading="lazy">
+        <div class="compra__txt">
+          <p class="compra__titulo" id="mitad-libro">Guardians of the Savanna</p>
+          <p><a class="btn" data-comprar href="#">Buy on Amazon</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="banda" id="mundos" aria-labelledby="t-mundos" style="padding-top: 0">
+      <div class="caja">
+        <div class="cabeza">
+          <h2 id="t-mundos">Eight books, eight worlds.</h2>
+          <p class="sub">Pick one and the whole site travels to its world.</p>
+        </div>
+        <ul class="mundos" id="lista-mundos"></ul>
+      </div>
+    </section>
+
+    <section class="banda cuidar" aria-labelledby="t-cuidar">
+      <div class="caja cuidar-caja">
+        <div class="textos">
+          <h2 id="t-cuidar">Caring for the savanna.</h2>
+          <div class="uicn">
+            <p class="dice" id="c-dice">The elephant is endangered.</p>
+            <ol id="c-escala" aria-hidden="true"><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ol>
+            <p class="ext"><span>Least Concern</span><span>Extinct</span></p>
+            <p class="pie">According to the IUCN Red List.</p>
+          </div>
+        </div>
+        <div class="textos">
+          <h3>What you can do</h3>
+          <ul class="puedes" id="p-lista"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="banda mundo final con-vivo" aria-labelledby="t-final">
+      <div class="vivo" aria-hidden="true"></div>
+      <div class="caja">
+        <span class="libro3d final__portada"><span class="libro3d__libro"><img id="fin-portada" alt="Cover of Guardians of the Savanna" width="800" height="1130" sizes="(max-width: 767px) 70vw, 472px" loading="lazy"><span class="libro3d__canto" aria-hidden="true"></span></span></span>
+        <div class="textos">
+          <h2 id="t-final">Guardians of the Savanna</h2>
+          <p class="sub" id="fin-sub">Twelve animals from Africa to color and play with.</p>
+          <p class="acciones" id="fin-acciones"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="tienda" id="tienda" aria-labelledby="t-tienda">
+    <div class="tienda__caja">
+      <p class="tienda__titulo" id="t-tienda">Already on Amazon</p>
+      <ul class="tienda__lista" id="tienda-lista"></ul>
+      <button class="enlace" type="button" data-cerrar>Close</button>
+    </div>
+  </dialog>
+
+  <footer class="pie-web">
+    <div class="caja">
+      <img src="logo/Selvativo_principal_marfil.svg" alt="Selvativo" width="200" height="60">
+      <p><a href="https://www.instagram.com/selvativo/" target="_blank" rel="noopener">Instagram @selvativo</a></p>
+      <p class="final__legal"><a href="en/legal-notice.html">Legal notice</a> <a href="en/privacy.html">Privacy</a> <a href="en/cookies.html">Cookies</a></p>
+      <p class="idioma"><a href="/" hreflang="es" lang="es">Español</a></p>
+    </div>
+  </footer>
+
+  <script src="en/js/datos_libros.js"></script>
+  <script src="en/js/datos_sabana.js"></script>
+  <script src="en/js/paginas.js"></script>  <script src="en/js/portada.js"></script>
+  <script src="js/libro3d.js"></script>  <script>addEventListener('load', function () { var s = document.createElement('script'); s.src="js/vivo.js"; document.body.appendChild(s); });</script>  <script src="en/js/menu.js"></script>
+</body>
+</html>

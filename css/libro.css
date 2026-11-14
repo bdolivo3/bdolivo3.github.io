@@ -6,7 +6,6 @@
 .web .libro-cabeza .sub { font-size: 18px; }
 .pagina-libro .acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 6px; }
 .libro-cabeza__jugar { display: inline-flex; align-items: center; min-height: 44px; font-size: 17px; text-underline-offset: .3em; }
-.libro-pronto { display: inline-flex; align-items: center; min-height: 44px; font-style: italic; }
 @media (min-width: 760px) {
   .libro-cabeza .caja { grid-template-columns: 300px minmax(0, 1fr); gap: clamp(40px, 6vw, 80px); }
   .libro-cabeza__portada { width: 300px; }
